@@ -71,7 +71,7 @@ class Game
             #If the user does not enter 'Yes' or 'No', display error message.
             if @blank != 'yes' && @blank != 'no'
             #The error message is 'Input invalid: Try again' and keep looping
-                print "Input Invalid: Try again"    
+                puts "Input Invalid: Try again"    
             end
         end
         
