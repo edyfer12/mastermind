@@ -10,10 +10,16 @@ class Game
     #Declare a constant array called players
     PLAYERS = ['guesser', 'codemaker']
     #Add constructor method where human and computer objects are created
+    def initialize
         #Create game_count variable and set to 0
+        @game_count = 0
         #Create a human object passing in game_count and players array
+        @human = Human.new(@game_count, PLAYERS)
         #Create a computer object passing in players array
+        @computer = Computer.new(PLAYERS)
         #Assign class variable number_of_games to class method set_number_of_games 
+        @@number_of_games = self.set_num_of_games
+    end
     #Create an instance method called set_num_of_games
     def set_num_of_games
         #Keep looping to allow the user to type in the input until the value is an integer,
