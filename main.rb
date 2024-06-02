@@ -7,7 +7,7 @@
 class Game 
 
     #Declare a class variable called number of games
-
+    @@number_of_games
     #Create an instance method called set_num_of_games
 
         #Declare variable called num_of_games and set to input
