@@ -14,7 +14,6 @@ class Game
         loop do  
             #Declare variable called num_of_games and set to input
             num_of_games = gets.chomp
-            p num_of_games
             #If num_of_games is not a number or includes non-numeric string other than . and -, 
             if num_of_games.match(/[^0-9.-]/) || 
             (num_of_games.match(/[0-9]/) && num_of_games.count(".") > 1) ||
