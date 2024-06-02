@@ -15,8 +15,8 @@ class Game
         @game_count = 0
         #Create a human object passing in game_count and players array
         @human = Human.new(@game_count, PLAYERS)
-        #Create a computer object passing in players array
-        @computer = Computer.new(PLAYERS)
+        #Create a computer object passing in human
+        @computer = Computer.new(@human)
         #Assign class variable number_of_games to class method set_number_of_games 
         @@number_of_games = self.set_num_of_games
     end
