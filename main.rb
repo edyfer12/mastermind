@@ -58,27 +58,43 @@ class Game
     end
 end
 #Create a class called Human
+class Human
     #Inside the Human class,
-        #Declare an instance variable called player
-        
-        #If game_count is 0, then assign player to random element of players array
-        
-        #If computer's player variable is set to 'guesser' and game_count is not 0,
-        #set player to 'codemaker'
-
-        #If computer's player variable is set to 'codemaker' and game_count is not 0,
-        #set player to 'guesser' 
-
+        def initialize(game_count, players)
+            #Declare an instance variable called player
+            @player
+            #If game_count is 0, then assign player to random element of players array
+            if game_count == 0
+                @player = players.sample 
+            #If computer's player variable is set to 'guesser' and game_count is not 0,
+            #set player to 'codemaker'
+            elsif computer.player == 'guesser' && game_count != 0
+                @player = 'codemaker'
+            #If computer's player variable is set to 'codemaker' and game_count is not 0,
+            #set player to 'guesser' 
+            elsif computer.player == 'codemaker' && game_count != 0
+                @player = 'guesser'
+            end
+        end
         #Create an instance method where the player variable can be read
-
+        attr_reader :player
+end
 #Create a class called Computer
+class Computer
 #Inside the Computer class,
+    def initialize
         #Declare an instance variable called player
-        
+        @player
         #If computer's player variable is set to 'guesser',
         #set player to 'codemaker'
-
+        if human.player == 'guesser'
+            @player = 'codemaker'
         #If computer's player variable is set to 'codemaker',
         #set player to 'guesser' 
-
-        #Create an instance method where the player variable can be read
+        elsif human.player == 'codemaker'
+            @player = 'guesser'
+        end
+    end
+    #Create an instance method where the player variable can be read
+    attr_reader :player
+end
