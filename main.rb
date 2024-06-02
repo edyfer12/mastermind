@@ -15,8 +15,12 @@ class Game
         loop do  
             #Declare variable called num_of_games and set to input
             num_of_games = gets.chomp
+            p num_of_games
             #If num_of_games is not a number or includes non-numeric string, 
+            if num_of_games.match?(/[^0-9]/)|| num_of_games == ""
                 #Display error "Not a number: Try Again"
+                puts "Not a number: Try again"
+            end
             #If num_of_games is not an integer, but is a number, 
                 #Display error "Not a whole number: Try Again"
             #If num_of_games is an integer, but is less than 2 or is not even number,
