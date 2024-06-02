@@ -33,7 +33,8 @@ class Game
                 num_of_games = num_of_games.to_i
                 #Display error "Number has to be an even number at least 2: Try again"
                 puts "Number has to be an even number at least 2: Try Again"
-            end
+            #If num_of_games is an integer and is even number at least 2,
+                #Convert to integer
         break if num_of_games.is_a?(Integer) == true && num_of_games >= 2 && num_of_games.even? == true
         end
     end
