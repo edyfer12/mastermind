@@ -67,10 +67,10 @@ class Game
         puts "Do you want blank colours in the game?"
         
         #Enable the user to keep entering the input until the blank value is 'yes' or 'no'
-        while @blank != "Yes" && @blank != "No"
-            @blank = gets.chomp
+        while @blank != "yes" && @blank != "no"
+            @blank = gets.chomp.downcase
             #If the user does not enter 'Yes' or 'No', display error message.
-            if @blank != 'Yes' && @blank != 'No'
+            if @blank != 'yes' && @blank != 'no'
             #The error message is 'Input invalid: Try again' and keep looping
                 print "Input Invalid: Try again"    
             end
@@ -120,4 +120,4 @@ class Computer
     attr_reader :player
 end
 
-puts Game.new
+puts Game.new.create_rules
