@@ -7,9 +7,11 @@
 class Game 
     #Declare a class variable called number of games
     @@number_of_games
+    #Declare a constant array called players
     #Add constructor method where human and computer objects are created
-        #Create a human object 
-        #Create a computer object
+        #Create a human object passing in game_count and players array
+        #Create a computer object passing in players array
+        #Assign class variable number_of_games to class method set_number_of_games 
     #Create an instance method called set_num_of_games
     def set_num_of_games
         #Keep looping to allow the user to type in the input until the value is an integer,
@@ -47,3 +49,28 @@ class Game
         end
     end
 end
+#Create a class called Human
+    #Inside the Human class,
+        #Declare an instance variable called player
+        
+        #If game_count is 0, then assign player to random element of players array
+        
+        #If computer's player variable is set to 'guesser' and game_count is not 0,
+        #set player to 'codemaker'
+
+        #If computer's player variable is set to 'codemaker' and game_count is not 0,
+        #set player to 'guesser' 
+
+        #Create an instance method where the player variable can be read
+
+#Create a class called Computer
+#Inside the Computer class,
+        #Declare an instance variable called player
+        
+        #If computer's player variable is set to 'guesser',
+        #set player to 'codemaker'
+
+        #If computer's player variable is set to 'codemaker',
+        #set player to 'guesser' 
+
+        #Create an instance method where the player variable can be read
