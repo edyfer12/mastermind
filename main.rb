@@ -26,6 +26,7 @@ class Game
         #is at least 2 and is even number
         loop do  
             #Notify the user to enter the number of games
+            print "Please enter the number of games: "
             #Declare variable called num_of_games and set to input
             num_of_games = gets.chomp
             #If num_of_games is not a number or includes non-numeric string other than . and -, 
