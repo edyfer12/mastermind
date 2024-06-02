@@ -65,7 +65,6 @@ class Game
     def create_rules
         #Output to the user whether to allow blank colours to be used in the game
         puts "Do you want blank colours in the game?"
-        
         #Enable the user to keep entering the input until the blank value is 'yes' or 'no'
         while @blank != "yes" && @blank != "no"
             @blank = gets.chomp.downcase
