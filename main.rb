@@ -62,12 +62,23 @@ class Game
     end
     #Create an instance method that enables the user to enable the rules of the game whether to allow blank and/or  
     #duplicate colours for both the codemaker and guesser when nominating colour patterns
+    def create_rules
         #Output to the user whether to allow blank colours to be used in the game
+        puts "Do you want blank colours in the game?"
         #Create instance variable called blank
+        @blank
         #Enable the user to keep entering the input until the blank value is 'yes' or 'no'
+        while @blank != "Yes" && @blank != "No"
+            @blank = gets.chomp
             #If the user does not enter 'Yes' or 'No', display error message.
+            if @blank != 'Yes' && @blank != 'No'
             #The error message is 'Input invalid: Try again' and keep looping
+                print "Input Invalid: Try again"    
+            end
             #Otherwise, store the value into blank
+        end
+        
+    end
 end
 #Create a class called Human
 class Human
@@ -110,3 +121,5 @@ class Computer
     #Create an instance method where the player variable can be read
     attr_reader :player
 end
+
+puts Game.new
