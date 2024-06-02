@@ -10,6 +10,7 @@ class Game
     #Declare a constant array called players
     PLAYERS = ['guesser', 'codemaker']
     #Add constructor method where human and computer objects are created
+        #Create game_count variable and set to 0
         #Create a human object passing in game_count and players array
         #Create a computer object passing in players array
         #Assign class variable number_of_games to class method set_number_of_games 
