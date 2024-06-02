@@ -7,6 +7,9 @@
 class Game 
     #Declare a class variable called number of games
     @@number_of_games
+    #Add constructor method where human and computer objects are created
+        #Create a human object 
+        #Create a computer object
     #Create an instance method called set_num_of_games
     def set_num_of_games
         #Keep looping to allow the user to type in the input until the value is an integer,
