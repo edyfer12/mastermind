@@ -60,6 +60,14 @@ class Game
         break if num_of_games.is_a?(Integer) == true && num_of_games >= 2 && num_of_games.even? == true
         end
     end
+    #Create an instance method that enables the user to enable the rules of the game whether to allow blank and/or  
+    #duplicate colours for both the codemaker and guesser when nominating colour patterns
+        #Output to the user whether to allow blank colours to be used in the game
+        #Create instance variable called blank
+        #Enable the user to keep entering the input until the blank value is 'yes' or 'no'
+            #If the user does not enter 'Yes' or 'No', display error message.
+            #The error message is 'Input invalid: Try again' and keep looping
+            #Otherwise, store the value into blank
 end
 #Create a class called Human
 class Human
