@@ -82,7 +82,7 @@ end
 #Create a class called Computer
 class Computer
 #Inside the Computer class,
-    def initialize
+    def initialize(human)
         #Declare an instance variable called player
         @player
         #If computer's player variable is set to 'guesser',
