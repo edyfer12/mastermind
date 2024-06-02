@@ -8,6 +8,7 @@ class Game
     #Declare a class variable called number of games
     @@number_of_games
     #Declare a constant array called players
+    PLAYERS = ['guesser', 'codemaker']
     #Add constructor method where human and computer objects are created
         #Create a human object passing in game_count and players array
         #Create a computer object passing in players array
