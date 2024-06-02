@@ -102,5 +102,3 @@ class Computer
     #Create an instance method where the player variable can be read
     attr_reader :player
 end
-Game.new
-puts Game.number_of_games
