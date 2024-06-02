@@ -54,6 +54,8 @@ class Game
             else
                 #Convert to integer
                 num_of_games = num_of_games.to_i
+                #Return number of games
+                return num_of_games
             end
         break if num_of_games.is_a?(Integer) == true && num_of_games >= 2 && num_of_games.even? == true
         end
@@ -100,3 +102,5 @@ class Computer
     #Create an instance method where the player variable can be read
     attr_reader :player
 end
+Game.new
+puts Game.number_of_games
