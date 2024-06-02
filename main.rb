@@ -5,7 +5,6 @@
 #are created for the codemaker and guesser, play multiple games and decoding_board is both 
 #printed and updated.
 class Game 
-
     #Declare a class variable called number of games
     @@number_of_games
     #Create an instance method called set_num_of_games
@@ -16,16 +15,26 @@ class Game
             #Declare variable called num_of_games and set to input
             num_of_games = gets.chomp
             p num_of_games
-            #If num_of_games is not a number or includes non-numeric string, 
-            if num_of_games.match?(/[^0-9]/)|| num_of_games == ""
+            #If num_of_games is not a number or includes non-numeric string other than ., 
+            if num_of_games.match(/[^0-9.]/) || 
+            (num_of_games.match(/[0-9]/) && num_of_games.count(".") > 1) ||
+            num_of_games == '' ||
+            num_of_games[num_of_games.length - 1] == "."
                 #Display error "Not a number: Try Again"
-                puts "Not a number: Try again"
-            end
+                puts "Not a number: Try Again"
             #If num_of_games is not an integer, but is a number, 
+            elsif num_of_games.match(/[0-9]/) && num_of_games.include?(".") && num_of_games.count(".") == 1
                 #Display error "Not a whole number: Try Again"
+                puts "Not a whole number: Try Again"
             #If num_of_games is an integer, but is less than 2 or is not even number,
+            elsif num_of_games.match(/[0-9]/) && !num_of_games.include?(".")  &&
+                 num_of_games.to_i < 2 && num_of_games.to_i.odd? == true
                 #Convert to integer
+                num_of_games = num_of_games.to_i
                 #Display error "Number has to be an even number at least 2: Try again"
-        break if num_of_games.is_a? Integer == true && num_of_games >= 2 && num_of_games.even? == true
+                puts "Number has to be an even number at least 2: Try Again"
+            end
+        break if num_of_games.is_a?(Integer) == true && num_of_games >= 2 && num_of_games.even? == true
+        end
     end
 end
