@@ -4,6 +4,7 @@
 #Create a class called Game where rules are set, set number of games are played, colour patterns
 #are created for the codemaker and guesser, play multiple games and decoding_board is both 
 #printed and updated.
+class Game 
 
     #Declare a class variable called number of games
 
@@ -19,3 +20,4 @@
             #If num_of_games is an integer, but is less than 2 or is not even number,
                 #Convert to integer
                 #Display error "Number has to be an even number at least 2: Try again"
+end
