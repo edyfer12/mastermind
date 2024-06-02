@@ -10,11 +10,11 @@ class Game
     @@number_of_games
     #Create an instance method called set_num_of_games
     def set_num_of_games
-        #Declare variable called num_of_games and set to input
-        num_of_games = gets.chomp
         #Keep looping to allow the user to type in the input until the value is an integer,
         #is at least 2 and is even number
         loop do  
+            #Declare variable called num_of_games and set to input
+            num_of_games = gets.chomp
             #If num_of_games is not a number or includes non-numeric string, 
                 #Display error "Not a number: Try Again"
             #If num_of_games is not an integer, but is a number, 
