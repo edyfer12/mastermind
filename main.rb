@@ -195,6 +195,7 @@ class Game
             #If the feedback row contains all four black colours, terminate the outer loop so that there is no more guessing
         #If the computer is a guesser, declare computer_points variable and set to points
         #Otherwise, declare human_points variable and set to points
+        
     #Create instance method called computer_guess_colour where feedback array and duplicate is passed so computer can  
     #choose colours based on the rules
         #Create a variable called random_value and set to random element from code_pegs 
