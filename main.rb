@@ -84,6 +84,7 @@ class Game
             #The error message is 'Input Invalid: Try again' and keep looping 
                 puts "Input invalid: Try again"
             end
+        end
     end
 end
 #Create a class called Human
