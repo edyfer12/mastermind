@@ -91,6 +91,7 @@ class Game
     end
     #Create an instance method that enables the codemaker to choose four colour patterns based on
     #on the rules of the game
+    def nominate_colours_codemaker
         #If the blank instance variable is set to 'Yes', push blank character into code_pegs array
         #Create an array called codemaker
         #Output to the user "Please enter the four colours (red, orange, green, pink, brown, yellow):"
@@ -99,6 +100,7 @@ class Game
             #If the computer is a codemaker, invoke the method computer_make_code
             #Otherwise, invoke the method human_make_code
             #Increment i by 1 to allow more colour to be entered
+    end
 end
 #Create a class called Human
 class Human
@@ -142,4 +144,4 @@ class Computer
     attr_reader :player
 end
 
-puts Game.new.create_rules
+puts Game.new.nominate_colours_codemaker
