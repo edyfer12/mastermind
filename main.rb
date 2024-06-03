@@ -276,12 +276,23 @@ class Game
             colour = gets.chomp
         end
         #Push colour into the guesser_board[row] to keep track of the value stored in the nested array
+        @guesser_board[row][col] = colour
         #If the guesser_board[row][col] matches the colour and position in codemaker array, push 'black' into feedback array
+        if @codemaker.include?(@guesser_board[row][col]) && @guesser_board[row][col] == @codemaker[col]
+            feedback.push('black')
         #If the guesser_board[row][col] matches the colour, not position in codemaker array, and number of selected duplicate colours
         #in the guesser_board[row] is less than or equal to the codemaker's number of select duplicate colours, then push 'white' into
         #feedback array
+        elsif @codemaker.include?(@guesser_board[row][col]) && @guesser_board[row][col] != @codemaker[col] &&
+            @guesser_board[row].count(@guesser_board[row][col]) <= @codemaker.count(@guesser_board[row][col])
+            feedback.push('white')
         #If the guesser_board[row][col] does not have colour that exists in codemaker, or if colour does exist in codemaker, not match in 
         #position, but number of select duplicate colours in guesser_board[row] is greater than in codemaker, then push '' into feedback array 
+        elsif !@codemaker.include?(@guesser_board[row][col]) || 
+            (@codemaker.include?(@guesser_board[row][col]) && @guesser_board[row][col] != @codemaker[col] &&
+            @guesser_board[row].count(@guesser_board[row][col]) > @codemaker.count(@guesser_board[row][col]))
+            feedback.push('blank')
+        end
     end
 end
 #Create a class called Human
