@@ -222,10 +222,10 @@ class Game
             #Add row by 1 so the guesser can take another turn selecting the new pattern of four colours
             row += 1
         end 
-        #If the computer is a guesser, declare computer_points variable and set to points
+        #If the computer is a guesser, declare human_points variable and set to points
         if @computer.player == 'guesser'
             @human_points = points
-        #Otherwise, declare human_points variable and set to points
+        #Otherwise, declare computer_points variable and set to points
         else
             @computer.player == 'codemaker'
         end
