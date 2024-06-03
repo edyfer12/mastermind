@@ -10,9 +10,12 @@ class Game
     #Declare a constant array called players
     PLAYERS = ['guesser', 'codemaker']
     #Declare constant variable called MAX_GUESSES and assign to 12 where guesser can take 12 turns
+    MAX_GUESSES = 12
     #Declare constant variable called NUM_LARGE_HOLES and assign to 4 where guesser picks 4 colours
+    NUM_LARGE_HOLES = 4
     #Declare constant variable called NUM_SMALL_HOLES and assign to 4 where guesser recieves feedback from the 
     #codemaker
+    NUM_SMALL_HOLES = 4
     #Add constructor method where human and computer objects are created
     def initialize
         #Create game_count variable and set to 0
