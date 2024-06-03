@@ -108,7 +108,6 @@ class Game
             #If the computer is a codemaker, invoke the method computer_make_code
             if @computer.player == 'codemaker'
                 computer_make_code(i, @code_pegs, @duplicate)
-            end
             #Otherwise, invoke the method human_make_code
             #Increment i by 1 to allow more colour to be entered
             i += 1
