@@ -100,8 +100,10 @@ class Game
         #Create an array called codemaker
         @codemaker = []
         #If human is a codemaker,
+        if @human.player == 'codemaker'
         #Output to the user "Please enter the four colours (red, orange, green, pink, brown, yellow):"
         puts "Please enter the four colours (red, orange, green, pink, brown, yellow):"
+        end
         #Create variable i and set to 0
         i = 0
         #Keep entering the colours four times as a codemaker
