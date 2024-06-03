@@ -110,7 +110,7 @@ class Game
         #If human is a codemaker,
         if @human.player == 'codemaker'
             #Output to the user "Please enter the four colours (red, orange, green, pink, brown, yellow):"
-            puts "Please enter the four colours (red, orange, green, pink, brown, yellow):"
+            puts "As a codemaker, please enter the four colours (coloured code pegs are red, orange, green, pink, brown, yellow):"
         end
         #Create variable i and set to 0
         i = 0
@@ -192,7 +192,7 @@ class Game
             feedback = []
             #Output the instruction to the human guesser, "As a guesser please enter four colours (red, orange,
             #green, pink, brown, yellow):"
-            puts "As a guesser please enter four colours (red, orange, green, pink, brown, yellow):" if @human.player == 'guesser'
+            puts "As a guesser please enter four colours (coloured code pegs are red, orange, green, pink, brown, yellow):" if @human.player == 'guesser'
             #Loop through col to NUM_LARGE_HOLES so that the guesser is able to nominate four colours for each row
             while col < NUM_LARGE_HOLES
                 #If the computer is a guesser, then invoke the method called computer_guess_colour passing in feedback array, duplicate 
