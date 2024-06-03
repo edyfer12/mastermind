@@ -223,18 +223,36 @@ class Game
     end
     #Create instance method called computer_guess_colour where feedback array, row, col and duplicate is passed so computer can  
     #choose colours based on the rules
+    def computer_guess_colour(feedback, duplicate, row, col)
         #Create a variable called random_value and set to random element from code_pegs 
+        random_value = @code_pegs.sample
         #Keep looping until duplicate is 'yes' or duplicate is set to 'no' and random_value does not exist in guesser_board[row][col]
+        until duplicate == 'yes' || (duplicate == 'no' && !@guesser_board[row].include?(random_value))
             #If duplicate is set to 'no' and random_value exists in guesser_board, 
+            if duplicate == 'no' && @guesser_board[row].include?(random_value)
                 #Reassign random_value to a new random element from code_pegs array so the rule is met when guessing the colour in the game
+                random_value = @code_pegs.sample
+            end
+        end
         #Push the colour into the guesser_board[row] so that the nested array can keep track of the value stored
+        @guesser_board[row][col] = random_value
         #If the guesser_board[row][col] matches the colour and position in codemaker array, push 'black' into feedback array
+        if @codemaker.include?(@guesser_board[row][col]) && @codemaker[col] == @guesser_board[row][col]
+            feedback.push('black')
         #If the guesser_board[row][col] matches the colour, not position in codemaker array, and number of selected duplicate colours
         #in the guesser_board[row] is less than or equal to the codemaker's number of select duplicate colours, then push 'white' into
         #feedback array
+        elsif @codemaker.include?(@guesser_board[row][col]) && @codemaker[col] != @guesser_board[row][col] &&
+            @guesser_board[row].count(@guesser_board[row][col]) <= @codemaker.count(@guesser_board[row][col])
+            feedback.push('white')
         #If the guesser_board[row][col] does not have colour that exists in codemaker, or if colour does exist in codemaker, not match in 
-        #position, but number of select duplicate colours in guesser_board[row] is greater than in codemaker, then push '' into feedback array 
-
+        #position, but number of select duplicate colours in guesser_board[row] is greater than in codemaker, then push '' into feedback array
+        elsif !@codemaker.include?(@guesser_board[row][col]) || 
+            (@codemaker.include?(@guesser_board[row][col]) && @codemaker[col] != @guesser_board[row][col] &&
+            @guesser_board[row].count(@guesser_board[row][col]) > @codemaker.count(@guesser_board[row][col]))
+            feedback.push('blank')
+        end 
+    end
     #Create instance method called human_guess_colour where feedback array, row, col and duplicate is passed so human can choose colours based 
     #on the rules    
         #Create a variable called colour and set to input
