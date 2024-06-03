@@ -176,7 +176,9 @@ class Game
     #position and colour match between the guesser and codemaker. No key peg is rewarded if the 
     #colour does not exist in the codemaker or if colour does exist, but not position, where the 
     #number of duplicate colours in guesser is greater than in codemaker.
+    def nominate_colours_guesser
         #Create guesser_board variable that is a 2D array that store 12 rows and 4 columns
+        guesser_board = Array.new(12, 4)
         #Create points variable and set to 0 so the codemaker earns points for each row guessed
         #Create row variable and set to 0 to indicate the start of the turn for the guesser
         #Loop through row to the MAX_GUESSES where the guesser makes 12 turns to get the pattern correctly
@@ -196,7 +198,7 @@ class Game
             #Add row by 1 so the guesser can take another turn selecting the new pattern of four colours 
         #If the computer is a guesser, declare computer_points variable and set to points
         #Otherwise, declare human_points variable and set to points
-        
+    end
     #Create instance method called computer_guess_colour where feedback array, row, col and duplicate is passed so computer can  
     #choose colours based on the rules
         #Create a variable called random_value and set to random element from code_pegs 
