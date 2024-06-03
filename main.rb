@@ -137,8 +137,8 @@ class Game
     def human_make_code(i, code_pegs, duplicate)
         #Keep looping until the value of colour variable exists in code_pegs and duplicate is 
         #set to 'Yes' or duplicate is set to 'No' and colour does not exist in codemaker array
-        until code_pegs.include?(colour) && (duplicate == 'yes' || duplicate == 'no' && 
-            !@codemaker.include?(colour))
+        until code_pegs.include?(colour) && (duplicate == 'yes' || (duplicate == 'no' && 
+            !@codemaker.include?(colour)))
             #Create variable colour and set to input 
             colour = gets.chomp
             #Check if the colour exists in the code_pegs array
