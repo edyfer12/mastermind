@@ -77,8 +77,13 @@ class Game
         #Output to the user whether to allow duplicate colours to be used in the game
         puts "Do you want to allow duplicate colours in the game?"
         #Enable the user to keep entering the input until the duplicate value is 'yes' or 'no'
+        while @duplicate != 'yes' && @duplicate != 'no'
+            @duplicate = gets.chomp.downcase
             #If the user does not enter 'yes' or 'no', display error message
+            if @duplicate != 'yes' && @duplicate != 'no'
             #The error message is 'Input Invalid: Try again' and keep looping 
+                puts "Input invalid: Try again"
+            end
     end
 end
 #Create a class called Human
