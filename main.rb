@@ -22,6 +22,7 @@ class Game
         #Create code_pegs array and store 'red', 'orange', 'pink', 'green', 'brown', 'yellow'.
         #Players can nominate the colour that exists in the code_pegs
         @code_pegs = ['red', 'orange', 'pink', 'green', 'brown', 'yellow']
+        self.create_rules
     end
     #Create an instance method called set_num_of_games
     def set_num_of_games
@@ -117,6 +118,7 @@ class Game
     #passing in index of codemaker, code_pegs array and duplicate variable
     def computer_make_code(i, code_pegs, duplicate)
         #Create variable called randomValue and set to random value in code_pegs
+        randomValue = code_pegs.sample
         #Use until loop to select random elements from code_pegs until duplicate value is set to 'Yes' 
         #or duplicate value is set to 'No' and element in codemaker does not exist
             #If duplicate value is set to 'No' and element in codemaker already exists then keep looping
