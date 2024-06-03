@@ -269,6 +269,7 @@ class Game
             if duplicate == 'no' && guesser_board[row].include?(colour)
                 puts "Cannot have duplicate colour in the guesser row: Try again"
             end
+            #Reassign color to input
         end
         #Push colour into the guesser_board[row] to keep track of the value stored in the nested array
         #If the guesser_board[row][col] matches the colour and position in codemaker array, push 'black' into feedback array
