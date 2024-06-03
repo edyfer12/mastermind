@@ -30,6 +30,7 @@ class Game
         #Players can nominate the colour that exists in the code_pegs
         @code_pegs = ['red', 'orange', 'pink', 'green', 'brown', 'yellow']
         self.create_rules
+        self.nominate_colours_codemaker
     end
     #Create an instance method called set_num_of_games
     def set_num_of_games
@@ -178,7 +179,7 @@ class Game
     #number of duplicate colours in guesser is greater than in codemaker.
     def nominate_colours_guesser
         #Create guesser_board variable that is a 2D array that store 12 rows and 4 columns
-        guesser_board = Array.new(12, Array.new(4))
+        @guesser_board = Array.new(12, Array.new(4))
         #Create points variable and set to 0 so the codemaker earns points for each row guessed
         points = 0
         #Create row variable and set to 0 to indicate the start of the turn for the guesser
@@ -269,7 +270,6 @@ class Game
                 puts "Cannot have duplicate colour in the guesser row: Try again"
             end
         end
-        puts "colour = #{colour}"
         #Push colour into the guesser_board[row] to keep track of the value stored in the nested array
         #If the guesser_board[row][col] matches the colour and position in codemaker array, push 'black' into feedback array
         #If the guesser_board[row][col] matches the colour, not position in codemaker array, and number of selected duplicate colours
