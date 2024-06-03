@@ -103,9 +103,14 @@ class Game
         #Create variable i and set to 0
         i = 0
         #Keep entering the colours four times as a codemaker
+        while(i < 4)
             #If the computer is a codemaker, invoke the method computer_make_code
+            if @computer.player == 'codemaker'
+                computer_make_code(i, @code_pegs, @duplicate)
             #Otherwise, invoke the method human_make_code
             #Increment i by 1 to allow more colour to be entered
+            i += 1
+        end
     end
 end
 #Create a class called Human
