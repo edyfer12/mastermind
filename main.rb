@@ -152,6 +152,7 @@ class Game
                 puts "Colour already exists in the codemaker row: Try again"
             end
         end
+        #Push the colour to the codemaker array
 end
 #Create a class called Human
 class Human
