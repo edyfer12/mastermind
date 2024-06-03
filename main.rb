@@ -255,10 +255,21 @@ class Game
     end
     #Create instance method called human_guess_colour where feedback array, row, col and duplicate is passed so human can choose colours based 
     #on the rules    
+    def human_guess_colour(feedback, duplicate, row, col)
         #Create a variable called colour and set to input
+        colour = gets.chomp
         #Keep looping until colour exists in code_pegs and (duplicate is 'yes' or duplicate is 'no' and colour does not exist in guesser_board[row]
+        until @code_pegs.include?(colour) && duplicate == 'no' && !@guesser_board[row].include?(colour)
             #If colour does not exist, display error message to the user "Colour does not exist as a code peg: Try again"
+            if !@code_pegs.include?(colour)
+                puts "Colour does not exist as a code peg: Try again"
+            end
             #If duplicate is 'no' and colour already exists in guesser_board[row], display error message "Cannot have duplicate colour in the guesser row: Try again"
+            if duplicate == 'no' && guesser_board[row].include?(colour)
+                puts "Cannot have duplicate colour in the guesser row: Try again"
+            end
+        end
+        puts "colour = #{colour}"
         #Push colour into the guesser_board[row] to keep track of the value stored in the nested array
         #If the guesser_board[row][col] matches the colour and position in codemaker array, push 'black' into feedback array
         #If the guesser_board[row][col] matches the colour, not position in codemaker array, and number of selected duplicate colours
@@ -266,7 +277,7 @@ class Game
         #feedback array
         #If the guesser_board[row][col] does not have colour that exists in codemaker, or if colour does exist in codemaker, not match in 
         #position, but number of select duplicate colours in guesser_board[row] is greater than in codemaker, then push '' into feedback array 
-        
+    end
 end
 #Create a class called Human
 class Human
