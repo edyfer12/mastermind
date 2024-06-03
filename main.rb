@@ -19,6 +19,7 @@ class Game
         @computer = Computer.new(@human)
         #Assign class variable number_of_games to class method set_number_of_games 
         @@number_of_games = self.set_num_of_games
+        #Create code_pegs array and store 'red', 'orange', 'pink', 'green', 'brown', 'yellow'
     end
     #Create an instance method called set_num_of_games
     def set_num_of_games
@@ -86,6 +87,16 @@ class Game
             end
         end
     end
+    #Create an instance method that enables the codemaker to choose four colour patterns based on
+    #on the rules of the game
+        #If the blank instance variable is set to 'Yes', push blank character into code_pegs array
+        #Create an array called codemaker
+        #Output to the user "Please enter the four colours (red, orange, green, pink, brown, yellow):"
+        #Create variable i and set to 0
+        #Keep entering the colours four times as a codemaker
+            #If the computer is a codemaker, invoke the method computer_make_code
+            #Otherwise, invoke the method human_make_code
+            #Increment i by 1 to allow more colour to be entered
 end
 #Create a class called Human
 class Human
