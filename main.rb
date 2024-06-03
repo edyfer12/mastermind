@@ -128,6 +128,7 @@ class Game
             end
         end
         #Push the randomValue to the codemaker array
+        @codemaker.push(randomValue)
     end
 end
 #Create a class called Human
