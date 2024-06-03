@@ -190,6 +190,8 @@ class Game
             col = 0
             #Create feedback array where the guesser gets rewarded a key peg whenever the colour is selected
             feedback = []
+            #Output the instruction to the human guesser, "As a guesser please enter four colours (red, orange,
+            #green, pink, brown, yellow):"
             #Loop through col to NUM_LARGE_HOLES so that the guesser is able to nominate four colours for each row
             while col < NUM_LARGE_HOLES
                 #If the computer is a guesser, then invoke the method called computer_guess_colour passing in feedback array, duplicate 
