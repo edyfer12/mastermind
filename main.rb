@@ -197,13 +197,27 @@ class Game
         #If the computer is a guesser, declare computer_points variable and set to points
         #Otherwise, declare human_points variable and set to points
         
-    #Create instance method called computer_guess_colour where feedback array and duplicate is passed so computer can  
+    #Create instance method called computer_guess_colour where feedback array, row, col and duplicate is passed so computer can  
     #choose colours based on the rules
         #Create a variable called random_value and set to random element from code_pegs 
         #Keep looping until duplicate is 'yes' or duplicate is set to 'no' and random_value does not exist in guesser_board[row][col]
             #If duplicate is set to 'no' and random_value exists in guesser_board, 
                 #Reassign random_value to a new random element from code_pegs array so the rule is met when guessing the colour in the game
-        #Push the colour into the guesser_board[row] so that the array can keep track of the value stored
+        #Push the colour into the guesser_board[row] so that the nested array can keep track of the value stored
+        #If the guesser_board[row][col] matches the colour and position in codemaker array, push 'black' into feedback array
+        #If the guesser_board[row][col] matches the colour, not position in codemaker array, and number of selected duplicate colours
+        #in the guesser_board[row] is less than or equal to the codemaker's number of select duplicate colours, then push 'white' into
+        #feedback array
+        #If the guesser_board[row][col] does not have colour that exists in codemaker, or if colour does exist in codemaker, not match in 
+        #position, but number of select duplicate colours in guesser_board[row] is greater than in codemaker, then push '' into feedback array 
+
+    #Create instance method called human_guess_colour where feedback array, row, col and duplicate is passed so human can choose colours based 
+    #on the rules    
+        #Create a variable called colour and set to input
+        #Keep looping until colour exists in code_pegs and (duplicate is 'yes' or duplicate is 'no' and colour does not exist in guesser_board[row]
+            #If colour does not exist, display error message to the user "Colour does not exist as a code peg: Try again"
+            #If duplicate is 'no' and colour already exists in guesser_board[row], display error message "Cannot have duplicate colour in the guesser row: Try again"
+        #Push colour into the guesser_board[row] to keep track of the value stored in the nested array
         #If the guesser_board[row][col] matches the colour and position in codemaker array, push 'black' into feedback array
         #If the guesser_board[row][col] matches the colour, not position in codemaker array, and number of selected duplicate colours
         #in the guesser_board[row] is less than or equal to the codemaker's number of select duplicate colours, then push 'white' into
