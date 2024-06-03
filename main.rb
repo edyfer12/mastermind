@@ -9,6 +9,10 @@ class Game
     @@number_of_games
     #Declare a constant array called players
     PLAYERS = ['guesser', 'codemaker']
+    #Declare constant variable called MAX_GUESSES and assign to 12 where guesser can take 12 turns
+    #Declare constant variable called NUM_LARGE_HOLES and assign to 4 where guesser picks 4 colours
+    #Declare constant variable called NUM_SMALL_HOLES and assign to 4 where guesser recieves feedback from the 
+    #codemaker
     #Add constructor method where human and computer objects are created
     def initialize
         #Create game_count variable and set to 0
@@ -160,6 +164,34 @@ class Game
         #Push the colour to the codemaker array
         @codemaker.push(colour)
     end
+    #Create instance method that allows the player to take up to 12 turns. For each turn, the
+    #player has to choose a colour to see if it exists in the codemaker's row and shares same 
+    #position. After each selection of colour, feedback from the codemaker is provided to the 
+    #guesser. White key peg is given to the guesser if the colour guessed exist in the 
+    #codemaker but position is different to each other and number of duplicate colour in guesser
+    #is less than or equal to the ones in codemaker. Black key peg is given to the guesser if the
+    #position and colour match between the guesser and codemaker. No key peg is rewarded if the 
+    #colour does not exist in the codemaker or if colour does exist, but not position, where the 
+    #number of duplicate colours in guesser is greater than in codemaker.
+        #Create guesser_board variable that is a 2D array that store 12 rows and 4 columns
+        #Create points variable and set to 0 so the codemaker earns points for each row guessed
+        #Create row variable and set to 0 to indicate the start of the turn for the guesser
+        #Loop through row to the MAX_GUESSES where the guesser makes 12 turns to get the pattern correctly
+            #Create col variable and set to 0 to indicate the start of choosing the colour
+            #Create feedback array where the guesser gets rewarded a key peg whenever the colour is selected
+            #Loop through col to NUM_LARGE_HOLES so that the guesser is able to nominate four colours for each row
+                #If the computer is a guesser, then invoke the method called computer_guess_colour passing in feedback array
+                #to actively enable the computer to take turn choosing four colours and be rewarded key peg
+                #Otherwise, invoke the human_guess_colour passing feedback array so that the human player can take turn choosing
+                #four colours and be rewarded key peg
+                #Add col by 1 as way of enabling the guesser to choose the next colour
+            #Add points by 1 after col is set to 4 indicating that the guesser has taken the turn to guess four colours in a row.
+            #The codemaker earns a point per row that the guesser chooses 4 colours
+            #If row is MAX_GUESSES - 1 and feedback row does not include all black colours, which is the last row for the guesser 
+            #to take a turn, add points by 1 to show that the codemaker has earned 1 extra point
+            #If the feedback row contains all four black colours, terminate the outer loop so that there is no more guessing
+        #If the computer is a guesser, declare computer_points variable and set to points
+        #Otherwise, declare human_points variable and set to points
 end
 #Create a class called Human
 class Human
