@@ -178,7 +178,7 @@ class Game
     #number of duplicate colours in guesser is greater than in codemaker.
     def nominate_colours_guesser
         #Create guesser_board variable that is a 2D array that store 12 rows and 4 columns
-        guesser_board = Array.new(12, 4)
+        guesser_board = Array.new(12, Array.new(4))
         #Create points variable and set to 0 so the codemaker earns points for each row guessed
         #Create row variable and set to 0 to indicate the start of the turn for the guesser
         #Loop through row to the MAX_GUESSES where the guesser makes 12 turns to get the pattern correctly
@@ -270,4 +270,4 @@ class Computer
     attr_reader :player
 end
 
-puts Game.new.nominate_colours_codemaker
+puts Game.new.nominate_colours_guesser
