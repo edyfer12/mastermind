@@ -110,10 +110,10 @@ class Game
         while(i < 4)
             #If the computer is a codemaker, invoke the method computer_make_code
             if @computer.player == 'codemaker'
-                computer_make_code(i, @code_pegs, @duplicate)
+                computer_make_code(@code_pegs, @duplicate)
             #Otherwise, invoke the method human_make_code
             else
-                human_make_code(i, @code_pegs, @duplicate)
+                human_make_code(@code_pegs, @duplicate)
             end
             #Increment i by 1 to allow more colour to be entered
             i += 1
@@ -121,7 +121,7 @@ class Game
     end
     #Create instance method that enables the computer codemaker to nominate four colour patterns
     #passing in index of codemaker, code_pegs array and duplicate variable
-    def computer_make_code(i, code_pegs, duplicate)
+    def computer_make_code(code_pegs, duplicate)
         #Create variable called randomValue and set to random value in code_pegs
         randomValue = code_pegs.sample
         #Use until loop to select random elements from code_pegs until duplicate value is set to 'Yes' 
@@ -137,7 +137,7 @@ class Game
     end
     #Create instance method that enables the human codemaker to nominate four colour patterns
     #passing in index of codemaker, code_pegs array and duplicate variable
-    def human_make_code(i, code_pegs, duplicate)
+    def human_make_code(code_pegs, duplicate)
         #Create variable colour and set to input 
         colour = gets.chomp
         #Keep looping until the value of colour variable exists in code_pegs and duplicate is 
