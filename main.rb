@@ -121,7 +121,12 @@ class Game
         randomValue = code_pegs.sample
         #Use until loop to select random elements from code_pegs until duplicate value is set to 'Yes' 
         #or duplicate value is set to 'No' and element in codemaker does not exist
+        until duplicate == 'yes' || duplicate == 'no' && !@codemaker.include?(randomValue)
             #If duplicate value is set to 'No' and element in codemaker already exists then keep looping
+            if duplicate == 'no' && @codemaker.include?(randomValue)
+                randomValue = code_pegs.sample
+            end
+        end
     end
 end
 #Create a class called Human
