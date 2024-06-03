@@ -19,7 +19,8 @@ class Game
         @computer = Computer.new(@human)
         #Assign class variable number_of_games to class method set_number_of_games 
         @@number_of_games = self.set_num_of_games
-        #Create code_pegs array and store 'red', 'orange', 'pink', 'green', 'brown', 'yellow'
+        #Create code_pegs array and store 'red', 'orange', 'pink', 'green', 'brown', 'yellow'.
+        #Players can nominate the colour that exists in the code_pegs
         @code_pegs = ['red', 'orange', 'pink', 'green', 'brown', 'yellow']
     end
     #Create an instance method called set_num_of_games
