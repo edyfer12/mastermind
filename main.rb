@@ -223,7 +223,12 @@ class Game
             row += 1
         end 
         #If the computer is a guesser, declare computer_points variable and set to points
+        if @computer.player == 'guesser'
+            @human_points = points
         #Otherwise, declare human_points variable and set to points
+        else
+            @computer.player == 'codemaker'
+        end
     end
     #Create instance method called computer_guess_colour where feedback array, row, col and duplicate is passed so computer can  
     #choose colours based on the rules
