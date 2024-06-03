@@ -193,6 +193,7 @@ class Game
             #If row is MAX_GUESSES - 1 and feedback row does not include all black colours, which is the last row for the guesser 
             #to take a turn, add points by 1 to show that the codemaker has earned 1 extra point
             #If the feedback row contains all four black colours, terminate the outer loop so that there is no more guessing
+            #Add row by 1 so the guesser can take another turn selecting the new pattern of four colours 
         #If the computer is a guesser, declare computer_points variable and set to points
         #Otherwise, declare human_points variable and set to points
         
