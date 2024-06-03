@@ -113,6 +113,11 @@ class Game
             i += 1
         end
     end
+    #Create instance method that enables the computer codemaker to nominate four colour patterns
+    #passing in index of codemaker, code_pegs array and duplicate variable
+        #Use while loop to select random elements from code_pegs until duplicate value is set to 'Yes' 
+        #or duplicate value is set to 'No' and element in codemaker does not exist
+            #If duplicate value is set to 'No' and element in codemaker already exists then keep looping
 end
 #Create a class called Human
 class Human
