@@ -154,6 +154,7 @@ class Game
         end
         #Push the colour to the codemaker array
         @codemaker.push(colour)
+    end
 end
 #Create a class called Human
 class Human
