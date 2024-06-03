@@ -180,7 +180,9 @@ class Game
         #Create guesser_board variable that is a 2D array that store 12 rows and 4 columns
         guesser_board = Array.new(12, Array.new(4))
         #Create points variable and set to 0 so the codemaker earns points for each row guessed
+        points = 0
         #Create row variable and set to 0 to indicate the start of the turn for the guesser
+        row = 0
         #Loop through row to the MAX_GUESSES where the guesser makes 12 turns to get the pattern correctly
             #Create col variable and set to 0 to indicate the start of choosing the colour
             #Create feedback array where the guesser gets rewarded a key peg whenever the colour is selected
