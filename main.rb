@@ -127,6 +127,7 @@ class Game
                 randomValue = code_pegs.sample
             end
         end
+        #Push the randomValue to the codemaker array
     end
 end
 #Create a class called Human
