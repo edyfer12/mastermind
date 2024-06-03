@@ -93,6 +93,9 @@ class Game
     #on the rules of the game
     def nominate_colours_codemaker
         #If the blank instance variable is set to 'Yes', push blank character into code_pegs array
+        if @blank == 'Yes'
+            code_pegs.push('')
+        end
         #Create an array called codemaker
         #Output to the user "Please enter the four colours (red, orange, green, pink, brown, yellow):"
         #Create variable i and set to 0
