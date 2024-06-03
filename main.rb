@@ -266,7 +266,7 @@ class Game
                 puts "Colour does not exist as a code peg: Try again"
             end
             #If duplicate is 'no' and colour already exists in guesser_board[row], display error message "Cannot have duplicate colour in the guesser row: Try again"
-            if duplicate == 'no' && guesser_board[row].include?(colour)
+            if duplicate == 'no' && @guesser_board[row].include?(colour)
                 puts "Cannot have duplicate colour in the guesser row: Try again"
             end
             #Reassign color to input
