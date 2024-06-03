@@ -99,6 +99,7 @@ class Game
         end
         #Create an array called codemaker
         @codemaker = []
+        #If human is a codemaker,
         #Output to the user "Please enter the four colours (red, orange, green, pink, brown, yellow):"
         puts "Please enter the four colours (red, orange, green, pink, brown, yellow):"
         #Create variable i and set to 0
