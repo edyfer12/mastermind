@@ -74,7 +74,10 @@ class Game
                 puts "Input Invalid: Try again"    
             end
         end
-        
+        #Output to the user whether to allow duplicate colours to be used in the game
+        #Enable the user to keep entering the input until the duplicate value is 'yes' or 'no'
+            #If the user does not enter 'yes' or 'no', display error message
+            #The error message is 'Input Invalid: Try again' and keep looping 
     end
 end
 #Create a class called Human
