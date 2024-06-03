@@ -134,13 +134,24 @@ class Game
     end
     #Create instance method that enables the human codemaker to nominate four colour patterns
     #passing in index of codemaker, code_pegs array and duplicate variable
+    def human_make_code(i, code_pegs, duplicate)
         #Keep looping until the value of colour variable exists in code_pegs and duplicate is 
         #set to 'Yes' or duplicate is set to 'No' and colour does not exist in codemaker array
+        until code_pegs.include?(colour) && (duplicate == 'yes' || duplicate == 'no' && 
+            !@codemaker.include?(colour))
             #Create variable colour and set to input 
+            colour = gets.chomp
             #Check if the colour exists in the code_pegs array
             #If not, output error message "Colour does not exist as a code peg: Try again"
+            if !code_pegs.include?(colour)
+                puts "Colour does not exist as a code peg: Try again"
+            end
             #If the duplicate is set to 'No' and colour already exist in codemaker array,
             #Display error message as "Colour already exists in the codemaker row: Try again"
+            if duplicate == 'no' && @codemaker.include?(colour)
+                puts "Colour already exists in the codemaker row: Try again"
+            end
+        end
 end
 #Create a class called Human
 class Human
