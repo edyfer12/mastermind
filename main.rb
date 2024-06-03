@@ -183,9 +183,9 @@ class Game
             #Create col variable and set to 0 to indicate the start of choosing the colour
             #Create feedback array where the guesser gets rewarded a key peg whenever the colour is selected
             #Loop through col to NUM_LARGE_HOLES so that the guesser is able to nominate four colours for each row
-                #If the computer is a guesser, then invoke the method called computer_guess_colour passing in feedback array
-                #to actively enable the computer to take turn choosing four colours and be rewarded key peg
-                #Otherwise, invoke the human_guess_colour passing feedback array so that the human player can take turn choosing
+                #If the computer is a guesser, then invoke the method called computer_guess_colour passing in feedback array, duplicate 
+                #row and col to actively enable the computer to take turn choosing four colours and be rewarded key peg
+                #Otherwise, invoke the human_guess_colour passing feedback array, duplicate, row and col so that the human player can take turn choosing
                 #four colours and be rewarded key peg
                 #Add col by 1 as way of enabling the guesser to choose the next colour
             #Add points by 1 after col is set to 4 indicating that the guesser has taken the turn to guess four colours in a row.
@@ -195,6 +195,20 @@ class Game
             #If the feedback row contains all four black colours, terminate the outer loop so that there is no more guessing
         #If the computer is a guesser, declare computer_points variable and set to points
         #Otherwise, declare human_points variable and set to points
+    #Create instance method called computer_guess_colour where feedback array and duplicate is passed so computer can  
+    #choose colours based on the rules
+        #Create a variable called random_value and set to random element from code_pegs 
+        #Keep looping until duplicate is 'yes' or duplicate is set to 'no' and random_value does not exist in guesser_board[row][col]
+            #If duplicate is set to 'no' and random_value exists in guesser_board, 
+                #Reassign random_value to a new random element from code_pegs array so the rule is met when guessing the colour in the game
+        #Push the colour into the guesser_board[row] so that the array can keep track of the value stored
+        #If the guesser_board[row][col] matches the colour and position in codemaker array, push 'black' into feedback array
+        #If the guesser_board[row][col] matches the colour, not position in codemaker array, and number of selected duplicate colours
+        #in the guesser_board[row] is less than or equal to the codemaker's number of select duplicate colours, then push 'white' into
+        #feedback array
+        #If the guesser_board[row][col] does not have colour that exists in codemaker, or if colour does exist in codemaker, not match in 
+        #position, but number of select duplicate colours in guesser_board[row] is greater than in codemaker, then push '' into feedback array 
+        
 end
 #Create a class called Human
 class Human
