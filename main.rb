@@ -299,6 +299,19 @@ class Game
             feedback.push('blank')
         end
     end
+    #Create instance method where the user plays multiple games of Mastermind
+        #Declare game_count variable and set to 0
+        #Declare code_pegs array and set to values 
+        
+        #Loop from game_count through to the @@num_of_games class variable 
+            #Declare an Game object where the players are created
+            #Invoke the method, called create_rules
+            #Invoke the method, called nominate_colours_codemaker
+            #Invoke the method, called nominate_colours_guesser
+            #Increment game_count by 1
+        
+        #Display the result of both computer and human players after selected number of games are played
+            
 end
 #Create a class called Human
 class Human
