@@ -184,20 +184,40 @@ class Game
         #Create row variable and set to 0 to indicate the start of the turn for the guesser
         row = 0
         #Loop through row to the MAX_GUESSES where the guesser makes 12 turns to get the pattern correctly
+        while row < MAX_GUESSES
             #Create col variable and set to 0 to indicate the start of choosing the colour
+            col = 0
             #Create feedback array where the guesser gets rewarded a key peg whenever the colour is selected
+            feedback = []
             #Loop through col to NUM_LARGE_HOLES so that the guesser is able to nominate four colours for each row
+            while col < NUM_LARGE_HOLES
                 #If the computer is a guesser, then invoke the method called computer_guess_colour passing in feedback array, duplicate 
                 #row and col to actively enable the computer to take turn choosing four colours and be rewarded key peg
+                if @computer.player == 'guesser'
+                    computer_guess_colour(feedback, @duplicate, row, col)
+                else
                 #Otherwise, invoke the human_guess_colour passing feedback array, duplicate, row and col so that the human player can take turn choosing
                 #four colours and be rewarded key peg
+                    human_guess_colour(feedback, @duplicate, row, col)
+                end
                 #Add col by 1 as way of enabling the guesser to choose the next colour
+                col += 1
+            end
             #Add points by 1 after col is set to 4 indicating that the guesser has taken the turn to guess four colours in a row.
             #The codemaker earns a point per row that the guesser chooses 4 colours
+            points += 1
             #If row is MAX_GUESSES - 1 and feedback row does not include all black colours, which is the last row for the guesser 
             #to take a turn, add points by 1 to show that the codemaker has earned 1 extra point
+            if row == MAX_GUESSES - 1 && !feedback.all?('black')
+                points += 1
+            end
             #If the feedback row contains all four black colours, terminate the outer loop so that there is no more guessing
-            #Add row by 1 so the guesser can take another turn selecting the new pattern of four colours 
+            if feedback.all?('black')
+                break
+            end
+            #Add row by 1 so the guesser can take another turn selecting the new pattern of four colours
+            row += 1
+        end 
         #If the computer is a guesser, declare computer_points variable and set to points
         #Otherwise, declare human_points variable and set to points
     end
