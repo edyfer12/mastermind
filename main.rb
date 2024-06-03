@@ -101,6 +101,7 @@ class Game
         #Output to the user "Please enter the four colours (red, orange, green, pink, brown, yellow):"
         puts "Please enter the four colours (red, orange, green, pink, brown, yellow):"
         #Create variable i and set to 0
+        i = 0
         #Keep entering the colours four times as a codemaker
             #If the computer is a codemaker, invoke the method computer_make_code
             #Otherwise, invoke the method human_make_code
