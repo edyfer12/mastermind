@@ -75,6 +75,7 @@ class Game
             end
         end
         #Output to the user whether to allow duplicate colours to be used in the game
+        puts "Do you want to allow duplicate colours in the game?"
         #Enable the user to keep entering the input until the duplicate value is 'yes' or 'no'
             #If the user does not enter 'yes' or 'no', display error message
             #The error message is 'Input Invalid: Try again' and keep looping 
