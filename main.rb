@@ -300,17 +300,24 @@ class Game
         end
     end
     #Create instance method where the user plays multiple games of Mastermind
+    def play_multiple_games
         #Declare game_count variable and set to 0
-        #Declare code_pegs array and set to values 
-        
+        game_count = 0
+        #Declare code_pegs array and set to values
+        code_pegs = ['red', 'orange', 'pink', 'green', 'brown', 'yellow'] 
+        #Assign class variable number_of_games to class method set_number_of_games 
+        @@number_of_games = self.set_num_of_games
         #Loop from game_count through to the @@num_of_games class variable 
-            #Declare an Game object where the players are created
+        while game_count < @@number_of_games
+            #Declare an Game object where the players are created where game_count is passe
             #Invoke the method, called create_rules
             #Invoke the method, called nominate_colours_codemaker
             #Invoke the method, called nominate_colours_guesser
             #Increment game_count by 1
-        
+            game_count += 1
+        end
         #Display the result of both computer and human players after selected number of games are played
+    end
             
 end
 #Create a class called Human
