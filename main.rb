@@ -329,19 +329,19 @@ class Human
     #Inside the Human class,
         def initialize(players)
             #Declare an instance variable called player
-            @player
+            #@player
             #If game_count is 0, then assign player to random element of players array
-            if game_count == 0
+            #if game_count == 0
                 @player = players.sample 
             #If computer's player variable is set to 'guesser' and game_count is not 0,
             #set player to 'codemaker'
-            elsif computer.player == 'guesser' && game_count != 0
-                @player = 'codemaker'
+            #elsif computer.player == 'guesser' && game_count != 0
+               # @player = 'codemaker'
             #If computer's player variable is set to 'codemaker' and game_count is not 0,
             #set player to 'guesser' 
-            elsif computer.player == 'codemaker' && game_count != 0
-                @player = 'guesser'
-            end
+            #elsif computer.player == 'codemaker' && game_count != 0
+               # @player = 'guesser'
+            #end
         end
         #Create an instance method where the player variable can be read
         attr_reader :player
