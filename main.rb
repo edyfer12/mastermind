@@ -19,7 +19,7 @@ class Game
     #Add constructor method where human and computer objects are created
     def initialize
         #Create game_count variable and set to 0
-        @game_count = 0
+        #@game_count = 0
         #Create a human object passing in game_count and players array
         @human = Human.new(@game_count, PLAYERS)
         #Create a computer object passing in human
