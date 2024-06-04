@@ -190,23 +190,7 @@ class Game
 
         #If the user enters less than 4 strings and only one or more strings have a combination of duplicate colours and 
         #and string that does not exist in colour array when duplicate feature is disabled
-        #Keep looping until the value of colour variable exists in code_pegs and duplicate is 
-        #set to 'Yes' or duplicate is set to 'No' and colour does not exist in codemaker array
-        #until code_pegs.include?(colour) && (duplicate == 'yes' || (duplicate == 'no' && 
-            #!@codemaker.include?(colour)))
-            #Check if the colour exists in the code_pegs array
-            #If not, output error message "Colour does not exist as a code peg: Try again"
-            #if !code_pegs.include?(colour)
-               # puts "Colour does not exist as a code peg: Try again"
-            #end
-            #If the duplicate is set to 'No' and colour already exist in codemaker array,
-            #Display error message as "Colour already exists in the codemaker row: Try again"
-            #if duplicate == 'no' && @codemaker.include?(colour)
-                #puts "Colour already exists in the codemaker row: Try again"
-            #end
-            #Create variable colour and set to input 
-            #colour = gets.chomp
-        #end
+        
         #Push the colour to the codemaker array
         @codemaker.push(colour)
     end
