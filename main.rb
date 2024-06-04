@@ -274,7 +274,7 @@ class Game
         #Create a variable called colour and set to input
         colour = gets.chomp
         #Keep looping until colour exists in code_pegs and (duplicate is 'yes' or duplicate is 'no' and colour does not exist in guesser_board[row]
-        until @code_pegs.include?(colour) && duplicate == 'no' && !@guesser_board[row].include?(colour)
+        until @code_pegs.include?(colour) && (duplicate == 'yes' ||  (duplicate == 'no' && !@guesser_board[row].include?(colour)))
             #If colour does not exist, display error message to the user "Colour does not exist as a code peg: Try again"
             if !@code_pegs.include?(colour)
                 puts "Colour does not exist as a code peg: Try again"
