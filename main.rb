@@ -152,22 +152,24 @@ class Game
     def human_make_code(code_pegs, duplicate)
         #Create variable colour and set to input 
         colour = gets.chomp
+
+        
         #Keep looping until the value of colour variable exists in code_pegs and duplicate is 
         #set to 'Yes' or duplicate is set to 'No' and colour does not exist in codemaker array
-        until code_pegs.include?(colour) && (duplicate == 'yes' || (duplicate == 'no' && 
-            !@codemaker.include?(colour)))
+        #until code_pegs.include?(colour) && (duplicate == 'yes' || (duplicate == 'no' && 
+            #!@codemaker.include?(colour)))
             #Check if the colour exists in the code_pegs array
             #If not, output error message "Colour does not exist as a code peg: Try again"
-            if !code_pegs.include?(colour)
-                puts "Colour does not exist as a code peg: Try again"
-            end
+            #if !code_pegs.include?(colour)
+               # puts "Colour does not exist as a code peg: Try again"
+            #end
             #If the duplicate is set to 'No' and colour already exist in codemaker array,
             #Display error message as "Colour already exists in the codemaker row: Try again"
-            if duplicate == 'no' && @codemaker.include?(colour)
-                puts "Colour already exists in the codemaker row: Try again"
-            end
+            #if duplicate == 'no' && @codemaker.include?(colour)
+                #puts "Colour already exists in the codemaker row: Try again"
+            #end
             #Create variable colour and set to input 
-            colour = gets.chomp
+            #colour = gets.chomp
         end
         #Push the colour to the codemaker array
         @codemaker.push(colour)
