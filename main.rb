@@ -159,7 +159,9 @@ class Game
         #Create variable called codemaker_valid_pattern and set to false
         #Keep looping until all 4 strings are valid where all four strings exist in the code_pegs array and duplicate is set to yes 
         #or when four strings exist in the code_pegs array and are all unique to each other 
-
+        if all_colours_match? == false
+            puts "colours dont match"
+        end
         #If all four strings typed regardless of non-alphabetic characters typed at the end match the colour of 
         #the code_peg array, push into codemaker array
 
