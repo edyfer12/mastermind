@@ -208,7 +208,7 @@ class Game
     #of the non-letter strings after the word. Return true if all the strings exist in the code_pegs array. Otherwise, return false
     def all_colours_exist?(code_pegs, colour)
         i = 0
-        while i < 4
+        while i < colour.length
             if code_pegs.any?{|c| c.include?(colour[i])} == false
                 return false
             end
@@ -229,6 +229,7 @@ class Game
             if colour.count(colour[i]) > 1
                 #If so, push the element inside the duplicate_colours array
                 @duplicate_colours.push(colour[i])
+            end
             #Increment i by 1
             i += 1 
         end
@@ -240,7 +241,6 @@ class Game
         #Otherwise return false  
             return false
         end
-
     end
     #Create instance method that allows the player to take up to 12 turns. For each turn, the
     #player has to choose a colour to see if it exists in the codemaker's row and shares same 
