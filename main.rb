@@ -164,28 +164,32 @@ class Game
             puts "colours dont match"
         end
 
-        
+        while codemaker_valid_pattern == false
 
+            case all_colours_exist?(code_pegs, colour)
         #If one or more of the strings do not match the colours in the code_peg array out of 4 strings, then display the error message 'name_of_string(s)
         #does not exist: Try again' and encourage the user to enter input again
-
+            #when false && @invalid_inputs.length == 1
+                #puts "#{@invalid_inputs[0]} does not exist: Try again"
         #If one or more of the strings match the colour of the code_peg array but is a duplicate colour out of 4 strings, where the duplicate
         #feature is disabled, display error message 'name_of_string(s) is already typed: Try again' and encourage the user to 
         #type the input again
-
+            when true && has_duplicate?(colour) == true && @duplicate == 'no'
+                puts "#{@duplicate_colours[0]} is already typed: Try again"
         #If the user enters less than 4 strings and all match the code_pegs array, notify the user "Not enough colours: Try Again"
         #encourage user to type the input again
-
+            end
+        end
+        
         #If the user enters less than 4 strings and only one or more strings do not exist in code_pegs array, notify the user
         #"Not enough colours and {name_of_string(s)} do not exist in code_pegs array" and encourage user to type the input again
-
+           
         #If the user enters less than 4 strings and only one or more strings have duplicate colours in colour array when
         #duplicate feature is disabled, notify the user "Not enough colours and {name_of_string(s)} are duplicate colours" and 
         #encourage the user to type the input again
 
         #If the user enters less than 4 strings and only one or more strings have a combination of duplicate colours and 
         #and string that does not exist in colour array when duplicate feature is disabled
-        
         #Keep looping until the value of colour variable exists in code_pegs and duplicate is 
         #set to 'Yes' or duplicate is set to 'No' and colour does not exist in codemaker array
         #until code_pegs.include?(colour) && (duplicate == 'yes' || (duplicate == 'no' && 
@@ -224,7 +228,7 @@ class Game
         end
     end
     #Create an instance method that checks if the colour array has duplicate colours 
-    def is_duplicate?(colour)
+    def has_duplicate?(colour)
         #Create an instance array called duplicate_colours
         @duplicate_colours = []
         #Set i to 0
