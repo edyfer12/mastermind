@@ -205,7 +205,16 @@ class Game
     end
     #Create instance method that checks if all four colours of the input user typed exist in the code_pegs array regardless 
     #of the non-letter strings after the word. Return true if all the strings exist in the code_pegs array. Otherwise, return false
-    
+    def all_colours_match?(code_pegs, colour)
+        i = 0
+        while i < colour.length
+            if colour.any?{|word| word.include?(code_pegs[i])} == false
+                return false
+            end
+            i += 1
+        end
+        return true
+    end
     #Create instance method that allows the player to take up to 12 turns. For each turn, the
     #player has to choose a colour to see if it exists in the codemaker's row and shares same 
     #position. After each selection of colour, feedback from the codemaker is provided to the 
