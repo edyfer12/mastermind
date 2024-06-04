@@ -21,7 +21,7 @@ class Game
         #Create game_count variable and set to 0
         #@game_count = 0
         #Create a human object passing in game_count and players array
-        @human = Human.new(@game_count, PLAYERS)
+        @human = Human.new(PLAYERS)
         #Create a computer object passing in human
         @computer = Computer.new(@human)
         #else
@@ -327,7 +327,7 @@ end
 #Create a class called Human
 class Human
     #Inside the Human class,
-        def initialize(game_count, players)
+        def initialize(players)
             #Declare an instance variable called player
             @player
             #If game_count is 0, then assign player to random element of players array
