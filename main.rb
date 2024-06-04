@@ -164,6 +164,8 @@ class Game
             puts "colours dont match"
         end
 
+        
+
         #If one or more of the strings do not match the colours in the code_peg array out of 4 strings, then display the error message 'name_of_string(s)
         #does not exist: Try again' and encourage the user to enter input again
 
@@ -209,7 +211,7 @@ class Game
     def all_colours_exist?(code_pegs, colour)
         i = 0
         while i < colour.length
-            if code_pegs.any?{|c| c.include?(colour[i])} == false
+            if code_pegs.any?(colour[i]) == false
                 return false
             end
             i += 1
