@@ -150,9 +150,34 @@ class Game
     #Create instance method that enables the human codemaker to nominate four colour patterns
     #passing in index of codemaker, code_pegs array and duplicate variable
     def human_make_code(code_pegs, duplicate)
-        #Create variable colour and set to input 
+        #Create variable colour and set to input
         colour = gets.chomp
 
+        #Convert the input into the array of strings so the compiler can spot if the string exists in code_peg array
+        #and is a duplicate colour if the duplicate feature is enabled or disabled where array is sliced from index 0 to 3 
+
+        #If all four strings typed regardless of non-alphabetic characters typed at the end match the colour of 
+        #the code_peg array, push into codemaker array
+
+        #If one or more of the strings do not match the colours in the code_peg array out of 4 strings, then display the error message 'name_of_string(s)
+        #does not exist: Try again' and encourage the user to enter input again
+
+        #If one or more of the strings match the colour of the code_peg array but is a duplicate colour out of 4 strings, where the duplicate
+        #feature is disabled, display error message 'name_of_string(s) is already typed: Try again' and encourage the user to 
+        #type the input again
+
+        #If the user enters less than 4 strings and all match the code_pegs array, notify the user "Not enough colours: Try Again"
+        #encourage user to type the input again
+
+        #If the user enters less than 4 strings and only one or more strings do not exist in code_pegs array, notify the user
+        #"Not enough colours and {name_of_string(s)} do not exist in code_pegs array" and encourage user to type the input again
+
+        #If the user enters less than 4 strings and only one or more strings have duplicate colours in colour array when
+        #duplicate feature is disabled, notify the user "Not enough colours and {name_of_string(s)} are duplicate colours" and 
+        #encourage the user to type the input again
+
+        #If the user enters less than 4 strings and only one or more strings have a combination of duplicate colours and 
+        #and string that does not exist in colour array when duplicate feature is disabled
         
         #Keep looping until the value of colour variable exists in code_pegs and duplicate is 
         #set to 'Yes' or duplicate is set to 'No' and colour does not exist in codemaker array
@@ -170,7 +195,7 @@ class Game
             #end
             #Create variable colour and set to input 
             #colour = gets.chomp
-        end
+        #end
         #Push the colour to the codemaker array
         @codemaker.push(colour)
     end
