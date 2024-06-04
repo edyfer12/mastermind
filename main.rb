@@ -344,7 +344,7 @@ class Human
             #end
         end
         #Create an instance method where the player variable can be read
-        attr_reader :player
+        attr_accessor :player
 end
 #Create a class called Computer
 class Computer
