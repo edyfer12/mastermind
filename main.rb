@@ -210,21 +210,13 @@ class Game
     def all_colours_match?(code_pegs, colour)
         i = 0
         while i < 4
-            j = 0
-            is_matched = false
-            while j < 6 && is_matched == false
-                if colour.any?{|c| c.match?(code_pegs[j])} == true
-                   is_matched = true
-                end
-                j += 1
+            if code_pegs.any?{|c| c.include?(colour[i])} == false
+                return false
             end
             i += 1
         end
 
-        if is_matched == true
-            return true
-        end
-        return false
+        return true
     end
     #Create instance method that allows the player to take up to 12 turns. For each turn, the
     #player has to choose a colour to see if it exists in the codemaker's row and shares same 
