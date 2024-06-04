@@ -169,21 +169,23 @@ class Game
             case all_colours_exist?(code_pegs, colour)
         #If one or more of the strings do not match the colours in the code_peg array out of 4 strings, then display the error message 'name_of_string(s)
         #does not exist: Try again' and encourage the user to enter input again
-            #when false && @invalid_inputs.length == 1
-                #puts "#{@invalid_inputs[0]} does not exist: Try again"
+            when false && @invalid_inputs.length == 1
+                puts "#{@invalid_inputs[0]} does not exist: Try again"
         #If one or more of the strings match the colour of the code_peg array but is a duplicate colour out of 4 strings, where the duplicate
         #feature is disabled, display error message 'name_of_string(s) is already typed: Try again' and encourage the user to 
         #type the input again
             when true && has_duplicate?(colour) == true && @duplicate == 'no'
-                puts "#{@duplicate_colours[0]} is already typed: Try again"
+                puts "#{display_duplicate_colours} is already typed: Try again".capitalize
         #If the user enters less than 4 strings and all match the code_pegs array, notify the user "Not enough colours: Try Again"
         #encourage user to type the input again
-            end
-        end
-        
+            when true && colour.length < 4
+                puts "Not enough colours: Try again"
         #If the user enters less than 4 strings and only one or more strings do not exist in code_pegs array, notify the user
         #"Not enough colours and {name_of_string(s)} do not exist in code_pegs array" and encourage user to type the input again
-           
+            when false && colour.length < 4
+                puts "Not enough colours #{@invalid_inputs[0]} do not exist as a code peg: Try again"
+            end
+        end
         #If the user enters less than 4 strings and only one or more strings have duplicate colours in colour array when
         #duplicate feature is disabled, notify the user "Not enough colours and {name_of_string(s)} are duplicate colours" and 
         #encourage the user to type the input again
