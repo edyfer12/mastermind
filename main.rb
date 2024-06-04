@@ -217,14 +217,30 @@ class Game
         return true
     end
     #Create an instance method that checks if the colour array has duplicate colours 
+    def is_duplicate?(colour)
         #Create an instance array called duplicate_colours
+        @duplicate_colours = []
         #Set i to 0
+        i = 0
         #Loop through the colour array from index 0 to length - 1 of colour array
-            #For the individual element, check if it exists in the colour array
+        while i < colour.length
+            #For the individual element, check if it exists in the colour array more than once
+            if colour.count?(colour[i]) > 1
                 #If so, push the element inside the duplicate_colours array
+                @duplicate_colours.push(colour[i])
             #Increment i by 1
+            i += 1 
+        end
         #If duplicate_colours contain a value, make the values unique to each other and return true
+        if @duplicate_colours.length > 0
+            @duplicate_colours = @duplicate_colours.uniq
+            return true
+        else
         #Otherwise return false  
+            return false
+        end
+
+    end
     #Create instance method that allows the player to take up to 12 turns. For each turn, the
     #player has to choose a colour to see if it exists in the codemaker's row and shares same 
     #position. After each selection of colour, feedback from the codemaker is provided to the 
