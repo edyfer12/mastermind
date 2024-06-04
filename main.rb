@@ -162,8 +162,6 @@ class Game
         if all_colours_exist?(code_pegs, colour) == false
             puts "colours dont match"
         end
-        #If all four strings typed regardless of non-alphabetic characters typed at the end match the colour of 
-        #the code_peg array, push into codemaker array
 
         #If one or more of the strings do not match the colours in the code_peg array out of 4 strings, then display the error message 'name_of_string(s)
         #does not exist: Try again' and encourage the user to enter input again
