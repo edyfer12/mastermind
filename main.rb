@@ -192,6 +192,7 @@ class Game
         while row < MAX_GUESSES
             #Create col variable and set to 0 to indicate the start of choosing the colour
             col = 0
+            #Reset the whole array
             @guesser_board = Array.new(12, Array.new(4))
             #Create feedback array where the guesser gets rewarded a key peg whenever the colour is selected
             feedback = []
