@@ -159,7 +159,7 @@ class Game
         #Create variable called codemaker_valid_pattern and set to false
         #Keep looping until all 4 strings are valid where all four strings exist in the code_pegs array and duplicate is set to yes 
         #or when four strings exist in the code_pegs array and are all unique to each other 
-        if all_colours_match?(code_pegs, colour) == false
+        if all_colours_exist?(code_pegs, colour) == false
             puts "colours dont match"
         end
         #If all four strings typed regardless of non-alphabetic characters typed at the end match the colour of 
@@ -207,7 +207,7 @@ class Game
     end
     #Create instance method that checks if all four colours of the input user typed exist in the code_pegs array regardless 
     #of the non-letter strings after the word. Return true if all the strings exist in the code_pegs array. Otherwise, return false
-    def all_colours_match?(code_pegs, colour)
+    def all_colours_exist?(code_pegs, colour)
         i = 0
         while i < 4
             if code_pegs.any?{|c| c.include?(colour[i])} == false
