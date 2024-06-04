@@ -24,13 +24,17 @@ class Game
         @human = Human.new(@game_count, PLAYERS)
         #Create a computer object passing in human
         @computer = Computer.new(@human)
+        #else
+        #@computer = Computer.new(@human)
+        #@human = Human.new(game_count, PLAYERS)
+        #end
         #Assign class variable number_of_games to class method set_number_of_games 
-        @@number_of_games = self.set_num_of_games
+       # @@number_of_games = self.set_num_of_games
         #Create code_pegs array and store 'red', 'orange', 'pink', 'green', 'brown', 'yellow'.
         #Players can nominate the colour that exists in the code_pegs
-        @code_pegs = ['red', 'orange', 'pink', 'green', 'brown', 'yellow']
-        self.create_rules
-        self.nominate_colours_codemaker
+        #@code_pegs = ['red', 'orange', 'pink', 'green', 'brown', 'yellow']
+        #self.create_rules
+        #self.nominate_colours_codemaker
     end
     #Create an instance method called set_num_of_games
     def set_num_of_games
