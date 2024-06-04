@@ -154,7 +154,11 @@ class Game
         colour = gets.chomp
 
         #Convert the input into the array of strings so the compiler can spot if the string exists in code_peg array
-        #and is a duplicate colour if the duplicate feature is enabled or disabled where array is sliced from index 0 to 3 
+        #and is a duplicate colour if the duplicate feature is enabled or disabled where array is sliced from index 0 to 3
+
+        #Create variable called codemaker_valid_pattern and set to false
+        #Keep looping until all 4 strings are valid where all four strings exist in the code_pegs array and duplicate is set to yes 
+        #or when four strings exist in the code_pegs array and are all unique to each other 
 
         #If all four strings typed regardless of non-alphabetic characters typed at the end match the colour of 
         #the code_peg array, push into codemaker array
