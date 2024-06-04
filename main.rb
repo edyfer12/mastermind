@@ -157,6 +157,7 @@ class Game
         #and is a duplicate colour if the duplicate feature is enabled or disabled where array is sliced from index 0 to 3
         colour = colour.split
         #Create variable called codemaker_valid_pattern and set to false
+        codemaker_valid_pattern = false
         #Keep looping until all 4 strings are valid where all four strings exist in the code_pegs array and duplicate is set to yes 
         #or when four strings exist in the code_pegs array and are all unique to each other 
         if all_colours_exist?(code_pegs, colour) == false
