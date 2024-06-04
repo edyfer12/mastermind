@@ -225,7 +225,7 @@ class Game
         #Loop through the colour array from index 0 to length - 1 of colour array
         while i < colour.length
             #For the individual element, check if it exists in the colour array more than once
-            if colour.count?(colour[i]) > 1
+            if colour.count(colour[i]) > 1
                 #If so, push the element inside the duplicate_colours array
                 @duplicate_colours.push(colour[i])
             #Increment i by 1
