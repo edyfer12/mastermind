@@ -236,6 +236,17 @@ class Game
             return false
         end
     end
+    #Create an instance method where it converts the array into a string. If there is only one duplicate colour in the
+    #array, just convert to an array. If there is more than one, join the elements with all commas and space except the last element
+    def display_duplicate_colours
+        #If length of array is just 1, then return just one value from the array 
+        if @duplicate_colours.length == 1
+            return @duplicate_colours[0]
+        else
+        #Otherwise, convert the array to a string using " and " and retuurn the string
+            return @duplicate_colours.join(' and ')
+        end
+    end
     #Create instance method that allows the player to take up to 12 turns. For each turn, the
     #player has to choose a colour to see if it exists in the codemaker's row and shares same 
     #position. After each selection of colour, feedback from the codemaker is provided to the 
