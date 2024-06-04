@@ -332,7 +332,7 @@ class Human
             #@player
             #If game_count is 0, then assign player to random element of players array
             #if game_count == 0
-                @player = players.sample 
+            @player = players.sample 
             #If computer's player variable is set to 'guesser' and game_count is not 0,
             #set player to 'codemaker'
             #elsif computer.player == 'guesser' && game_count != 0
