@@ -372,4 +372,4 @@ class Computer
     attr_accessor :player
 end
 
-puts Game.new.nominate_colours_guesser
+Game.new.play_multiple_games
