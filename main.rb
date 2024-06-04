@@ -216,6 +216,15 @@ class Game
 
         return true
     end
+    #Create an instance method that checks if the colour array has duplicate colours 
+        #Create an instance array called duplicate_colours
+        #Set i to 0
+        #Loop through the colour array from index 0 to length - 1 of colour array
+            #For the individual element, check if it exists in the colour array
+                #If so, push the element inside the duplicate_colours array
+            #Increment i by 1
+        #If duplicate_colours contain a value, make the values unique to each other and return true
+        #Otherwise return false  
     #Create instance method that allows the player to take up to 12 turns. For each turn, the
     #player has to choose a colour to see if it exists in the codemaker's row and shares same 
     #position. After each selection of colour, feedback from the codemaker is provided to the 
