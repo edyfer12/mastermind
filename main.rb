@@ -209,15 +209,19 @@ class Game
     #Create instance method that checks if all four colours of the input user typed exist in the code_pegs array regardless 
     #of the non-letter strings after the word. Return true if all the strings exist in the code_pegs array. Otherwise, return false
     def all_colours_exist?(code_pegs, colour)
+        @invalid_inputs = []
         i = 0
         while i < colour.length
             if code_pegs.any?(colour[i]) == false
-                return false
+                @invalid_inputs.push(colour[i])
             end
             i += 1
         end
-
-        return true
+        if @invalid_inputs.length > 0
+            return false
+        else
+            return true
+        end
     end
     #Create an instance method that checks if the colour array has duplicate colours 
     def is_duplicate?(colour)
