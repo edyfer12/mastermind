@@ -303,6 +303,8 @@ class Game
             @guesser_board[row].count(@guesser_board[row][col]) > @codemaker.count(@guesser_board[row][col]))
             feedback.push('blank')
         end
+        #@guesser_board[row] = nil
+#        puts "@gues2ser_board[#{row}] = #{@guesser_board[row]}"
     end
     #Create instance method where the user plays multiple games of Mastermind
     def play_multiple_games
