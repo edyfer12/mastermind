@@ -232,7 +232,7 @@ class Game
             @human_points = points
         #Otherwise, declare computer_points variable and set to points
         else
-            @computer.player == 'codemaker'
+            @computer_points == points
         end
     end
     #Create instance method called computer_guess_colour where feedback array, row, col and duplicate is passed so computer can  
