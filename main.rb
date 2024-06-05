@@ -248,14 +248,15 @@ class Game
         end
     end
     #Create an instance method where it converts the array of invalid inputs to a string. 
-    
-    #If there is only one invalid input, then return one element. 
-    #If there is two only invalid inputs, convert to string using the join method with " and " and return the value. 
-    #If there is more than two invalid inputs, between the first and index of length - 2 slice the invalid inputs array 
-    #and store into arr1.Convert arr1 into a string with join method passing in ", " reassigned. Between second last index 
-    #and last index, slice the invalid inputs array and store into newly declared array called arr2. Convert arr2 to a string 
-    #using join method passing in " and " and reassign to arr2. Add arr1 and arr2 and then store into arr newly declared
-    #variable and return the value of arr
+    def display_invalid_inputs
+        #If there is only one invalid input, then return one element. 
+        #If there is two only invalid inputs, convert to string using the join method with " and " and return the value. 
+        #If there is more than two invalid inputs, between the first and index of length - 2 slice the invalid inputs array 
+        #and store into arr1.Convert arr1 into a string with join method passing in ", " reassigned. Between second last index 
+        #and last index, slice the invalid inputs array and store into newly declared array called arr2. Convert arr2 to a string 
+        #using join method passing in " and " and reassign to arr2. Add arr1 and arr2 and then store into arr newly declared
+        #variable and return the value of arr
+    end
 
     #Create instance method that allows the player to take up to 12 turns. For each turn, the
     #player has to choose a colour to see if it exists in the codemaker's row and shares same 
