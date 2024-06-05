@@ -249,13 +249,37 @@ class Game
     end
     #Create an instance method where it converts the array of invalid inputs to a string. 
     def display_invalid_inputs
+        #Create variable i and set to 0
+        i = 0
+        #Loop from i to length of invalid inputs 
+        while i < @invalid_inputs.length 
+        case 
         #If there is only one invalid input, then return one element. 
+        when @invalid_inputs.length == 1
+            return @invalid_inputs[0]
         #If there is two only invalid inputs, convert to string using the join method with " and " and return the value. 
-        #If there is more than two invalid inputs, between the first and index of length - 2 slice the invalid inputs array 
-        #and store into arr1.Convert arr1 into a string with join method passing in ", " reassigned. Between second last index 
-        #and last index, slice the invalid inputs array and store into newly declared array called arr2. Convert arr2 to a string 
-        #using join method passing in " and " and reassign to arr2. Add arr1 and arr2 and then store into arr newly declared
-        #variable and return the value of arr
+        when @invalid_inputs.length == 2
+            arr = @invalid_inputs.join(' and ')
+            return arr
+        #If there is more than two invalid inputs, between the first and index of length - 2
+        when @invalid_inputs.length > 2 && i >= 0 && i <= @invalid_inputs.length - 2
+            #slice the invalid inputs array 
+            #store into arr1.
+            arr1 = @invalid_inputs.slice(0..@invalid_inputs.length - 2)
+            #Convert arr1 into a string with join method passing in ", " reassigned. 
+            arr1 = arr1.join(", ")
+        #Between second last index and last index, slice the invalid inputs array and store into newly declared array called arr2.
+        when @invalid_inputs.length > 2 && i >= @invalid_inputs.length - 2 && i <= @invalid_inputs.length - 1
+            arr2 = @invalid_inputs.slice(@invalid_inputs.length - 2..@invalid_inputs.length - 1)
+            #Convert arr2 to a string 
+            arr2 = arr2.join(" and ")
+            #using join method passing in " and " and reassign to arr2. Add arr1 and arr2 and then store into arr newly declared
+            #variable and return the value of arr
+            arr = arr1 + arr2
+            return arr
+        end
+        i += 1
+        end
     end
 
     #Create instance method that allows the player to take up to 12 turns. For each turn, the
