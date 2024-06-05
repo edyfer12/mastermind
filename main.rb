@@ -150,47 +150,66 @@ class Game
     #Create instance method that enables the human codemaker to nominate four colour patterns
     #passing in index of codemaker, code_pegs array and duplicate variable
     def human_make_code(code_pegs, duplicate)
-        #Create variable colour and set to input
-        colour = gets.chomp
-
-        #Convert the input into the array of strings so the compiler can spot if the string exists in code_peg array
-        #and is a duplicate colour if the duplicate feature is enabled or disabled where array is sliced from index 0 to 3
-        colour = colour.split
         #Create variable called codemaker_valid_pattern and set to false
         codemaker_valid_pattern = false
 
         #Keep looping until all 4 strings are valid where all four strings exist in the code_pegs array and duplicate is set to yes 
         #or when four strings exist in the code_pegs array and are all unique to each other 
         
-        while codemaker_valid_pattern == false
+        while codemaker_valid_pattern == false  
+            #Create variable colour and set to input
+            colour = gets.chomp.strip
 
-            case all_colours_exist?(code_pegs, colour)
-        #If one or more of the strings do not match the colours in the code_peg array out of 4 strings, then display the error message 'name_of_string(s)
-        #does not exist: Try again' and encourage the user to enter input again
-            when false && @invalid_inputs.length == 1
-                puts "#{@invalid_inputs[0]} does not exist: Try again"
-        #If one or more of the strings match the colour of the code_peg array but is a duplicate colour out of 4 strings, where the duplicate
-        #feature is disabled, display error message 'name_of_string(s) is already typed: Try again' and encourage the user to 
-        #type the input again
-            when true && has_duplicate?(colour) == true && @duplicate == 'no'
-                puts "#{display_duplicate_colours} is already typed: Try again".capitalize
-        #If the user enters less than 4 strings and all match the code_pegs array, notify the user "Not enough colours: Try Again"
-        #encourage user to type the input again
-            when true && colour.length < 4
-                puts "Not enough colours: Try again"
-        #If the user enters less than 4 strings and only one or more strings do not exist in code_pegs array, notify the user
-        #"Not enough colours and {name_of_string(s)} do not exist in code_pegs array" and encourage user to type the input again
-            when false && colour.length < 4
-                puts "Not enough colours #{@invalid_inputs[0]} do not exist as a code peg: Try again"
+            #Convert the input into the array of strings so the compiler can spot if the string exists in code_peg array
+            #and is a duplicate colour if the duplicate feature is enabled or disabled where array is sliced from index 0 to 3
+            colour = colour.split
+            #puts all_colours_exist?(code_pegs, colour) == 'false' && colour.length == 4 && duplicate == 'no' && has_duplicate?(colour) == 'false'
+            case 
+                #If one or more of the strings do not match the colours in the code_peg array out of 4 strings, then display the error message 'name_of_string(s)
+                #does not exist: Try again' and encourage the user to enter input again
+                when all_colours_exist?(code_pegs, colour) == 'false' && colour.length == 4 && 
+                    (duplicate == 'yes' ||(duplicate == 'no' && has_duplicate?(colour) == 'false'))
+                    puts "#{display_invalid_inputs} does not exist: Try again"
+                #If one or more of the strings do not match the colours in the code_peg array out of 4 strings and duplicate is disabled
+                #and has duplicate values, then display the error message
+                when all_colours_exist?(code_pegs, colour) == 'false' && colour.length == 4 && duplicate == 'no' && has_duplicate?(colour) == 'true'
+                    puts "#{display_invalid_inputs} does not exist and #{display_duplicate_colours} already typed: Try again"
+                #If user enters less than 4 strings, duplicate is set to no, does not have duplicate colours and contains values
+                #that do not exist, display error message as "Not enough colours and {name_of_invalid_colours} do not exist: Try again"
+                when all_colours_exist?(code_pegs, colour) == 'false' && colour.length < 4 && duplicate == 'yes'  
+                    puts "Not enough colours and #{display_invalid_inputs} does not exist: Try again"
+                #If the user enters less than 4 strings but exist as code pegs and only one or more strings have duplicate colours 
+                #in colour array when duplicate feature is disabled, notify the user "Not enough colours and {name_of_string(s)} are
+                #duplicate colours" and encourage the user to type the input again
+                when all_colours_exist?(code_pegs, colour) == 'true' && colour.length < 4 && has_duplicate?(colour) == 'true' && duplicate == 'no'
+                    puts "Not enough colours and #{display_duplicate_colours} duplicate colours: Try again"
+                #If the user enters less than 4 strings and only one or more strings have a combination of duplicate colours and 
+                #and string that does not exist in colour array when duplicate feature is disabled, display error message
+                when all_colours_exist?(code_pegs, colour) == 'false' && colour.length < 4 && duplicate == 'no' && has_duplicate?(colour) == 'true'
+                    puts "Not enough colours, #{display_invalid_inputs} are invalid inputs and #{display_duplicate_colours} are 
+                    duplicate colours: Try again" 
+                
+                #If one or more of the strings match the colour of the code_peg array but is a duplicate colour out of 4 strings, where the duplicate
+                #feature is disabled, display error message 'name_of_string(s) is already typed: Try again' and encourage the user to 
+                #type the input again
+                when all_colours_exist?(code_pegs, colour) == 'true' && has_duplicate?(colour) == 'true' && duplicate == 'no' && colour.length == 4
+                    puts "#{display_duplicate_colours} already typed: Try again".capitalize 
+                #If the user enters less than 4 strings and all match the code_pegs array, notify the user "Not enough colours: Try Again"
+                #encourage user to type the input again
+                when all_colours_exist?(code_pegs, colour) == 'true' && colour.length < 4
+                    puts "Not enough colours: Try again"
+                #If the user enters less than 4 strings and only one or more strings do not exist in code_pegs array, notify the user
+                #"Not enough colours and {name_of_string(s)} do not exist in code_pegs array" and encourage user to type the input again
+                when all_colours_exist?(code_pegs, colour) == 'false' && colour.length < 4
+                    puts "Not enough colours and #{display_invalid_inputs} do not exist as a code peg: Try again"
+                #If the user enters more than 4 strings, display error message, "You can only select up to four colours: Try again"
+                when (all_colours_exist?(code_pegs, colour) == 'false' || all_colours_exist?(code_pegs, colour) == 'true') && colour.length > 4
+                    puts "You can only select up to four colours: Try again"
+                else
+                    codemaker_valid_pattern = true
             end
         end
-        #If the user enters less than 4 strings and only one or more strings have duplicate colours in colour array when
-        #duplicate feature is disabled, notify the user "Not enough colours and {name_of_string(s)} are duplicate colours" and 
-        #encourage the user to type the input again
-
-        #If the user enters less than 4 strings and only one or more strings have a combination of duplicate colours and 
-        #and string that does not exist in colour array when duplicate feature is disabled
-        
+            
         #Push the colour to the codemaker array
         @codemaker.push(colour)
     end
@@ -206,9 +225,11 @@ class Game
             i += 1
         end
         if @invalid_inputs.length > 0
-            return false
+            #Make the invalid inputs array have unique values
+            @invalid_inputs = @invalid_inputs.uniq
+            return 'false'
         else
-            return true
+            return 'true'
         end
     end
     #Create an instance method that checks if the colour array has duplicate colours 
@@ -220,7 +241,7 @@ class Game
         #Loop through the colour array from index 0 to length - 1 of colour array
         while i < colour.length
             #For the individual element, check if it exists in the colour array more than once
-            if colour.count(colour[i]) > 1
+            if colour.count(colour[i]) > 1 && @code_pegs.any?(colour[i])
                 #If so, push the element inside the duplicate_colours array
                 @duplicate_colours.push(colour[i])
             end
@@ -230,21 +251,20 @@ class Game
         #If duplicate_colours contain a value, make the values unique to each other and return true
         if @duplicate_colours.length > 0
             @duplicate_colours = @duplicate_colours.uniq
-            return true
-        else
-        #Otherwise return false  
-            return false
+            return 'true'
         end
+        #Otherwise return false  
+        return 'false'
     end
     #Create an instance method where it converts the array into a string. If there is only one duplicate colour in the
     #array, just convert to an array. If there is more than one, join the elements with all commas and space except the last element
     def display_duplicate_colours
         #If length of array is just 1, then return just one value from the array 
         if @duplicate_colours.length == 1
-            return @duplicate_colours[0]
-        else
+            return @duplicate_colours[0] + " is"
+        elsif @duplicate_colours.length > 1
         #Otherwise, convert the array to a string using " and " and retuurn the string
-            return @duplicate_colours.join(' and ')
+            return @duplicate_colours.join(' and ').to_s + " are"
         end
     end
     #Create an instance method where it converts the array of invalid inputs to a string. 
@@ -259,27 +279,21 @@ class Game
             return @invalid_inputs[0]
         #If there is two only invalid inputs, convert to string using the join method with " and " and return the value. 
         when @invalid_inputs.length == 2
-            arr = @invalid_inputs.join(' and ')
-            return arr
-        #If there is more than two invalid inputs, between the first and index of length - 2
-        when @invalid_inputs.length > 2 && i >= 0 && i <= @invalid_inputs.length - 2
-            #slice the invalid inputs array 
-            #store into arr1.
-            arr1 = @invalid_inputs.slice(0..@invalid_inputs.length - 2)
-            #Convert arr1 into a string with join method passing in ", " reassigned. 
-            arr1 = arr1.join(", ")
-        #Between second last index and last index, slice the invalid inputs array and store into newly declared array called arr2.
-        when @invalid_inputs.length > 2 && i >= @invalid_inputs.length - 2 && i <= @invalid_inputs.length - 1
-            arr2 = @invalid_inputs.slice(@invalid_inputs.length - 2..@invalid_inputs.length - 1)
-            #Convert arr2 to a string 
-            arr2 = arr2.join(" and ")
-            #using join method passing in " and " and reassign to arr2. Add arr1 and arr2 and then store into arr newly declared
-            #variable and return the value of arr
-            arr = arr1 + arr2
-            return arr
+            sentence = @invalid_inputs.join(' and ')
+            return sentence
+        #If there is three invalid inputs
+        when @invalid_inputs.length > 2
+            #slice the invalid inputs array that is index 0 and second last index and store into first_part_sentence
+            first_part_sentence = @invalid_inputs.slice(0..@invalid_inputs.length - 2)
+            #Convert first_part_senctence into a string with join method passing in ", " reassigned. 
+            first_part_sentence = first_part_sentence.join(", ")
+            #Concatenate " and " with last invalid inputs element extracted stored into second_part_sentence variable recently declared
+            second_part_sentence = " and #{@invalid_inputs[@invalid_inputs.length - 1]}"
+            #Return first_part_sentence added by second_part_sentence
+            return first_part_sentence + second_part_sentence
         end
         i += 1
-        end
+        end 
     end
 
     #Create instance method that allows the player to take up to 12 turns. For each turn, the
