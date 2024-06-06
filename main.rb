@@ -83,7 +83,7 @@ class Game
         puts "Do you want blank colours in the game?"
         #Enable the user to keep entering the input until the blank value is 'yes' or 'no'
         while @blank != "yes" && @blank != "no"
-            @blank = gets.chomp.downcase
+            @blank = gets.chomp.downcase.strip
             #If the user does not enter 'Yes' or 'No', display error message.
             if @blank != 'yes' && @blank != 'no'
             #The error message is 'Input invalid: Try again' and keep looping
@@ -94,7 +94,7 @@ class Game
         puts "Do you want to allow duplicate colours in the game?"
         #Enable the user to keep entering the input until the duplicate value is 'yes' or 'no'
         while @duplicate != 'yes' && @duplicate != 'no'
-            @duplicate = gets.chomp.downcase
+            @duplicate = gets.chomp.downcase.strip
             #If the user does not enter 'yes' or 'no', display error message
             if @duplicate != 'yes' && @duplicate != 'no'
             #The error message is 'Input Invalid: Try again' and keep looping 
