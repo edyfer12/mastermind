@@ -127,6 +127,8 @@ class Game
         else
             human_make_code(@code_pegs, @duplicate)
         end
+        #Flatten the codemaker array by reassigning codemaker to codemaker invoked on built-in method flatten
+        @codemaker = @codemaker.flatten
     end
     #Create instance method that enables the computer codemaker to nominate four colour patterns
     #passing in index of codemaker, code_pegs array and duplicate variable
