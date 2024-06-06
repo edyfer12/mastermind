@@ -304,52 +304,59 @@ class Game
     #colour does not exist in the codemaker or if colour does exist, but not position, where the 
     #number of duplicate colours in guesser is greater than in codemaker.
     def nominate_colours_guesser
+        #Create an instance array called guesser that is used to store in four colours based on rules
+        #Create a local variable called points that is for setting points for the codemaker if a guesser has a turn
+        #and set points to 0
+        
+
+        ################################OLD CODE#######################################################
         #Create guesser_board variable that is a 2D array that store 12 rows and 4 columns
-        @guesser_board = Array.new(12, Array.new(4))
+        #@guesser_board = Array.new(12, Array.new(4))
         #Create points variable and set to 0 so the codemaker earns points for each row guessed
-        points = 0
+        #points = 0
         #Create row variable and set to 0 to indicate the start of the turn for the guesser
-        row = 0
+        #row = 0
         #Loop through row to the MAX_GUESSES where the guesser makes 12 turns to get the pattern correctly
-        while row < MAX_GUESSES
+        #while row < MAX_GUESSES
             #Create col variable and set to 0 to indicate the start of choosing the colour
-            col = 0
+            #col = 0
             #Reset the whole array
-            @guesser_board = Array.new(12, Array.new(4))
+            #@guesser_board = Array.new(12, Array.new(4))
             #Create feedback array where the guesser gets rewarded a key peg whenever the colour is selected
-            feedback = []
+            #feedback = []
             #Output the instruction to the human guesser, "As a guesser please enter four colours (red, orange,
             #green, pink, brown, yellow):"
-            puts "As a guesser please enter four colours (coloured code pegs are red, orange, green, pink, brown, yellow):" if @human.player == 'guesser'
+            #puts "As a guesser please enter four colours (coloured code pegs are red, orange, green, pink, brown, yellow):" if @human.player == 'guesser'
             #Loop through col to NUM_LARGE_HOLES so that the guesser is able to nominate four colours for each row
-            while col < NUM_LARGE_HOLES
+            #while col < NUM_LARGE_HOLES
                 #If the computer is a guesser, then invoke the method called computer_guess_colour passing in feedback array, duplicate 
                 #row and col to actively enable the computer to take turn choosing four colours and be rewarded key peg
-                if @computer.player == 'guesser'
-                    computer_guess_colour(feedback, @duplicate, row, col)
-                else
+                #if @computer.player == 'guesser'
+                    #computer_guess_colour(feedback, @duplicate, row, col)
+                #else
                 #Otherwise, invoke the human_guess_colour passing feedback array, duplicate, row and col so that the human player can take turn choosing
                 #four colours and be rewarded key peg
-                    human_guess_colour(feedback, @duplicate, row, col)
-                end
+                    #human_guess_colour(feedback, @duplicate, row, col)
+                #end
                 #Add col by 1 as way of enabling the guesser to choose the next colour
-                col += 1
-            end
+                #col += 1
+            ##end
             #Add points by 1 after col is set to 4 indicating that the guesser has taken the turn to guess four colours in a row.
             #The codemaker earns a point per row that the guesser chooses 4 colours
-            points += 1
+            #points += 1
             #If row is MAX_GUESSES - 1 and feedback row does not include all black colours, which is the last row for the guesser 
             #to take a turn, add points by 1 to show that the codemaker has earned 1 extra point
-            if row == MAX_GUESSES - 1 && !feedback.all?('black')
-                points += 1
-            end
+            #if row == MAX_GUESSES - 1 && !feedback.all?('black')
+                #points += 1
+            #end
             #If the feedback row contains all four black colours, terminate the outer loop so that there is no more guessing
-            if feedback.all?('black')
-                break
-            end
+            #if feedback.all?('black')
+                #break
+            #end
             #Add row by 1 so the guesser can take another turn selecting the new pattern of four colours
-            row += 1
-        end 
+            #row += 1
+        #end 
+        ############################################################################################################
         #If the computer is a guesser, declare human_points variable and set to points
         if @computer.player == 'guesser'
             @human_points = points
@@ -393,39 +400,42 @@ class Game
     #Create instance method called human_guess_colour where feedback array, row, col and duplicate is passed so human can choose colours based 
     #on the rules    
     def human_guess_colour(feedback, duplicate, row, col)
+
+        ###############################OLD CODE##############################################################
         #Create a variable called colour and set to input
-        colour = gets.chomp
+        #colour = gets.chomp
         #Keep looping until colour exists in code_pegs and (duplicate is 'yes' or duplicate is 'no' and colour does not exist in guesser_board[row]
-        until @code_pegs.include?(colour) && (duplicate == 'yes' ||  (duplicate == 'no' && !@guesser_board[row].include?(colour)))
+        #until @code_pegs.include?(colour) && (duplicate == 'yes' ||  (duplicate == 'no' && !@guesser_board[row].include?(colour)))
             #If colour does not exist, display error message to the user "Colour does not exist as a code peg: Try again"
-            if !@code_pegs.include?(colour)
-                puts "Colour does not exist as a code peg: Try again"
-            end
+            #if !@code_pegs.include?(colour)
+                #puts "Colour does not exist as a code peg: Try again"
+            #end
             #If duplicate is 'no' and colour already exists in guesser_board[row], display error message "Cannot have duplicate colour in the guesser row: Try again"
-            if duplicate == 'no' && @guesser_board[row].include?(colour)
-                puts "Cannot have duplicate colour in the guesser row: Try again"
-            end
+            #if duplicate == 'no' && @guesser_board[row].include?(colour)
+                #puts "Cannot have duplicate colour in the guesser row: Try again"
+            #end
             #Reassign color to input
-            colour = gets.chomp
-        end
+            #colour = gets.chomp
+        #end
         #Push colour into the guesser_board[row] to keep track of the value stored in the nested array
-        @guesser_board[row][col] = colour
+        #@guesser_board[row][col] = colour
         #If the guesser_board[row][col] matches the colour and position in codemaker array, push 'black' into feedback array
-        if @codemaker.include?(@guesser_board[row][col]) && @guesser_board[row][col] == @codemaker[col]
-            feedback.push('black')
+        #if @codemaker.include?(@guesser_board[row][col]) && @guesser_board[row][col] == @codemaker[col]
+            #feedback.push('black')
         #If the guesser_board[row][col] matches the colour, not position in codemaker array, and number of selected duplicate colours
         #in the guesser_board[row] is less than or equal to the codemaker's number of select duplicate colours, then push 'white' into
         #feedback array
-        elsif @codemaker.include?(@guesser_board[row][col]) && @guesser_board[row][col] != @codemaker[col] &&
-            @guesser_board[row].count(@guesser_board[row][col]) <= @codemaker.count(@guesser_board[row][col])
-            feedback.push('white')
+        #elsif @codemaker.include?(@guesser_board[row][col]) && @guesser_board[row][col] != @codemaker[col] &&
+            #@guesser_board[row].count(@guesser_board[row][col]) <= @codemaker.count(@guesser_board[row][col])
+            #feedback.push('white')
         #If the guesser_board[row][col] does not have colour that exists in codemaker, or if colour does exist in codemaker, not match in 
         #position, but number of select duplicate colours in guesser_board[row] is greater than in codemaker, then push '' into feedback array 
-        elsif !@codemaker.include?(@guesser_board[row][col]) || 
-            (@codemaker.include?(@guesser_board[row][col]) && @guesser_board[row][col] != @codemaker[col] &&
-            @guesser_board[row].count(@guesser_board[row][col]) > @codemaker.count(@guesser_board[row][col]))
-            feedback.push('blank')
-        end
+        #elsif !@codemaker.include?(@guesser_board[row][col]) || 
+            #(@codemaker.include?(@guesser_board[row][col]) && @guesser_board[row][col] != @codemaker[col] &&
+            #@guesser_board[row].count(@guesser_board[row][col]) > @codemaker.count(@guesser_board[row][col]))
+            #feedback.push('blank')
+        #end
+        #########################################################################################################
         #@guesser_board[row] = nil
 #        puts "@gues2ser_board[#{row}] = #{@guesser_board[row]}"
     end
