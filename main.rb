@@ -44,7 +44,7 @@ class Game
             #Notify the user to enter the number of games
             print "Please enter the number of games: "
             #Declare variable called num_of_games and set to input
-            num_of_games = gets.chomp
+            num_of_games = gets.chomp.strip
             #If num_of_games is not a number or includes non-numeric string other than . and -, 
             if num_of_games.match(/[^0-9.-]/) || 
             (num_of_games.match(/[0-9]/) && num_of_games.count(".") > 1) ||
