@@ -111,8 +111,12 @@ class Game
         end
         #Create an array called codemaker
         @codemaker = []
-        #If human is a codemaker,
-        if @human.player == 'codemaker'
+        #If human is a codemaker and blank is activated to yes,
+        if @human.player == 'codemaker' && @blank == 'yes'
+            #Output to the user "Please enter the four colours (red, orange, green, pink, brown, yellow, blank):"
+            puts "As a codemaker, please enter the four colours (coloured code pegs are red, orange, green, pink, brown, yellow, blank):"
+        #If human is a codemaker and blank is activated to no,
+        elsif @human.player == 'codemaker' && @blank == 'no'
             #Output to the user "Please enter the four colours (red, orange, green, pink, brown, yellow):"
             puts "As a codemaker, please enter the four colours (coloured code pegs are red, orange, green, pink, brown, yellow):"
         end
