@@ -237,8 +237,9 @@ class Game
         i = 0
         #Loop through the colour array from index 0 to length - 1 of colour array
         while i < colour.length
-            #For the individual element, check if it exists in the colour array more than once
-            if colour.count(colour[i]) > 1 && @code_pegs.any?(colour[i])
+            #For the individual element, check if it exists in the colour array more than once and 
+            #exists in the code_pegs array except blank colour
+            if colour.count(colour[i]) > 1 && @code_pegs.any?(colour[i]) && colour[i] != 'blank'
                 #If so, push the element inside the duplicate_colours array
                 @duplicate_colours.push(colour[i])
             end
