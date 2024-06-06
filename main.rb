@@ -107,7 +107,7 @@ class Game
     def nominate_colours_codemaker
         #If the blank instance variable is set to 'Yes', push blank character into code_pegs array
         if @blank == 'yes'
-            @code_pegs.push('')
+            @code_pegs.push('blank')
         end
         #Create an array called codemaker
         @codemaker = []
