@@ -131,18 +131,26 @@ class Game
     #Create instance method that enables the computer codemaker to nominate four colour patterns
     #passing in index of codemaker, code_pegs array and duplicate variable
     def computer_make_code(code_pegs, duplicate)
-        #Create variable called randomValue and set to random value in code_pegs
-        randomValue = code_pegs.sample
-        #Use until loop to select random elements from code_pegs until duplicate value is set to 'Yes' 
-        #or duplicate value is set to 'No' and element in codemaker does not exist
-        until duplicate == 'yes' || duplicate == 'no' && !@codemaker.include?(randomValue)
-            #If duplicate value is set to 'No' and element in codemaker already exists then keep looping
-            if duplicate == 'no' && @codemaker.include?(randomValue)
-                randomValue = code_pegs.sample
+        #Create variable i and set i to 0 
+        i = 0
+        #Create variable codemaker_length and set to 4
+        codemaker_length = 4
+        #Loop from i to codemaker_length
+        while i < codemaker_length
+            #Create variable called randomValue and set to random value in code_pegs
+            randomValue = code_pegs.sample
+            #Use until loop to select random elements from code_pegs until duplicate value is set to 'Yes' 
+            #or duplicate value is set to 'No' and element in codemaker does not exist
+            until duplicate == 'yes' || (duplicate == 'no' && !@codemaker.include?(randomValue))
+                #If duplicate value is set to 'No' and element in codemaker already exists then keep looping
+                if duplicate == 'no' && @codemaker.include?(randomValue)
+                    randomValue = code_pegs.sample
+                end
             end
+            #Push the randomValue to the codemaker array
+            @codemaker.push(randomValue)
+            i += 1
         end
-        #Push the randomValue to the codemaker array
-        @codemaker.push(randomValue)
     end
     #Create instance method that enables the human codemaker to nominate four colour patterns
     #passing in index of codemaker, code_pegs array and duplicate variable
@@ -239,7 +247,7 @@ class Game
         while i < colour.length
             #For the individual element, check if it exists in the colour array more than once and 
             #exists in the code_pegs array except blank colour
-            if colour.count(colour[i]) > 1 && @code_pegs.any?(colour[i]) && colour[i] != 'blank'
+            if colour.count(colour[i]) > 1 && @code_pegs.any?(colour[i])
                 #If so, push the element inside the duplicate_colours array
                 @duplicate_colours.push(colour[i])
             end
@@ -304,10 +312,41 @@ class Game
     #colour does not exist in the codemaker or if colour does exist, but not position, where the 
     #number of duplicate colours in guesser is greater than in codemaker.
     def nominate_colours_guesser
-        #Create an instance array called guesser that is used to store in four colours based on rules
         #Create a local variable called points that is for setting points for the codemaker if a guesser has a turn
         #and set points to 0
-        
+
+        #Create constant variable called MAX_GUESSES and set to 12 to indicate maximum number of turns for guesser
+
+        #Create variable guess_count and set to 0 to show the number of turns the guesser took
+
+        #Create variable called pattern_matched and set to 'false'
+
+
+        #Loop from guess_count to MAX_GUESSES as a way to check how many attempts the guesser made in choosing colours
+        #and pattern_matched is set to 'false' meaning that no colours match in position and colour to the codemaker's
+
+            #Create an array called guesser that is used to store in four colours based on rules and assign to empty value
+            #so the guesser can choose four colour patterns until they match the codemaker colour patterns
+
+            #Create counter variable colour_index and set to 0
+
+                #If human is a codemaker, then invoke the method human_guess_code passing in duplicate value and @code_pegs
+
+                #Otherwise, invoke the method computer_guess_code passing in duplicate value and @code_pegs
+
+            #Add points by 1 so the codemaker gets rewarded each time the guesser nominates four colours in a pattern
+
+            #Check if the elements in feedback array is all black in colour. If so, terminate the loop by setting pattern_matched
+            #to 'true'
+
+            #If on the last row (MAX_GUESSES - 1) on the board the player does not get the last colour pattern correctly,
+            #Add points by 1 which is a bonus point for the codemaker
+
+            #Increment guess_count by 1
+
+        #If the computer is a codemaker, create an instance variable, computer_points and set to points
+
+        #Otherwise, create an instance variable, human_points and set to points
 
         ################################OLD CODE#######################################################
         #Create guesser_board variable that is a 2D array that store 12 rows and 4 columns
@@ -356,50 +395,112 @@ class Game
             #Add row by 1 so the guesser can take another turn selecting the new pattern of four colours
             #row += 1
         #end 
-        ############################################################################################################
         #If the computer is a guesser, declare human_points variable and set to points
-        if @computer.player == 'guesser'
-            @human_points = points
+        #if @computer.player == 'guesser'
+            #@human_points = points
         #Otherwise, declare computer_points variable and set to points
-        else
-            @computer_points == points
-        end
+        #else
+            #@computer_points == points
+        #end
+    ############################################################################################################
     end
-    #Create instance method called computer_guess_colour where feedback array, row, col and duplicate is passed so computer can  
+    #Create instance method called computer_guess_colour where feedback and guesser arrays is passed so computer can  
     #choose colours based on the rules
-    def computer_guess_colour(feedback, duplicate, row, col)
+    def computer_guess_colour(feedback, duplicate)
+        #Create variable i and set to 0
+        #Create variable guesser_length and set to 4
+        #Loop from i to guesser_length
+            #Create a variable called random_value and set to random value selected from @code_pegs
+            #Keep selecting random values from until duplicate value is just set to 'yes' or duplicate value is 'no' and 
+            #element chosen from code_pegs does not exist in the guesser array
+                #Reassign random_value to random element selected from the array to allow the computer to repetitively select random 
+                #colour from code_pegs until condition is met
+            #Push random value into the guesser array
+            #If the guesser[i] does match both in colour and position to the codemaker, then push 'black' into feedback array
+            #If the guesser[i] does match in colour, not position and there are less specific or same duplicate colours in guesser than codemaker, 
+            #then push 'white' into feedback array
+            #If the guesser[i] does not match in colour or specific number of duplicate colours is greater than in codemaker,
+            #then push 'blank' 
+            #Add i by 1
+    ##############################################OLD CODE#########################################################
         #Create a variable called random_value and set to random element from code_pegs 
-        random_value = @code_pegs.sample
+        #random_value = @code_pegs.sample
         #Keep looping until duplicate is 'yes' or duplicate is set to 'no' and random_value does not exist in guesser_board[row][col]
-        until duplicate == 'yes' || (duplicate == 'no' && !@guesser_board[row].include?(random_value))
+        #until duplicate == 'yes' || (duplicate == 'no' && !@guesser_board[row].include?(random_value))
             #If duplicate is set to 'no' and random_value exists in guesser_board, 
-            if duplicate == 'no' && @guesser_board[row].include?(random_value)
+            #if duplicate == 'no' && @guesser_board[row].include?(random_value)
                 #Reassign random_value to a new random element from code_pegs array so the rule is met when guessing the colour in the game
-                random_value = @code_pegs.sample
-            end
-        end
-        #Push the colour into the guesser_board[row] so that the nested array can keep track of the value stored
-        @guesser_board[row][col] = random_value
+                #random_value = @code_pegs.sample
+            #end
+        #end
+        ##Push the colour into the guesser_board[row] so that the nested array can keep track of the value stored
+        #@guesser_board[row][col] = random_value
         #If the guesser_board[row][col] matches the colour and position in codemaker array, push 'black' into feedback array
-        if @codemaker.include?(@guesser_board[row][col]) && @codemaker[col] == @guesser_board[row][col]
-            feedback.push('black')
+        #if @codemaker.include?(@guesser_board[row][col]) && @codemaker[col] == @guesser_board[row][col]
+            #feedback.push('black')
         #If the guesser_board[row][col] matches the colour, not position in codemaker array, and number of selected duplicate colours
         #in the guesser_board[row] is less than or equal to the codemaker's number of select duplicate colours, then push 'white' into
         #feedback array
-        elsif @codemaker.include?(@guesser_board[row][col]) && @codemaker[col] != @guesser_board[row][col] &&
-            @guesser_board[row].count(@guesser_board[row][col]) <= @codemaker.count(@guesser_board[row][col])
-            feedback.push('white')
+        #elsif @codemaker.include?(@guesser_board[row][col]) && @codemaker[col] != @guesser_board[row][col] &&
+            #@guesser_board[row].count(@guesser_board[row][col]) <= @codemaker.count(@guesser_board[row][col])
+            #feedback.push('white')
         #If the guesser_board[row][col] does not have colour that exists in codemaker, or if colour does exist in codemaker, not match in 
         #position, but number of select duplicate colours in guesser_board[row] is greater than in codemaker, then push '' into feedback array
-        elsif !@codemaker.include?(@guesser_board[row][col]) || 
-            (@codemaker.include?(@guesser_board[row][col]) && @codemaker[col] != @guesser_board[row][col] &&
-            @guesser_board[row].count(@guesser_board[row][col]) > @codemaker.count(@guesser_board[row][col]))
-            feedback.push('blank')
-        end 
+        #elsif !@codemaker.include?(@guesser_board[row][col]) || 
+            #(@codemaker.include?(@guesser_board[row][col]) && @codemaker[col] != @guesser_board[row][col] &&
+            #@guesser_board[row].count(@guesser_board[row][col]) > @codemaker.count(@guesser_board[row][col]))
+            #feedback.push('blank')
+        #end 
+        ############################################################################################3
     end
     #Create instance method called human_guess_colour where feedback array, row, col and duplicate is passed so human can choose colours based 
     #on the rules    
     def human_guess_colour(feedback, duplicate, row, col)
+        #Create a variable called colour and set to input
+
+        #Convert colour string into an array by reassigning colour array to a colour string and calling the built in method
+        #split passing in " " as an argument
+
+        #Create variable called guesser_valid_pattern and set to false
+
+        #Keep looping until the guesser_valid pattern is set to true
+            #If the colour array has four colours and duplicate is set to 'yes'
+                #Case 1: Contain some or all invalid colours that do not exist in code peg, display the error message
+                    #'{name_of_colours} do not exist as a code peg: Try again'
+            #If the colour array has four colours and duplicate is set to 'no'
+                #Case 1: Contain some or all invalid colours but no duplicate colours: display error message
+                    #'{name_of_colours} do not exist as a code peg: Try again'
+                #Case 2: Contain some or all invalid colours and has duplicate colours: display error message
+                    #'{name_of_colours} do not exist as a code peg and {name_of_colours} are duplicate colours: Try again'
+                #Case 3: Contain all valid colours but has duplicate colours: display error message
+                    #'{name_of_colours} has duplicate colours: Try again'
+            #If the colour array has less than four colours and duplicate is set to 'yes'
+                #Case 1: Contain some or all invalid colours: display error message
+                    #'{name_of _colours} do not exist as a code peg and not enough colours entered: Try again'
+                #Case 2: Contain all valid colours: display error message
+                    #'Not enough colours entered: Try again'
+            #If the colour array has less than four colours and duplicate is set to 'no'
+                #Case 1: Contain all or some invalid colours, but no duplicate colours: Display error message
+                    #'{name_of_colours} do not exist as a code peg and not enough colours entered: Try again'
+                #Case 2: Contain all or some invalid colours and duplicate colours: Display error message
+                    #'{name_of_colours}' do not exist as a code peg, {name_of_colours} are duplicate colours and
+                    #not enough colours entered: Try again'
+                #Case 3: Contain all valid colours but duplicate colours: Display error message
+                    #'{name_of_colours} are duplicate colours and not enough colours entered: Try again'
+                #Case 4: Contain all valid colours, not duplicate colours: Display error message
+                    #'{name_of_colours} are not valid colours: Try again'
+            #If the colour array has more than four colours, display error message
+                #Case 1:
+                #'You entered more than four colours: Try again'
+            #Otherwise, set the guesser_valid_pattern to true
+
+            #Push colour to guesser array
+
+            #If guesser[i] has the same position and colour as the codemaker, then push 'black' on feedback array
+            #If guesser[i] has the same colour different position as the codemaker and number of specific duplicate
+            #colours on guesser is less than or equal to the codemaker, then push 'white' on feedback array
+            #If guesser[i] does not have colour on codemaker at all or has colour on different position where
+            #number of specific duplicate colours on guesser is greater than of codemaker, push 'blank' on feedback array
 
         ###############################OLD CODE##############################################################
         #Create a variable called colour and set to input
