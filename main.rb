@@ -164,8 +164,8 @@ class Game
         #or when four strings exist in the code_pegs array and are all unique to each other 
         
         while codemaker_valid_pattern == false  
-            #Create variable colour and set to input
-            colour = gets.chomp.strip
+            #Create variable colour, set to input and make it case insensitive
+            colour = gets.chomp.strip.downcase
 
             #Convert the input into the array of strings so the compiler can spot if the string exists in code_peg array
             #and is a duplicate colour if the duplicate feature is enabled or disabled where array is sliced from index 0 to 3
