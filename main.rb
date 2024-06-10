@@ -688,6 +688,27 @@ class Game
         #@guesser_board[row] = nil
 #        puts "@gues2ser_board[#{row}] = #{@guesser_board[row]}"
     end
+    #Create a decoding board that displays the asterisks in rows and columns up to date. The left and right hand side of the four
+    #asterisks will have background colour of lightgrey. The middle section of the board indicates the colour pattern chosen 
+    #by the guesser and codemaker. 
+        #Create variable board_rows and set to 13 where the first row is for the codemaker and the next twelve rows are for the
+        #guesser
+        #Create variable board_cols and set to 12 where the first and last four columns are the feedback provided for the human and computer
+        #Set row_index to 0
+        #Loop from row_index to the board_rows
+            #Set col_index to 0
+            #Loop from col_index to the board_cols
+            #If the row_index is 0,
+                #Set the first and last 4 columns to blank to show as a codemaker row
+                #Between the first and last columns, place | as a boundary
+                #Underneath place the equal signs as a separator between the last guesser row and codemaker row
+            #If the row_index is greater than 0,
+                #At the first and last four columns, set background-color to lightgrey
+                #Between first and middle column and last and middle column, place | as a boundary
+                #For the left hand side of the guesser_row, have the feedback row for the computer
+                #For the right hand side of the guesser_row, have the feedback row for the human
+            #Increment col_index by 1
+        #Increment row_index by 1
     #Create instance method where the user plays multiple games of Mastermind
     def play_multiple_games
         #Declare game_count variable and set to 0
