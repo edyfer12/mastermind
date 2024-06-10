@@ -129,6 +129,8 @@ class Game
         end
         #Flatten the codemaker array by reassigning codemaker to codemaker invoked on built-in method flatten
         @codemaker = @codemaker.flatten
+        puts "code_pegs: " + @code_pegs.to_s
+        puts "codemaker: " + @codemaker.to_s
     end
     #Create instance method that enables the computer codemaker to nominate four colour patterns
     #passing in index of codemaker, code_pegs array and duplicate variable
@@ -316,39 +318,70 @@ class Game
     def nominate_colours_guesser
         #Create a local variable called points that is for setting points for the codemaker if a guesser has a turn
         #and set points to 0
-
-        #Create constant variable called MAX_GUESSES and set to 12 to indicate maximum number of turns for guesser
+        points = 0
 
         #Create variable guess_count and set to 0 to show the number of turns the guesser took
+        guess_count = 0
 
         #Create variable called pattern_matched and set to 'false'
+        pattern_matched = false
 
+        #If human is a guesser and blank is activated to yes,
+        if @human.player == 'guesser' && @blank == 'yes'
+            #Output to the user "Please enter the four colours (red, orange, green, pink, brown, yellow, blank):"
+            puts "As a guesser, please enter the four colours (coloured code pegs are red, orange, green, pink, brown, yellow, blank):"
+        #If human is a codemaker and blank is activated to no,
+        elsif @human.player == 'guesser' && @blank == 'no'
+            #Output to the user "Please enter the four colours (red, orange, green, pink, brown, yellow):"
+            puts "As a guesser, please enter the four colours (coloured code pegs are red, orange, green, pink, brown, yellow):"
+            puts "You have #{MAX_GUESSES - guess_count} guesses left "
+        end
 
         #Loop from guess_count to MAX_GUESSES as a way to check how many attempts the guesser made in choosing colours
         #and pattern_matched is set to 'false' meaning that no colours match in position and colour to the codemaker's
+        while guess_count < MAX_GUESSES && !(pattern_matched == true)
 
             #Create an array called guesser that is used to store in four colours based on rules and assign to empty value
             #so the guesser can choose four colour patterns until they match the codemaker colour patterns
+            guesser = []
 
             #Create counter variable colour_index and set to 0
+            colour_index = 0
 
+            if @human.player == 'guesser'
                 #If human is a codemaker, then invoke the method human_guess_code passing in duplicate value and @code_pegs
-
+                human_guess_colour(@duplicate, @code_pegs, guesser, guess_count)
+            else
                 #Otherwise, invoke the method computer_guess_code passing in duplicate value and @code_pegs
-
+                computer_guess_colour(@duplicate, @code_pegs, guesser)
+            end
+            puts "Guesser: " + guesser.to_s
+            puts "Feedback: " + @feedback.to_s
             #Add points by 1 so the codemaker gets rewarded each time the guesser nominates four colours in a pattern
+            points += 1 
 
             #Check if the elements in feedback array is all black in colour. If so, terminate the loop by setting pattern_matched
             #to 'true'
-
+            if @feedback.all?('black')
+                pattern_matched = true
+            end
             #If on the last row (MAX_GUESSES - 1) on the board the player does not get the last colour pattern correctly,
             #Add points by 1 which is a bonus point for the codemaker
+            if guess_count == MAX_GUESSES - 1 && !@feedback.all?('black')
+                points += 1
+            end 
 
             #Increment guess_count by 1
+            guess_count += 1
+        end
 
         #If the computer is a codemaker, create an instance variable, computer_points and set to points
-
+        if @computer.player == 'codemaker'
+            @computer_points = points
+        else
         #Otherwise, create an instance variable, human_points and set to points
+            @human_points = points
+        end
 
         ################################OLD CODE#######################################################
         #Create guesser_board variable that is a 2D array that store 12 rows and 4 columns
@@ -408,22 +441,49 @@ class Game
     end
     #Create instance method called computer_guess_colour where feedback and guesser arrays is passed so computer can  
     #choose colours based on the rules
-    def computer_guess_colour(feedback, duplicate)
+    def computer_guess_colour(duplicate, code_pegs, guesser)
+        #Create feedback array and set to []
+        @feedback = []
+
         #Create variable i and set to 0
+        i = 0
         #Create variable guesser_length and set to 4
+        guesser_length = 4
         #Loop from i to guesser_length
+        while i < guesser_length
             #Create a variable called random_value and set to random value selected from @code_pegs
+            random_value = @code_pegs.sample
             #Keep selecting random values from until duplicate value is just set to 'yes' or duplicate value is 'no' and 
             #element chosen from code_pegs does not exist in the guesser array
+            until duplicate == 'yes' || (duplicate == 'no' && code_pegs.include?(random_value))
                 #Reassign random_value to random element selected from the array to allow the computer to repetitively select random 
                 #colour from code_pegs until condition is met
+                random_value = @code_pegs.sample
+            end
             #Push random value into the guesser array
+            guesser.push(random_value)
+            #Flatten the guesser array
+            guesser = guesser.flatten
+            puts "Guesser[#{i}] = #{guesser[i]}"
+            #puts "@codemaker.include?(guesser[i]) = #{@codemaker.include?(guesser[i])}"
             #If the guesser[i] does match both in colour and position to the codemaker, then push 'black' into feedback array
+            if guesser[i] == @codemaker[i] && @codemaker.include?(guesser[i])
+                @feedback.push('black')
             #If the guesser[i] does match in colour, not position and there are less specific or same duplicate colours in guesser than codemaker, 
             #then push 'white' into feedback array
+            elsif guesser[i] != @codemaker[i] && @codemaker.include?(guesser[i]) &&
+                guesser.count(guesser[i]) <= @codemaker.count(guesser[i])
+                @feedback.push('white')
             #If the guesser[i] does not match in colour or specific number of duplicate colours is greater than in codemaker,
             #then push 'blank' 
+            elsif !@codemaker.include?(guesser[i]) || (@codemaker.include?(guesser[i]) && 
+                guesser.count(guesser[i]) > @codemaker.count(guesser[i]) && @codemaker[i] != guesser[i])
+                @feedback.push('blank')
+            end
             #Add i by 1
+            i += 1
+        end
+        puts "feedback: " + @feedback.to_s
     ##############################################OLD CODE#########################################################
         #Create a variable called random_value and set to random element from code_pegs 
         #random_value = @code_pegs.sample
@@ -457,53 +517,139 @@ class Game
     end
     #Create instance method called human_guess_colour where feedback array, row, col and duplicate is passed so human can choose colours based 
     #on the rules    
-    def human_guess_colour(feedback, duplicate, row, col)
+    def human_guess_colour(duplicate, code_pegs, guesser, guess_count)
+        #Create feedback array and set to []
+        @feedback = []
         #Create a variable called colour and set to input
-
+        colour = gets.chomp.strip.downcase
         #Convert colour string into an array by reassigning colour array to a colour string and calling the built in method
         #split passing in " " as an argument
+        colour = colour.split
 
         #Create variable called guesser_valid_pattern and set to false
+        guesser_valid_pattern = false
 
         #Keep looping until the guesser_valid pattern is set to true
-            #If the colour array has four colours and duplicate is set to 'yes'
-                #Case 1: Contain some or all invalid colours that do not exist in code peg, display the error message
-                    #'{name_of_colours} do not exist as a code peg: Try again'
-            #If the colour array has four colours and duplicate is set to 'no'
-                #Case 1: Contain some or all invalid colours but no duplicate colours: display error message
-                    #'{name_of_colours} do not exist as a code peg: Try again'
-                #Case 2: Contain some or all invalid colours and has duplicate colours: display error message
-                    #'{name_of_colours} do not exist as a code peg and {name_of_colours} are duplicate colours: Try again'
-                #Case 3: Contain all valid colours but has duplicate colours: display error message
-                    #'{name_of_colours} has duplicate colours: Try again'
-            #If the colour array has less than four colours and duplicate is set to 'yes'
-                #Case 1: Contain some or all invalid colours: display error message
-                    #'{name_of _colours} do not exist as a code peg and not enough colours entered: Try again'
-                #Case 2: Contain all valid colours: display error message
-                    #'Not enough colours entered: Try again'
-            #If the colour array has less than four colours and duplicate is set to 'no'
-                #Case 1: Contain all or some invalid colours, but no duplicate colours: Display error message
-                    #'{name_of_colours} do not exist as a code peg and not enough colours entered: Try again'
-                #Case 2: Contain all or some invalid colours and duplicate colours: Display error message
-                    #'{name_of_colours}' do not exist as a code peg, {name_of_colours} are duplicate colours and
-                    #not enough colours entered: Try again'
-                #Case 3: Contain all valid colours but duplicate colours: Display error message
-                    #'{name_of_colours} are duplicate colours and not enough colours entered: Try again'
-                #Case 4: Contain all valid colours, not duplicate colours: Display error message
-                    #'{name_of_colours} are not valid colours: Try again'
-            #If the colour array has more than four colours, display error message
-                #Case 1:
-                #'You entered more than four colours: Try again'
-            #Otherwise, set the guesser_valid_pattern to true
-
-            #Push colour to guesser array
-
+        #puts all_colours_exist?(code_pegs, colour) == 'false' && colour.length == 4 && duplicate == 'no' && has_duplicate?(colour) == 'false'
+        while !guesser_valid_pattern == true
+        case 
+            #If one or more of the strings do not match the colours in the code_peg array out of 4 strings, then display the error message 'name_of_string(s)
+            #does not exist: Try again' and encourage the user to enter input again
+            when all_colours_exist?(code_pegs, colour) == 'false' && colour.length == 4 && 
+                (duplicate == 'yes' ||(duplicate == 'no' && has_duplicate?(colour) == 'false'))
+                puts "#{display_invalid_inputs} does not exist: Try again"
+                 #Create a variable called colour and set to input
+                 colour = gets.chomp.strip.downcase
+                 #Convert colour string into an array by reassigning colour array to a colour string and calling the built in method
+                 #split passing in " " as an argument
+                 colour = colour.split
+            #If one or more of the strings do not match the colours in the code_peg array out of 4 strings and duplicate is disabled
+            #and has duplicate values, then display the error message
+            when all_colours_exist?(code_pegs, colour) == 'false' && colour.length == 4 && duplicate == 'no' && has_duplicate?(colour) == 'true'
+                puts "#{display_invalid_inputs} does not exist and #{display_duplicate_colours} already typed: Try again"
+                 #Create a variable called colour and set to input
+                 colour = gets.chomp.strip.downcase
+                 #Convert colour string into an array by reassigning colour array to a colour string and calling the built in method
+                 #split passing in " " as an argument
+                 colour = colour.split
+            #If user enters less than 4 strings, duplicate is set to no, does not have duplicate colours and contains values
+            #that do not exist, display error message as "Not enough colours and {name_of_invalid_colours} do not exist: Try again"
+            when all_colours_exist?(code_pegs, colour) == 'false' && colour.length < 4 && duplicate == 'yes'  
+                puts "Not enough colours and #{display_invalid_inputs} does not exist: Try again"
+                 #Create a variable called colour and set to input
+                 colour = gets.chomp.strip.downcase
+                 #Convert colour string into an array by reassigning colour array to a colour string and calling the built in method
+                 #split passing in " " as an argument
+                 colour = colour.split
+            #If the user enters less than 4 strings but exist as code pegs and only one or more strings have duplicate colours 
+            #in colour array when duplicate feature is disabled, notify the user "Not enough colours and {name_of_string(s)} are
+            #duplicate colours" and encourage the user to type the input again
+            when all_colours_exist?(code_pegs, colour) == 'true' && colour.length < 4 && has_duplicate?(colour) == 'true' && duplicate == 'no'
+                puts "Not enough colours and #{display_duplicate_colours} duplicate colours: Try again"
+                 #Create a variable called colour and set to input
+                 colour = gets.chomp.strip.downcase
+                 #Convert colour string into an array by reassigning colour array to a colour string and calling the built in method
+                 #split passing in " " as an argument
+                 colour = colour.split
+            #If the user enters less than 4 strings and only one or more strings have a combination of duplicate colours and 
+            #and string that does not exist in colour array when duplicate feature is disabled, display error message
+            when all_colours_exist?(code_pegs, colour) == 'false' && colour.length < 4 && duplicate == 'no' && has_duplicate?(colour) == 'true'
+                puts "Not enough colours, #{display_invalid_inputs} are invalid inputs and #{display_duplicate_colours} are 
+                duplicate colours: Try again" 
+                 #Create a variable called colour and set to input
+                 colour = gets.chomp.strip.downcase
+                 #Convert colour string into an array by reassigning colour array to a colour string and calling the built in method
+                 #split passing in " " as an argument
+                 colour = colour.split
+            
+            #If one or more of the strings match the colour of the code_peg array but is a duplicate colour out of 4 strings, where the duplicate
+            #feature is disabled, display error message 'name_of_string(s) is already typed: Try again' and encourage the user to 
+            #type the input again
+            when all_colours_exist?(code_pegs, colour) == 'true' && has_duplicate?(colour) == 'true' && duplicate == 'no' && colour.length == 4
+                puts "#{display_duplicate_colours} already typed: Try again".capitalize 
+                 #Create a variable called colour and set to input
+                 colour = gets.chomp.strip.downcase
+                 #Convert colour string into an array by reassigning colour array to a colour string and calling the built in method
+                 #split passing in " " as an argument
+                 colour = colour.split
+            #If the user enters less than 4 strings and all match the code_pegs array, notify the user "Not enough colours: Try Again"
+            #encourage user to type the input again
+            when all_colours_exist?(code_pegs, colour) == 'true' && colour.length < 4
+                puts "Not enough colours: Try again"
+                 #Create a variable called colour and set to input
+                colour = gets.chomp.strip.downcase
+                #Convert colour string into an array by reassigning colour array to a colour string and calling the built in method
+                #split passing in " " as an argument
+                colour = colour.split
+            #If the user enters less than 4 strings and only one or more strings do not exist in code_pegs array, notify the user
+            #"Not enough colours and {name_of_string(s)} do not exist in code_pegs array" and encourage user to type the input again
+            when all_colours_exist?(code_pegs, colour) == 'false' && colour.length < 4
+                puts "Not enough colours and #{display_invalid_inputs} do not exist as a code peg: Try again"
+                 #Create a variable called colour and set to input
+                colour = gets.chomp.strip.downcase
+                #Convert colour string into an array by reassigning colour array to a colour string and calling the built in method
+                #split passing in " " as an argument
+                colour = colour.split
+            #If the user enters more than 4 strings, display error message, "You can only select up to four colours: Try again"
+            when (all_colours_exist?(code_pegs, colour) == 'false' || all_colours_exist?(code_pegs, colour) == 'true') && colour.length > 4
+                puts "You can only select up to four colours: Try again"
+                 #Create a variable called colour and set to input
+                colour = gets.chomp.strip.downcase
+                #Convert colour string into an array by reassigning colour array to a colour string and calling the built in method
+                #split passing in " " as an argument
+                colour = colour.split
+            else
+                guesser_valid_pattern = true
+                break
+        end
+       
+    end
+    puts "You have #{MAX_GUESSES - guess_count - 1} guesses left"
+        #Push colour to guesser array
+        guesser.push(colour)
+        #Flatten the guesser array
+        guesser = guesser.flatten
+        #Create variable called guesser_index and set to 0
+        guesser_index = 0
+        #Loop from guesser_index to 4
+        while guesser_index < 4
             #If guesser[i] has the same position and colour as the codemaker, then push 'black' on feedback array
+            if guesser[guesser_index] == @codemaker[guesser_index] && @codemaker.include?(guesser[guesser_index])
+                @feedback.push('black')
             #If guesser[i] has the same colour different position as the codemaker and number of specific duplicate
-            #colours on guesser is less than or equal to the codemaker, then push 'white' on feedback array
+            #colours on guesser is less than or equal to the codemaker, then push 'white' on feedback array 
+            elsif guesser[guesser_index] != @codemaker[guesser_index] && @codemaker.include?(guesser[guesser_index]) && 
+                guesser.count(guesser[guesser_index]) <= @codemaker.count(guesser[guesser_index])
+                @feedback.push('white')
             #If guesser[i] does not have colour on codemaker at all or has colour on different position where
             #number of specific duplicate colours on guesser is greater than of codemaker, push 'blank' on feedback array
-
+            elsif !@codemaker.include?(guesser[guesser_index]) || (@codemaker.include?(guesser[guesser_index]) && 
+                guesser.count(guesser[guesser_index]) > @codemaker.count(guesser[guesser_index]))
+                @feedback.push('blank')
+            end
+            #Increment guesser_index by 1
+            guesser_index += 1
+        end
         ###############################OLD CODE##############################################################
         #Create a variable called colour and set to input
         #colour = gets.chomp
