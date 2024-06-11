@@ -630,31 +630,31 @@ class Game
        
     end
     puts "You have #{MAX_GUESSES - guess_count - 1} guesses left"
-        #Push colour to guesser array
-        guesser.push(colour)
-        #Flatten the guesser array
-        guesser = guesser.flatten
-        #Create variable called guesser_index and set to 0
-        guesser_index = 0
-        #Loop from guesser_index to 4
-        while guesser_index < 4
-            #If guesser[i] has the same position and colour as the codemaker, then push 'black' on feedback array
-            if guesser[guesser_index] == @codemaker[guesser_index] && @codemaker.include?(guesser[guesser_index])
-                @feedback.push('black')
-            #If guesser[i] has the same colour different position as the codemaker and number of specific duplicate
-            #colours on guesser is less than or equal to the codemaker, then push 'white' on feedback array 
-            elsif guesser[guesser_index] != @codemaker[guesser_index] && @codemaker.include?(guesser[guesser_index]) && 
-                guesser.count(guesser[guesser_index]) <= @codemaker.count(guesser[guesser_index])
-                @feedback.push('white')
-            #If guesser[i] does not have colour on codemaker at all or has colour on different position where
-            #number of specific duplicate colours on guesser is greater than of codemaker, push 'blank' on feedback array
-            elsif !@codemaker.include?(guesser[guesser_index]) || (@codemaker.include?(guesser[guesser_index]) && 
-                guesser.count(guesser[guesser_index]) > @codemaker.count(guesser[guesser_index]))
-                @feedback.push('blank')
-            end
-            #Increment guesser_index by 1
-            guesser_index += 1
+    #Push colour to guesser array
+    guesser.push(colour)
+    #Flatten the guesser array
+    guesser = guesser.flatten
+    #Create variable called guesser_index and set to 0
+    guesser_index = 0
+    #Loop from guesser_index to 4
+    while guesser_index < 4
+        #If guesser[i] has the same position and colour as the codemaker, then push 'black' on feedback array
+        if guesser[guesser_index] == @codemaker[guesser_index] && @codemaker.include?(guesser[guesser_index])
+            @feedback.push('black')
+        #If guesser[i] has the same colour different position as the codemaker and number of specific duplicate
+        #colours on guesser is less than or equal to the codemaker, then push 'white' on feedback array 
+        elsif guesser[guesser_index] != @codemaker[guesser_index] && @codemaker.include?(guesser[guesser_index]) && 
+            guesser.count(guesser[guesser_index]) <= @codemaker.count(guesser[guesser_index])
+            @feedback.push('white')
+        #If guesser[i] does not have colour on codemaker at all or has colour on different position where
+        #number of specific duplicate colours on guesser is greater than of codemaker, push 'blank' on feedback array
+        elsif !@codemaker.include?(guesser[guesser_index]) || (@codemaker.include?(guesser[guesser_index]) && 
+            guesser.count(guesser[guesser_index]) > @codemaker.count(guesser[guesser_index]))
+            @feedback.push('blank')
         end
+        #Increment guesser_index by 1
+        guesser_index += 1
+    end
         ###############################OLD CODE##############################################################
         #Create a variable called colour and set to input
         #colour = gets.chomp
