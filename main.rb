@@ -629,6 +629,7 @@ class Game
         end
        
     end
+    #Invoke the method called update_board_guesser passing row and column
     puts "You have #{MAX_GUESSES - guess_count - 1} guesses left"
     #Push colour to guesser array
     guesser.push(colour)
