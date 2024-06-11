@@ -36,7 +36,7 @@ class Game
         #@code_pegs = ['red', 'orange', 'pink', 'green', 'brown', 'yellow']
         #self.create_rules
         #self.nominate_colours_codemaker
-        @board = Array.new(13, {Array.new(12), "#"})
+        @board = Array.new(13) {Array.new(12, "#")}
         display_board
     end
     #Create an instance method called set_num_of_games
