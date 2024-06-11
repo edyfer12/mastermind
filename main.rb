@@ -567,7 +567,7 @@ class Game
                 @feedback.push('blank')
             end
             #Invoke the method called update_board_guesser passing guesser array, feedback array, guesser_index and guess_count
-            update_board_guesser(guesser, feedback, guesser_index, guess_count)
+            update_board_guesser(guesser, @feedback, guesser_index, guess_count)
             #Increment guesser_index by 1
             guesser_index += 1
         end
@@ -652,27 +652,53 @@ class Game
         end
     end
     #Update the decoding board based on the guesses by the player passing in feedback array, guesser array, guesser_index and guesser_count
+    def update_board_guesser(guesser, feedback, guesser_index, guess_count)
+        case guesser[guesser_index]
         #If the guesser array element is 'red', set the current element to text colour to red on the board based on guesser_count + 12 - 1 which is row 
         #and guesser_index + 4 as a column
+        when 'red'
+            @board[12 - guess_count][guesser_index + 4] = @board[12 - guess_count][guesser_index + 4].colorize(:color => :red)
         #If the guesser array element is 'orange', set the current element to text colour to orange on the board based on guesser_count + 12 - 1 which is row 
         #and guesser_index + 4 as a column
+        when 'orange'
+            @board[12 - guess_count][guesser_index + 4] = @board[12 - guess_count][guesser_index + 4].colorize(:color => :light_red)
         #If the guesser array element is 'pink', set the current element to text colour to pink on the board based on guesser_count + 12 - 1 which is row 
         #and guesser_index + 4 as a column
+        when 'pink'
+            @board[12 - guess_count][guesser_index + 4] = @board[12 - guess_count][guesser_index + 4].colorize(:color => :light_magenta)
         #If the guesser array element is 'green', set the current element to text colour to green on the board based on guesser_count + 12 - 1 which is row 
         #and guesser_index + 4 as a column
+        when 'green'
+            @board[12 - guess_count][guesser_index + 4] = @board[12 - guess_count][guesser_index + 4].colorize(:color => :green)
         #If the guesser array element is 'brown', set the current element to text colour to brown on the board based on guesser_count + 12 - 1 which is row 
         #and guesser_index + 4 as a column
+        when 'brown'
+            @board[12 - guess_count][guesser_index + 4] = @board[12 - guess_count][guesser_index + 4].colorize(:color => :yellow)
         #If the guesser array element is 'yellow', set the current element to text colour to yellow on the board based on guesser_count + 12 - 1 which is row 
         #and guesser_index + 4 as a column
+        when 'yellow'
+            @board[12 - guess_count][guesser_index + 4] = @board[12 - guess_count][guesser_index + 4].colorize(:color => :light_yellow)
         #If the guesser array element is 'blank', set the current element to ' ' on the board based on guesser_count + 12 - 1 which is row 
         #and guesser_index + 4 as a column
-
+        when 'blank'
+            @board[12 - guess_count][guesser_index + 4] = ''
+        end
+    
+        case feedback[guesser_index]
         #If the feedback array element is 'black', set the current element to text colour to black on the board based on 11 - guesser_count as a row
         #and guesser_index as a column
+        when 'black'
+            @board[12 - guess_count][guesser_index] = @board[12 - guess_count][guesser_index].colorize(:color => :black)
         #If the feedback array element is 'white', set the current element to text colour to white on the board based on 11 - guesser_count as a row
         #and guesser_index as a column
+        when 'white'
+            @board[12 - guess_count][guesser_index] = @board[12 - guess_count][guesser_index].colorize(:color => :light_white)
         #If the feedback array element is 'blank', set the current element to text colour to blank on the board based on 11 - guesser_count as a row
         #and guesser_index as a column
+        when 'blank'
+            @board[12 - guess_count][guesser_index] = ' '
+        end
+    end
     def play_multiple_games
         #Declare game_count variable and set to 0
         game_count = 0
