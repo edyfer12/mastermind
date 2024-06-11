@@ -653,8 +653,10 @@ class Game
     end
     #Update the decoding board based on the guesses by the player passing in feedback array, guesser array, guesser_index and guesser_count
     def update_board_guesser(guesser, feedback, guesser_index, guess_count)
+        #Modify the values of the decoding board to hash for the guesser row of colour pattern and feedback
         @board[12 - guess_count][guesser_index + 4] = "#"
         @board[12 - guess_count][guesser_index] = "#"
+        
         case guesser[guesser_index]
         #If the guesser array element is 'red', set the current element to text colour to red on the board based on guesser_count + 12 - 1 which is row 
         #and guesser_index + 4 as a column
