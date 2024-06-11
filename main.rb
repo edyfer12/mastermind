@@ -570,6 +570,7 @@ class Game
             #Increment guesser_index by 1
             guesser_index += 1
         end
+        #Invoke the method called display_board that keeps up to date the guesses made on the board
     end
     #Create a decoding board that displays the asterisks in rows and columns up to date. The left and right hand side of the four
     #asterisks will have background colour of lightgrey. The middle section of the board indicates the colour pattern chosen 
