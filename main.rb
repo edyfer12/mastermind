@@ -1,6 +1,6 @@
 #Include require.colorize that would enable the font-colour and background-colour for the 
 #string value
-require "colorize"
+require "rainbow"
 
 #Create a class called Game where rules are set, set number of games are played, colour patterns
 #are created for the codemaker and guesser, play multiple games and decoding_board is both 
@@ -618,8 +618,8 @@ class Game
                     end
                     #At the first and last four columns, set background-color to lightgrey
                     if col_index >= 0 && col_index <= 3
-                        @board[row_index][col_index] = @board[row_index][col_index].colorize( :background => :light_black)
-                        print " ".colorize(:background => :light_black) + @board[row_index][col_index] + " ".colorize(:background => :light_black) 
+                        @board[row_index][col_index] = Rainbow(@board[row_index][col_index]).bg("757575")
+                        print Rainbow(" ").bg("757575")+ @board[row_index][col_index] + Rainbow(" ").bg("757575") 
                     #Between first and middle column and last and middle column, place | as a boundary
                     elsif col_index == 4
                         print "|| " + @board[row_index][col_index] + " "
@@ -628,14 +628,14 @@ class Game
                         print " " + @board[row_index][col_index] + " "
                     #For the right hand side of the guesser_row, have the feedback row for the human
                     elsif col_index == 8
-                        @board[row_index][col_index] = @board[row_index][col_index].colorize( :background => :light_black)
-                        print "||" + " ".colorize(:background => :light_black) + @board[row_index][col_index] + " ".colorize(:background => :light_black)
+                        @board[row_index][col_index] = Rainbow(@board[row_index][col_index]).bg("696969")
+                        print "||" + Rainbow(" ").bg("696969") + @board[row_index][col_index] + Rainbow(" ").bg("696969")
                     elsif col_index >= 9 && col_index <= 10
-                        @board[row_index][col_index] = @board[row_index][col_index].colorize( :background => :light_black)
-                        print " ".colorize(:background => :light_black) + @board[row_index][col_index] + " ".colorize(:background => :light_black)
+                        @board[row_index][col_index] = Rainbow(@board[row_index][col_index]).bg("696969")
+                        print Rainbow(" ").bg("696969") + @board[row_index][col_index] + Rainbow(" ").bg("696969")
                     else
-                        @board[row_index][col_index] = @board[row_index][col_index].colorize( :background => :light_black)
-                        print " ".colorize(:background => :light_black) + @board[row_index][col_index] + " ".colorize(:background => :light_black) + "||"
+                        @board[row_index][col_index] = Rainbow(@board[row_index][col_index]).bg("696969")
+                        print Rainbow(" ").bg("696969") + @board[row_index][col_index] + Rainbow(" ").bg("696969") + "||"
                     end
                 end
                 #Increment col_index by 1
@@ -659,27 +659,27 @@ class Game
         #If the guesser array element is 'red', set the current element to text colour to red on the board based on guesser_count + 12 - 1 which is row 
         #and guesser_index + 4 as a column
         when 'red'
-            @board[12 - guess_count][guesser_index + 4] = @board[12 - guess_count][guesser_index + 4].colorize(:color => :red)
+            @board[12 - guess_count][guesser_index + 4] = Rainbow(@board[12 - guess_count][guesser_index + 4]).crimson.bold
         #If the guesser array element is 'orange', set the current element to text colour to orange on the board based on guesser_count + 12 - 1 which is row 
         #and guesser_index + 4 as a column
         when 'orange'
-            @board[12 - guess_count][guesser_index + 4] = @board[12 - guess_count][guesser_index + 4].colorize(:color => :light_red)
+            @board[12 - guess_count][guesser_index + 4] = Rainbow(@board[12 - guess_count][guesser_index + 4]).color("F89D1F").bold
         #If the guesser array element is 'pink', set the current element to text colour to pink on the board based on guesser_count + 12 - 1 which is row 
         #and guesser_index + 4 as a column
         when 'pink'
-            @board[12 - guess_count][guesser_index + 4] = @board[12 - guess_count][guesser_index + 4].colorize(:color => :light_magenta)
+            @board[12 - guess_count][guesser_index + 4] = Rainbow(@board[12 - guess_count][guesser_index + 4]).magenta.bold
         #If the guesser array element is 'green', set the current element to text colour to green on the board based on guesser_count + 12 - 1 which is row 
         #and guesser_index + 4 as a column
         when 'green'
-            @board[12 - guess_count][guesser_index + 4] = @board[12 - guess_count][guesser_index + 4].colorize(:color => :green)
+            @board[12 - guess_count][guesser_index + 4] = Rainbow(@board[12 - guess_count][guesser_index + 4]).forestgreen.bold
         #If the guesser array element is 'brown', set the current element to text colour to brown on the board based on guesser_count + 12 - 1 which is row 
         #and guesser_index + 4 as a column
         when 'brown'
-            @board[12 - guess_count][guesser_index + 4] = @board[12 - guess_count][guesser_index + 4].colorize(:color => :yellow)
+            @board[12 - guess_count][guesser_index + 4] = Rainbow(@board[12 - guess_count][guesser_index + 4]).sienna.bold
         #If the guesser array element is 'yellow', set the current element to text colour to yellow on the board based on guesser_count + 12 - 1 which is row 
         #and guesser_index + 4 as a column
         when 'yellow'
-            @board[12 - guess_count][guesser_index + 4] = @board[12 - guess_count][guesser_index + 4].colorize(:color => :light_yellow)
+            @board[12 - guess_count][guesser_index + 4] = Rainbow(@board[12 - guess_count][guesser_index + 4]).color("EFB700").bold
         #If the guesser array element is 'blank', set the current element to ' ' on the board based on guesser_count + 12 - 1 which is row 
         #and guesser_index + 4 as a column
         when 'blank'
@@ -690,11 +690,11 @@ class Game
         #If the feedback array element is 'black', set the current element to text colour to black on the board based on 11 - guesser_count as a row
         #and guesser_index as a column
         when 'black'
-            @board[12 - guess_count][guesser_index] = @board[12 - guess_count][guesser_index].colorize(:color => :black)
+            @board[12 - guess_count][guesser_index] = Rainbow(@board[12 - guess_count][guesser_index + 4]).color("000000").bold
         #If the feedback array element is 'white', set the current element to text colour to white on the board based on 11 - guesser_count as a row
         #and guesser_index as a column
         when 'white'
-            @board[12 - guess_count][guesser_index] = @board[12 - guess_count][guesser_index].colorize(:color => :light_white)
+            @board[12 - guess_count][guesser_index] = Rainbow(@board[12 - guess_count][guesser_index]).white.bold
         #If the feedback array element is 'blank', set the current element to text colour to blank on the board based on 11 - guesser_count as a row
         #and guesser_index as a column
         when 'blank'
