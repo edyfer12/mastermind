@@ -37,7 +37,7 @@ class Game
         #@code_pegs = ['red', 'orange', 'pink', 'green', 'brown', 'yellow']
         #self.create_rules
         #self.nominate_colours_codemaker
-        @board = Array.new(13) {Array.new(12, "#")}
+        @board = Array.new(13) {Array.new(12, " ")}
         display_board
         puts
     end
@@ -653,6 +653,8 @@ class Game
     end
     #Update the decoding board based on the guesses by the player passing in feedback array, guesser array, guesser_index and guesser_count
     def update_board_guesser(guesser, feedback, guesser_index, guess_count)
+        @board[12 - guess_count][guesser_index + 4] = "#"
+        @board[12 - guess_count][guesser_index] = "#"
         case guesser[guesser_index]
         #If the guesser array element is 'red', set the current element to text colour to red on the board based on guesser_count + 12 - 1 which is row 
         #and guesser_index + 4 as a column
