@@ -451,7 +451,7 @@ class Game
         #Keep looping until the guesser_valid pattern is set to true
         #puts all_colours_exist?(code_pegs, colour) == 'false' && colour.length == 4 && duplicate == 'no' && has_duplicate?(colour) == 'false'
         while !guesser_valid_pattern == true
-        case 
+            case 
             #If one or more of the strings do not match the colours in the code_peg array out of 4 strings, then display the error message 'name_of_string(s)
             #does not exist: Try again' and encourage the user to enter input again
             when all_colours_exist?(code_pegs, colour) == 'false' && colour.length == 4 && 
@@ -540,9 +540,8 @@ class Game
             else
                 guesser_valid_pattern = true
                 break
+            end
         end
-       
-    end
     #Notify the user on the number of turns left
     puts "You have #{MAX_GUESSES - guess_count - 1} guesses left"
     #Push colour to guesser array
@@ -571,43 +570,6 @@ class Game
         #Increment guesser_index by 1
         guesser_index += 1
     end
-        ###############################OLD CODE##############################################################
-        #Create a variable called colour and set to input
-        #colour = gets.chomp
-        #Keep looping until colour exists in code_pegs and (duplicate is 'yes' or duplicate is 'no' and colour does not exist in guesser_board[row]
-        #until @code_pegs.include?(colour) && (duplicate == 'yes' ||  (duplicate == 'no' && !@guesser_board[row].include?(colour)))
-            #If colour does not exist, display error message to the user "Colour does not exist as a code peg: Try again"
-            #if !@code_pegs.include?(colour)
-                #puts "Colour does not exist as a code peg: Try again"
-            #end
-            #If duplicate is 'no' and colour already exists in guesser_board[row], display error message "Cannot have duplicate colour in the guesser row: Try again"
-            #if duplicate == 'no' && @guesser_board[row].include?(colour)
-                #puts "Cannot have duplicate colour in the guesser row: Try again"
-            #end
-            #Reassign color to input
-            #colour = gets.chomp
-        #end
-        #Push colour into the guesser_board[row] to keep track of the value stored in the nested array
-        #@guesser_board[row][col] = colour
-        #If the guesser_board[row][col] matches the colour and position in codemaker array, push 'black' into feedback array
-        #if @codemaker.include?(@guesser_board[row][col]) && @guesser_board[row][col] == @codemaker[col]
-            #feedback.push('black')
-        #If the guesser_board[row][col] matches the colour, not position in codemaker array, and number of selected duplicate colours
-        #in the guesser_board[row] is less than or equal to the codemaker's number of select duplicate colours, then push 'white' into
-        #feedback array
-        #elsif @codemaker.include?(@guesser_board[row][col]) && @guesser_board[row][col] != @codemaker[col] &&
-            #@guesser_board[row].count(@guesser_board[row][col]) <= @codemaker.count(@guesser_board[row][col])
-            #feedback.push('white')
-        #If the guesser_board[row][col] does not have colour that exists in codemaker, or if colour does exist in codemaker, not match in 
-        #position, but number of select duplicate colours in guesser_board[row] is greater than in codemaker, then push '' into feedback array 
-        #elsif !@codemaker.include?(@guesser_board[row][col]) || 
-            #(@codemaker.include?(@guesser_board[row][col]) && @guesser_board[row][col] != @codemaker[col] &&
-            #@guesser_board[row].count(@guesser_board[row][col]) > @codemaker.count(@guesser_board[row][col]))
-            #feedback.push('blank')
-        #end
-        #########################################################################################################
-        #@guesser_board[row] = nil
-#        puts "@gues2ser_board[#{row}] = #{@guesser_board[row]}"
     end
     #Create a decoding board that displays the asterisks in rows and columns up to date. The left and right hand side of the four
     #asterisks will have background colour of lightgrey. The middle section of the board indicates the colour pattern chosen 
