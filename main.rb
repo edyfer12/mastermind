@@ -629,7 +629,7 @@ class Game
         end
        
     end
-    #Invoke the method called update_board_guesser passing row and column
+    #Notify the user on the number of turns left
     puts "You have #{MAX_GUESSES - guess_count - 1} guesses left"
     #Push colour to guesser array
     guesser.push(colour)
@@ -653,6 +653,7 @@ class Game
             guesser.count(guesser[guesser_index]) > @codemaker.count(guesser[guesser_index]))
             @feedback.push('blank')
         end
+        #Invoke the method called update_board_guesser passing guesser array, feedback array, guesser_index and guess_count
         #Increment guesser_index by 1
         guesser_index += 1
     end
@@ -771,7 +772,28 @@ class Game
             
         end
     end
-    #Create instance method where the user plays multiple games of Mastermind
+    #Update the decoding board based on the guesses by the player passing in feedback array, guesser array, guesser_index and guesser_count
+        #If the guesser array element is 'red', set the current element to text colour to red on the board based on guesser_count + 12 - 1 which is row 
+        #and guesser_index + 4 as a column
+        #If the guesser array element is 'orange', set the current element to text colour to orange on the board based on guesser_count + 12 - 1 which is row 
+        #and guesser_index + 4 as a column
+        #If the guesser array element is 'pink', set the current element to text colour to pink on the board based on guesser_count + 12 - 1 which is row 
+        #and guesser_index + 4 as a column
+        #If the guesser array element is 'green', set the current element to text colour to green on the board based on guesser_count + 12 - 1 which is row 
+        #and guesser_index + 4 as a column
+        #If the guesser array element is 'brown', set the current element to text colour to brown on the board based on guesser_count + 12 - 1 which is row 
+        #and guesser_index + 4 as a column
+        #If the guesser array element is 'yellow', set the current element to text colour to yellow on the board based on guesser_count + 12 - 1 which is row 
+        #and guesser_index + 4 as a column
+        #If the guesser array element is 'blank', set the current element to ' ' on the board based on guesser_count + 12 - 1 which is row 
+        #and guesser_index + 4 as a column
+
+        #If the feedback array element is 'black', set the current element to text colour to black on the board based on 11 - guesser_count as a row
+        #and guesser_index as a column
+        #If the feedback array element is 'white', set the current element to text colour to white on the board based on 11 - guesser_count as a row
+        #and guesser_index as a column
+        #If the feedback array element is 'blank', set the current element to text colour to blank on the board based on 11 - guesser_count as a row
+        #and guesser_index as a column
     def play_multiple_games
         #Declare game_count variable and set to 0
         game_count = 0
