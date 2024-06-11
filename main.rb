@@ -19,6 +19,7 @@ class Game
     NUM_SMALL_HOLES = 4
     #Add constructor method where human and computer objects are created
     def initialize
+        puts "\n           Let's play Mastermind!\n\n"
         #Create game_count variable and set to 0
         #@game_count = 0
         #Create a human object passing in game_count and players array
@@ -38,6 +39,7 @@ class Game
         #self.nominate_colours_codemaker
         @board = Array.new(13) {Array.new(12, "#")}
         display_board
+        puts
     end
     #Create an instance method called set_num_of_games
     def set_num_of_games
