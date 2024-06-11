@@ -1,5 +1,6 @@
 #Include require.colorize that would enable the font-colour and background-colour for the 
 #string value
+require "colorize"
 
 #Create a class called Game where rules are set, set number of games are played, colour patterns
 #are created for the codemaker and guesser, play multiple games and decoding_board is both 
@@ -692,24 +693,80 @@ class Game
     #Create a decoding board that displays the asterisks in rows and columns up to date. The left and right hand side of the four
     #asterisks will have background colour of lightgrey. The middle section of the board indicates the colour pattern chosen 
     #by the guesser and codemaker. 
+    def display_board
         #Create variable board_rows and set to 13 where the first row is for the codemaker and the next twelve rows are for the
         #guesser
+        board_rows = 13
         #Create variable board_cols and set to 12 where the first and last four columns are the feedback provided for the human and computer
+        board_cols = 12
         #Set row_index to 0
+        row_index = 0
         #Loop from row_index to the board_rows
+        while row_index < board_rows
             #Set col_index to 0
+            col_index = 0
             #Loop from col_index to the board_cols
-            #If the row_index is 0,
-                #Set the first and last 4 columns to blank to show as a codemaker row
-                #Between the first and last columns, place | as a boundary
-                #Underneath place the equal signs as a separator between the last guesser row and codemaker row
-            #If the row_index is greater than 0,
-                #At the first and last four columns, set background-color to lightgrey
-                #Between first and middle column and last and middle column, place | as a boundary
-                #For the left hand side of the guesser_row, have the feedback row for the computer
-                #For the right hand side of the guesser_row, have the feedback row for the human
-            #Increment col_index by 1
-        #Increment row_index by 1
+            while col_index < board_cols
+                #If the row_index is 0,
+                if row_index == 0
+                    case 
+                    #Set the first and last 4 columns to blank to show as a codemaker row
+                    when col_index >= 0 && col_index <= 3 
+                        @board[row_index][col_index] = '   '
+                        print @board[row_index][col_index]
+                    #Between the first 4 and middle section and last 4 columns and middle section, place | as a boundary
+                    when col_index == 4
+                        print "  || #{@board[row_index][col_index]} "
+                    when col_index >= 5 && col_index <= 7
+                        print " " + @board[row_index][col_index] + " "
+                    when col_index == 8
+                        @board[row_index][col_index] = '  '
+                        print "|| " + @board[row_index][col_index]
+                    else 
+                        @board[row_index][col_index] = '  '
+                        print @board[row_index][col_index]
+                    end 
+                    #Underneath place the equal signs as a separator between the last guesser row and codemaker row
+                #If the row_index is greater than 0,
+                else
+                    if col_index == 0
+                        print '||'
+                    end
+                    #At the first and last four columns, set background-color to lightgrey
+                    if col_index >= 0 && col_index <= 3
+                        @board[row_index][col_index] = @board[row_index][col_index].colorize( :background => :light_black)
+                        print " ".colorize(:background => :light_black) + @board[row_index][col_index] + " ".colorize(:background => :light_black) 
+                    #Between first and middle column and last and middle column, place | as a boundary
+                    elsif col_index == 4
+                        print "|| " + @board[row_index][col_index] + " "
+                    #For the left hand side of the guesser_row, have the feedback row for the computer
+                    elsif col_index >= 5 && col_index <= 7
+                        print " " + @board[row_index][col_index] + " "
+                    #For the right hand side of the guesser_row, have the feedback row for the human
+                    elsif col_index == 8
+                        @board[row_index][col_index] = @board[row_index][col_index].colorize( :background => :light_black)
+                        print "||" + " ".colorize(:background => :light_black) + @board[row_index][col_index] + " ".colorize(:background => :light_black)
+                    elsif col_index >= 9 && col_index <= 10
+                        @board[row_index][col_index] = @board[row_index][col_index].colorize( :background => :light_black)
+                        print " ".colorize(:background => :light_black) + @board[row_index][col_index] + " ".colorize(:background => :light_black)
+                    else
+                        @board[row_index][col_index] = @board[row_index][col_index].colorize( :background => :light_black)
+                        print " ".colorize(:background => :light_black) + @board[row_index][col_index] + " ".colorize(:background => :light_black) + "||"
+                    end
+                end
+                #Increment col_index by 1
+                col_index += 1
+            end
+            if row_index == 0 || row_index == board_rows - 1
+                puts "\n============================================"
+            else
+                puts
+            end
+            #Increment row_index by 1
+            row_index += 1
+            
+        end
+    end
     #Create instance method where the user plays multiple games of Mastermind
     def play_multiple_games
         #Declare game_count variable and set to 0
