@@ -225,6 +225,7 @@ class Game
                     codemaker_valid_pattern = true
             end
         end
+        puts "ssdfsdf"
         #Invoke the method that changes colour of the pattern as a human codemaker passing in colour array
         update_board_codemaker_human(colour)
         #Push the colour to the codemaker array
@@ -406,9 +407,10 @@ class Game
         while i < guesser_length
             #Create a variable called random_value and set to random value selected from @code_pegs
             random_value = @code_pegs.sample
+            guesser = guesser.flatten
             #Keep selecting random values from until duplicate value is just set to 'yes' or duplicate value is 'no' and 
             #element chosen from code_pegs does not exist in the guesser array
-            until duplicate == 'yes' || (duplicate == 'no' && code_pegs.include?(random_value))
+            until duplicate == 'yes' || (duplicate == 'no' && !guesser.include?(random_value))
                 #Reassign random_value to random element selected from the array to allow the computer to repetitively select random 
                 #colour from code_pegs until condition is met
                 random_value = @code_pegs.sample
