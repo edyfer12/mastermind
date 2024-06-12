@@ -748,27 +748,27 @@ class Game
             #If the element of colour array is 'red',
             when 'red'
                 #Set the colour of the existing value on the decoding board to crimson
-                @board[0][colour_count + 4] = Rainbow(@board[0][colour_count + 4]).crimson
+                @board[0][colour_count + 4] = Rainbow(@board[0][colour_count + 4]).crimson.bold
             #If the element of colour array is 'orange',
             when 'orange'
                 #Set the colour of the existing value on the decoding board to F89D1F
-                @board[0][colour_count + 4] = Rainbow(@board[0][colour_count + 4]).color("F89D1F")
+                @board[0][colour_count + 4] = Rainbow(@board[0][colour_count + 4]).color("F89D1F").bold
             #If the element of colour array is 'yellow',
             when 'yellow'
                 #Set the colour of the existing value on the decoding board to EFB700
-                @board[0][colour_count + 4] = Rainbow(@board[0][colour_count + 4]).color("EFB700")
+                @board[0][colour_count + 4] = Rainbow(@board[0][colour_count + 4]).color("EFB700").bold
             #If the element of colour array is 'brown',
             when 'brown'
                 #Set the colour of the existing value on the decoding board to sierra
-                @board[0][colour_count + 4] = Rainbow(@board[0][colour_count + 4]).sienna
+                @board[0][colour_count + 4] = Rainbow(@board[0][colour_count + 4]).sienna.bold
             #If the element of colour array is 'pink',
             when 'pink'
                 #Set the colour of the existing value on the decoding board to magenta
-                @board[0][colour_count + 4] = Rainbow(@board[0][colour_count + 4]).magenta
+                @board[0][colour_count + 4] = Rainbow(@board[0][colour_count + 4]).magenta.bold
             #If the element of colour array is 'green',
             when 'green'
                 #Set the colour of the existing value on the decoding board to forestgreen
-                @board[0][colour_count + 4] = Rainbow(@board[0][colour_count + 4]).forestgreen
+                @board[0][colour_count + 4] = Rainbow(@board[0][colour_count + 4]).forestgreen.bold
             #If the element of colour array is 'blank',
             when 'blank'
                 #Set the value to '' on the decoding board
