@@ -364,8 +364,6 @@ class Game
                 #Otherwise, invoke the method computer_guess_code passing in duplicate value, guess_count, guesser array and @code_pegs
                 computer_guess_colour(@duplicate, @code_pegs, guesser, guess_count)
             end
-            puts "Guesser: " + guesser.to_s
-            puts "Feedback: " + @feedback.to_s
             #Add points by 1 so the codemaker gets rewarded each time the guesser nominates four colours in a pattern
             points += 1 
 
