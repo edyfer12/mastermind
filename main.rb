@@ -407,6 +407,7 @@ class Game
         while i < guesser_length
             #Create a variable called random_value and set to random value selected from @code_pegs
             random_value = @code_pegs.sample
+            #Flatten the guesser array
             guesser = guesser.flatten
             #Keep selecting random values from until duplicate value is just set to 'yes' or duplicate value is 'no' and 
             #element chosen from code_pegs does not exist in the guesser array
