@@ -441,8 +441,6 @@ class Game
             #Add i by 1
             i += 1
         end
-        #Invoke the method that updates the board based on the guesses made by the computer passing in i, feedback and guesser array, and guess_count
-        puts "feedback: " + @feedback.to_s
     end
     #Create instance method called human_guess_colour where feedback array, row, col and duplicate is passed so human can choose colours based 
     #on the rules    
