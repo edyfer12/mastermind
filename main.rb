@@ -790,8 +790,15 @@ class Game
         #Assign class variable number_of_games to class method set_number_of_games 
         @@number_of_games = self.set_num_of_games
         #Loop from game_count through to the @@num_of_games class variable 
-        #while game_count < @@number_of_games
+        while game_count < @@number_of_games
             #Declare an Game object where the players are created where game_count is passe
+            if game_count > 0 && @computer.player == 'codemaker'
+                @human.player = 'codemaker'
+                @computer.player = 'guesser'
+            elsif game_count > 0 && @computer.player == 'guesser'
+                @human.player = 'guesser'
+                @computer.player = 'codemaker'
+            end
             #Invoke the method, called create_rules
             create_rules
             #Invoke the method, called nominate_colours_codemaker
@@ -799,9 +806,15 @@ class Game
             #Invoke the method, called nominate_colours_guesser
             nominate_colours_guesser
             #Increment game_count by 1
-            #game_count += 1
-        #end
+            game_count += 1
+            #Reset blank, duplicate and board to start new game
+            @blank = nil
+            @duplicate = nil
+            @board = Array.new(13) {Array.new(12, " ")}
+        end
         #Display the result of both computer and human players after selected number of games are played
+        puts "Points for computer = #{@computer_points}"
+        puts "Points for human = #{@human_points}"
     end
             
 end
