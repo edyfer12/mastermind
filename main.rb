@@ -842,10 +842,17 @@ class Game
         #Check if the human has tied, lost or won
             #If the total scores for computer is less than total scores for human, then display
             #You won against the computer
+            if total_computer_scores.reduce(0, :+) < total_human_scores(0, :+)
+                puts "You won against the computer"
             #If the total scores for computer is greater than total scores for human, then display
             #You lost against the computer
+            elsif total_computer_scores.reduce(0, :+) > total_human_scores(0, :+)
+                puts "You lost against the computer"
             #Otherwise, display
             #You tied against the computer
+            else
+                puts "You tied against the computer"
+            end
     end
             
 end
