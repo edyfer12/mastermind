@@ -225,7 +225,7 @@ class Game
                     codemaker_valid_pattern = true
             end
         end
-            
+        #Invoke the method that changes colour of the pattern as a human codemaker passing in colour array
         #Push the colour to the codemaker array
         @codemaker.push(colour)
     end
@@ -710,6 +710,24 @@ class Game
         #Change the value of first row and column added by 4 to # to indicate that the game is playing
         @board[0][i + 4] = "#"
     end
+    #Update the decoding board based on the codemaker pattern conducted by the human that shows the change in colour of existing values
+        #Create variable called colour_count and set to 0
+        #Loop from colour_count to 4
+            #If the element of colour array is 'red',
+                #Set the colour of the existing value on the decoding board to crimson
+            #If the element of colour array is 'orange',
+                #Set the colour of the existing value on the decoding board to F89D1F
+            #If the element of colour array is 'yellow',
+                #Set the colour of the existing value on the decoding board to EFB700
+            #If the element of colour array is 'brown',
+                #Set the colour of the existing value on the decoding board to sierra
+            #If the element of colour array is 'pink',
+                #Set the colour of the existing value on the decoding board to magenta
+            #If the element of colour array is 'green',
+                #Set the colour of the existing value on the decoding board to forestgreen
+            #If the element of colour array is 'blank',
+                #Set the value to '' on the decoding board
+            #Add colour_count by 1
     def play_multiple_games
         #Declare game_count variable and set to 0
         game_count = 0
