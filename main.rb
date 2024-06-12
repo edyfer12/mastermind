@@ -818,8 +818,8 @@ class Game
             puts
         end
         #Display the result of both computer and human players after selected number of games are played
-        puts "Points for computer = #{@computer_points}"
-        puts "Points for human = #{@human_points}"
+        puts "Points for Computer = #{@computer_points}"
+        puts "Points for Human = #{@human_points}"
     end
             
 end
