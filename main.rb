@@ -824,6 +824,8 @@ class Game
             @duplicate = nil
             @board = Array.new(13) {Array.new(12, " ")}
             #Increment both the computer and human points by existing values
+            @computer_points += @computer_points
+            @human_points += @human_points
         end
         #Display game over to the user
         puts "Game Over!"
