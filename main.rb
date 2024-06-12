@@ -134,8 +134,6 @@ class Game
         end
         #Flatten the codemaker array by reassigning codemaker to codemaker invoked on built-in method flatten
         @codemaker = @codemaker.flatten
-        puts "code_pegs: " + @code_pegs.to_s
-        puts "codemaker: " + @codemaker.to_s
     end
     #Create instance method that enables the computer codemaker to nominate four colour patterns
     #passing in index of codemaker, code_pegs array and duplicate variable
@@ -225,7 +223,6 @@ class Game
                     codemaker_valid_pattern = true
             end
         end
-        puts "ssdfsdf"
         #Invoke the method that changes colour of the pattern as a human codemaker passing in colour array
         update_board_codemaker_human(colour)
         #Push the colour to the codemaker array
@@ -337,13 +334,16 @@ class Game
 
         #If human is a guesser and blank is activated to yes,
         if @human.player == 'guesser' && @blank == 'yes'
+            puts "\n\tYou have #{MAX_GUESSES - guess_count} guesses left\n\n" 
+            display_board
             #Output to the user "Please enter the four colours (red, orange, green, pink, brown, yellow, blank):"
             puts "As a guesser, please enter the four colours (coloured code pegs are red, orange, green, pink, brown, yellow, blank):"
         #If human is a codemaker and blank is activated to no,
         elsif @human.player == 'guesser' && @blank == 'no'
             #Output to the user "Please enter the four colours (red, orange, green, pink, brown, yellow):"
+            puts "\n\tYou have #{MAX_GUESSES - guess_count} guesses left\n\n"  
+            display_board
             puts "As a guesser, please enter the four colours (coloured code pegs are red, orange, green, pink, brown, yellow):"
-            puts "You have #{MAX_GUESSES - guess_count} guesses left "
         end
 
         #Loop from guess_count to MAX_GUESSES as a way to check how many attempts the guesser made in choosing colours
@@ -442,6 +442,15 @@ class Game
     #Create instance method called human_guess_colour where feedback array, row, col and duplicate is passed so human can choose colours based 
     #on the rules    
     def human_guess_colour(duplicate, code_pegs, guesser, guess_count)
+        #If human is a guesser and blank is activated to yes,
+        if @human.player == 'guesser' && @blank == 'yes' && guess_count > 0
+            #Output to the user "Please enter the four colours (red, orange, green, pink, brown, yellow, blank):"
+            puts "As a guesser, please enter the four colours (coloured code pegs are red, orange, green, pink, brown, yellow, blank):"
+        #If human is a codemaker and blank is activated to no,
+        elsif @human.player == 'guesser' && @blank == 'no' && guess_count > 0
+            #Output to the user "Please enter the four colours (red, orange, green, pink, brown, yellow):"
+            puts "As a guesser, please enter the four colours (coloured code pegs are red, orange, green, pink, brown, yellow):"
+        end
         #Create feedback array and set to []
         @feedback = []
         #Create a variable called colour and set to input
@@ -548,7 +557,7 @@ class Game
             end
         end
         #Notify the user on the number of turns left
-        puts "You have #{MAX_GUESSES - guess_count - 1} guesses left"
+        puts "\n\n\tYou have #{MAX_GUESSES - guess_count - 1} guesses left\n\n"
         #Push colour to guesser array
         guesser.push(colour)
         #Flatten the guesser array
