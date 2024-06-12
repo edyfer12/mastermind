@@ -832,14 +832,17 @@ class Game
             @duplicate = nil
             @board = Array.new(13) {Array.new(12, " ")}
             #Add values for both the arrays that store computer scores and human scores
-            @computer_points += @computer_points
-            @human_points += @human_points
+            if @computer.player == 'codemaker'
+                @total_computer_scores.push(@computer_points)
+            else
+                @total_human_scores.push(@human_points)
+            end
         end
         #Display game over to the user
         puts "Game Over!"
         #Display the result of both computer and human players after selected number of games are played
-        puts "\n\nPoints for Computer = #{@computer_points}"
-        puts "Points for Human = #{@human_points}"
+        puts "\n\nOverall Points for Computer = #{@total_computer_scores.reduce(0, :+)}"
+        puts "Overall Points for Human = #{@total_human_scores.reduce(0, :+)}"
     end
             
 end
