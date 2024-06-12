@@ -420,7 +420,6 @@ class Game
             guesser.push(random_value)
             #Flatten the guesser array
             guesser = guesser.flatten
-            puts "Guesser[#{i}] = #{guesser[i]}"
             #puts "@codemaker.include?(guesser[i]) = #{@codemaker.include?(guesser[i])}"
             #If the guesser[i] does match both in colour and position to the codemaker, then push 'black' into feedback array
             if guesser[i] == @codemaker[i] && @codemaker.include?(guesser[i])
