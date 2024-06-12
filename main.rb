@@ -41,7 +41,9 @@ class Game
         display_board
         puts
         #Create an array that stores in the number of points for the computer which is then used to calculate the total of computer scores
+        @total_computer_scores = []
         #Create an array that stores in the number of points for the human which is then used to calculate the total of all human scores
+        @total_human_scores = []
     end
     #Create an instance method called set_num_of_games
     def set_num_of_games
