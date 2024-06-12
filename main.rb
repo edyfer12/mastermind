@@ -798,7 +798,7 @@ class Game
             #Add separator with + sign
             puts "\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n"
             #Display the current game played to the user
-            puts "Game #{game_count + 1}"
+            puts "Game #{game_count + 1}\n"
             #Declare an Game object where the players are created where game_count is passe
             if game_count > 0 && @computer.player == 'codemaker'
                 @human.player = 'codemaker'
