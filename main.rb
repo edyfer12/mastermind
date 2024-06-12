@@ -795,6 +795,7 @@ class Game
         @@number_of_games = self.set_num_of_games
         #Loop from game_count through to the @@num_of_games class variable 
         while game_count < @@number_of_games
+            #Display the current game played to the user
             #Declare an Game object where the players are created where game_count is passe
             if game_count > 0 && @computer.player == 'codemaker'
                 @human.player = 'codemaker'
