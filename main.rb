@@ -156,6 +156,7 @@ class Game
                     randomValue = code_pegs.sample
                 end
             end
+            #Invoke the method that updates the board for the codemaker as a computer passing in i
             #Push the randomValue to the codemaker array
             @codemaker.push(randomValue)
             i += 1
@@ -656,7 +657,7 @@ class Game
         #Modify the values of the decoding board to hash for the guesser row of colour pattern and feedback
         @board[12 - guess_count][guesser_index + 4] = "#"
         @board[12 - guess_count][guesser_index] = "#"
-        
+
         case guesser[guesser_index]
         #If the guesser array element is 'red', set the current element to text colour to red on the board based on guesser_count + 12 - 1 which is row 
         #and guesser_index + 4 as a column
@@ -703,6 +704,8 @@ class Game
             @board[12 - guess_count][guesser_index] = ' '
         end
     end
+    #Update the decoding board based on the codemaker pattern conducted by the computer passing in the index for the row
+        #Change the value of first row and column added by 4 to # to indicate that the game is playing
     def play_multiple_games
         #Declare game_count variable and set to 0
         game_count = 0
