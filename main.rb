@@ -226,6 +226,7 @@ class Game
             end
         end
         #Invoke the method that changes colour of the pattern as a human codemaker passing in colour array
+        update_board_codemaker_human(colour)
         #Push the colour to the codemaker array
         @codemaker.push(colour)
     end
@@ -711,23 +712,45 @@ class Game
         @board[0][i + 4] = "#"
     end
     #Update the decoding board based on the codemaker pattern conducted by the human that shows the change in colour of existing values
+    def update_board_codemaker_human(colour)
         #Create variable called colour_count and set to 0
+        colour_count = 0
         #Loop from colour_count to 4
+        while colour_count < 4
+            case colour[colour_count]
             #If the element of colour array is 'red',
+            when 'red'
                 #Set the colour of the existing value on the decoding board to crimson
+                @board[0][colour_count + 4] = Rainbow(@board[0][colour_count + 4]).crimson
             #If the element of colour array is 'orange',
+            when 'orange'
                 #Set the colour of the existing value on the decoding board to F89D1F
+                @board[0][colour_count + 4] = Rainbow(@board[0][colour_count + 4]).color("F89D1F")
             #If the element of colour array is 'yellow',
+            when 'yellow'
                 #Set the colour of the existing value on the decoding board to EFB700
+                @board[0][colour_count + 4] = Rainbow(@board[0][colour_count + 4]).color("EFB700")
             #If the element of colour array is 'brown',
+            when 'brown'
                 #Set the colour of the existing value on the decoding board to sierra
+                @board[0][colour_count + 4] = Rainbow(@board[0][colour_count + 4]).sienna
             #If the element of colour array is 'pink',
+            when 'pink'
                 #Set the colour of the existing value on the decoding board to magenta
+                @board[0][colour_count + 4] = Rainbow(@board[0][colour_count + 4]).magenta
             #If the element of colour array is 'green',
+            when 'green'
                 #Set the colour of the existing value on the decoding board to forestgreen
+                @board[0][colour_count + 4] = Rainbow(@board[0][colour_count + 4]).forestgreen
             #If the element of colour array is 'blank',
+            when 'blank'
                 #Set the value to '' on the decoding board
+                @board[0][colour_count + 4] = ' '
+            end
             #Add colour_count by 1
+            colour_count += 1
+        end
+    end
     def play_multiple_games
         #Declare game_count variable and set to 0
         game_count = 0
