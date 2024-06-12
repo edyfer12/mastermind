@@ -360,8 +360,8 @@ class Game
                 #If human is a codemaker, then invoke the method human_guess_code passing in duplicate value and @code_pegs
                 human_guess_colour(@duplicate, @code_pegs, guesser, guess_count)
             else
-                #Otherwise, invoke the method computer_guess_code passing in duplicate value and @code_pegs
-                computer_guess_colour(@duplicate, @code_pegs, guesser)
+                #Otherwise, invoke the method computer_guess_code passing in duplicate value, guess_count, guesser array and @code_pegs
+                computer_guess_colour(@duplicate, @code_pegs, guesser, guess_count)
             end
             puts "Guesser: " + guesser.to_s
             puts "Feedback: " + @feedback.to_s
@@ -394,7 +394,7 @@ class Game
     end
     #Create instance method called computer_guess_colour where feedback and guesser arrays is passed so computer can  
     #choose colours based on the rules
-    def computer_guess_colour(duplicate, code_pegs, guesser)
+    def computer_guess_colour(duplicate, code_pegs, guesser, guess_count)
         #Create feedback array and set to []
         @feedback = []
 
@@ -436,6 +436,7 @@ class Game
             #Add i by 1
             i += 1
         end
+        #Invoke the method that updates the board based on the guesses made by the computer passing in i, feedback and guesser array, and guess_count
         puts "feedback: " + @feedback.to_s
     end
     #Create instance method called human_guess_colour where feedback array, row, col and duplicate is passed so human can choose colours based 
@@ -571,7 +572,7 @@ class Game
                 @feedback.push('blank')
             end
             #Invoke the method called update_board_guesser passing guesser array, feedback array, guesser_index and guess_count
-            update_board_guesser(guesser, @feedback, guesser_index, guess_count)
+            update_board_guesser_human(guesser, @feedback, guesser_index, guess_count)
             #Increment guesser_index by 1
             guesser_index += 1
         end
@@ -655,8 +656,8 @@ class Game
             
         end
     end
-    #Update the decoding board based on the guesses by the player passing in feedback array, guesser array, guesser_index and guesser_count
-    def update_board_guesser(guesser, feedback, guesser_index, guess_count)
+    #Update the decoding board based on the guesses by the human player passing in feedback array, guesser array, guesser_index and guess_count
+    def update_board_guesser_human(guesser, feedback, guesser_index, guess_count)
         #Modify the values of the decoding board to hash for the guesser row of colour pattern and feedback
         @board[12 - guess_count][guesser_index + 4] = "#"
         @board[12 - guess_count][guesser_index] = "#"
@@ -707,6 +708,11 @@ class Game
             @board[12 - guess_count][guesser_index] = ' '
         end
     end
+    #Update the decoding board based on the guesses made by the computer player passing in the feedback array, i, guess_count and guesser array
+        #Set all the guesser rows of the decoding board to #
+        #If the element of feedback is 'black', set the colour of the existing value in decoding board to black
+        #If the element of feedback is 'white', set the colour of the existing value in decoding board to white
+        #If the element of feedback is 'blank', set the colour of the existing value in decoding board to blank
     #Update the decoding board based on the codemaker pattern conducted by the computer passing in the index for the row
     def update_board_codemaker_computer(i)
         #Change the value of first row and column added by 4 to # to indicate that the game is playing
