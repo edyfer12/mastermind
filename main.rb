@@ -433,6 +433,8 @@ class Game
                 guesser.count(guesser[i]) > @codemaker.count(guesser[i]) && @codemaker[i] != guesser[i])
                 @feedback.push('blank')
             end
+            #Invoke the method that updates the board based on the guesses made by the computer passing in i, feedback and guesser array, and guess_count
+            update_board_guesser_computer(i, @feedback, guesser, guess_count)
             #Add i by 1
             i += 1
         end
@@ -709,10 +711,23 @@ class Game
         end
     end
     #Update the decoding board based on the guesses made by the computer player passing in the feedback array, i, guess_count and guesser array
+    def update_board_guesser_computer(i, feedback, guesser, guess_count)
         #Set all the guesser rows of the decoding board to #
+        @board[12 - guess_count][12 - i] = Rainbow("#").bold
+        @board[12 - guess_count][i + 4] = Rainbow("#").bold
+
+        case feedback[i]
         #If the element of feedback is 'black', set the colour of the existing value in decoding board to black
+        when 'black'
+            @board[12 - guess_count][12 - i] = Rainbow("#").black.bold
         #If the element of feedback is 'white', set the colour of the existing value in decoding board to white
+        when 'white'
+            @board[12 - guess_count][12 - i] = Rainbow("#").white.bold
         #If the element of feedback is 'blank', set the colour of the existing value in decoding board to blank
+        when 'blank'
+            @board[12 - guess_count][12 - i] = ' '
+        end
+    end
     #Update the decoding board based on the codemaker pattern conducted by the computer passing in the index for the row
     def update_board_codemaker_computer(i)
         #Change the value of first row and column added by 4 to # to indicate that the game is playing
