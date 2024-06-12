@@ -839,6 +839,13 @@ class Game
         #Display the result of both computer and human players after selected number of games are played
         puts "\n\nOverall Points for Computer = #{@total_computer_scores.reduce(0, :+)}"
         puts "Overall Points for Human = #{@total_human_scores.reduce(0, :+)}"
+        #Check if the human has tied, lost or won
+            #If the total scores for computer is less than total scores for human, then display
+            #You won against the computer
+            #If the total scores for computer is greater than total scores for human, then display
+            #You lost against the computer
+            #Otherwise, display
+            #You tied against the computer
     end
             
 end
