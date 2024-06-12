@@ -793,6 +793,8 @@ class Game
         @code_pegs = ['red', 'orange', 'pink', 'green', 'brown', 'yellow'] 
         #Assign class variable number_of_games to class method set_number_of_games 
         @@number_of_games = self.set_num_of_games
+        #Set computer_points to 0
+        #Set human_points to 0
         #Loop from game_count through to the @@num_of_games class variable 
         while game_count < @@number_of_games
             #Add separator with + sign
