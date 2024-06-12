@@ -119,11 +119,11 @@ class Game
         #If human is a codemaker and blank is activated to yes,
         if @human.player == 'codemaker' && @blank == 'yes'
             #Output to the user "Please enter the four colours (red, orange, green, pink, brown, yellow, blank):"
-            puts "As a codemaker, please enter the four colours (coloured code pegs are red, orange, green, pink, brown, yellow, blank):"
+            puts "\nAs a codemaker, please enter the four colours (coloured code pegs are red, orange, green, pink, brown, yellow, blank):"
         #If human is a codemaker and blank is activated to no,
         elsif @human.player == 'codemaker' && @blank == 'no'
             #Output to the user "Please enter the four colours (red, orange, green, pink, brown, yellow):"
-            puts "As a codemaker, please enter the four colours (coloured code pegs are red, orange, green, pink, brown, yellow):"
+            puts "\nAs a codemaker, please enter the four colours (coloured code pegs are red, orange, green, pink, brown, yellow):"
         end
         #If the computer is a codemaker, invoke the method computer_make_code
         if @computer.player == 'codemaker'
@@ -386,8 +386,12 @@ class Game
         if @computer.player == 'codemaker'
             @computer_points = points
         else
-        #Otherwise, create an instance variable, human_points and set to points
+        #Otherwise, 
+            #Add whitespace
+            puts
+            #Display the board that is updated
             display_board
+            #create an instance variable, human_points and set to points
             @human_points = points
         end
     end
@@ -811,6 +815,7 @@ class Game
             @blank = nil
             @duplicate = nil
             @board = Array.new(13) {Array.new(12, " ")}
+            puts
         end
         #Display the result of both computer and human players after selected number of games are played
         puts "Points for computer = #{@computer_points}"
