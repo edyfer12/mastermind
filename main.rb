@@ -388,6 +388,7 @@ class Game
             @computer_points = points
         else
         #Otherwise, create an instance variable, human_points and set to points
+            display_board
             @human_points = points
         end
     end
@@ -717,6 +718,8 @@ class Game
         colour_count = 0
         #Loop from colour_count to 4
         while colour_count < 4
+            #Set the value of the top row on the decoding baord to #
+            @board[0][colour_count + 4] = "#"
             case colour[colour_count]
             #If the element of colour array is 'red',
             when 'red'
