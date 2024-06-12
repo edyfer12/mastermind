@@ -794,7 +794,9 @@ class Game
         #Assign class variable number_of_games to class method set_number_of_games 
         @@number_of_games = self.set_num_of_games
         #Set computer_points to 0
+        @computer_points = 0
         #Set human_points to 0
+        @human_points = 0
         #Loop from game_count through to the @@num_of_games class variable 
         while game_count < @@number_of_games
             #Add separator with + sign
@@ -821,6 +823,7 @@ class Game
             @blank = nil
             @duplicate = nil
             @board = Array.new(13) {Array.new(12, " ")}
+            #Increment both the computer and human points by existing values
         end
         #Display game over to the user
         puts "Game Over!"
