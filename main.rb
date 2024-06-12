@@ -815,10 +815,12 @@ class Game
             @blank = nil
             @duplicate = nil
             @board = Array.new(13) {Array.new(12, " ")}
-            puts
+            puts "\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n"
         end
+        #Display game over to the user
+        puts "Game Over!"
         #Display the result of both computer and human players after selected number of games are played
-        puts "Points for Computer = #{@computer_points}"
+        puts "\n\nPoints for Computer = #{@computer_points}"
         puts "Points for Human = #{@human_points}"
     end
             
