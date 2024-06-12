@@ -831,7 +831,7 @@ class Game
             @blank = nil
             @duplicate = nil
             @board = Array.new(13) {Array.new(12, " ")}
-            #Increment both the computer and human points by existing values
+            #Add values for both the arrays that store computer scores and human scores
             @computer_points += @computer_points
             @human_points += @human_points
         end
