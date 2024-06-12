@@ -795,6 +795,8 @@ class Game
         @@number_of_games = self.set_num_of_games
         #Loop from game_count through to the @@num_of_games class variable 
         while game_count < @@number_of_games
+            #Add separator with + sign
+            puts "\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n"
             #Display the current game played to the user
             puts "Game #{game_count + 1}"
             #Declare an Game object where the players are created where game_count is passe
@@ -817,7 +819,6 @@ class Game
             @blank = nil
             @duplicate = nil
             @board = Array.new(13) {Array.new(12, " ")}
-            puts "\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n"
         end
         #Display game over to the user
         puts "Game Over!"
