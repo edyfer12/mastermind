@@ -389,6 +389,7 @@ class Game
         #If the computer is a codemaker, create an instance variable, computer_points and set to points
         if @computer.player == 'codemaker'
             @computer_points = points
+            #Push the computer_points to the array total_computer_scores
         else
         #Otherwise, 
             #Add whitespace
@@ -397,6 +398,7 @@ class Game
             display_board
             #create an instance variable, human_points and set to points
             @human_points = points
+            #Push the computer_points to the array total_computer_scores
         end
     end
     #Create instance method called computer_guess_colour where feedback and guesser arrays is passed so computer can  
