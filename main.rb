@@ -635,14 +635,14 @@ class Game
                         print " " + @board[row_index][col_index] + " "
                     #For the right hand side of the guesser_row, have the feedback row for the human
                     elsif col_index == 8
-                        @board[row_index][col_index] = Rainbow(@board[row_index][col_index]).bg("696969")
-                        print "||" + Rainbow(" ").bg("696969") + @board[row_index][col_index] + Rainbow(" ").bg("696969")
+                        @board[row_index][col_index] = Rainbow(@board[row_index][col_index]).bg("757575")
+                        print "||" + Rainbow(" ").bg("757575") + @board[row_index][col_index] + Rainbow(" ").bg("757575")
                     elsif col_index >= 9 && col_index <= 10
-                        @board[row_index][col_index] = Rainbow(@board[row_index][col_index]).bg("696969")
-                        print Rainbow(" ").bg("696969") + @board[row_index][col_index] + Rainbow(" ").bg("696969")
+                        @board[row_index][col_index] = Rainbow(@board[row_index][col_index]).bg("757575")
+                        print Rainbow(" ").bg("757575") + @board[row_index][col_index] + Rainbow(" ").bg("757575")
                     else
-                        @board[row_index][col_index] = Rainbow(@board[row_index][col_index]).bg("696969")
-                        print Rainbow(" ").bg("696969") + @board[row_index][col_index] + Rainbow(" ").bg("696969") + "||"
+                        @board[row_index][col_index] = Rainbow(@board[row_index][col_index]).bg("757575")
+                        print Rainbow(" ").bg("757575") + @board[row_index][col_index] + Rainbow(" ").bg("757575") + "||"
                     end
                 end
                 #Increment col_index by 1
@@ -713,19 +713,19 @@ class Game
     #Update the decoding board based on the guesses made by the computer player passing in the feedback array, i, guess_count and guesser array
     def update_board_guesser_computer(i, feedback, guesser, guess_count)
         #Set all the guesser rows of the decoding board to #
-        @board[12 - guess_count][12 - i] = Rainbow("#").bold
+        @board[12 - guess_count][8 + i] = Rainbow("#").bold
         @board[12 - guess_count][i + 4] = Rainbow("#").bold
 
         case feedback[i]
         #If the element of feedback is 'black', set the colour of the existing value in decoding board to black
         when 'black'
-            @board[12 - guess_count][12 - i] = Rainbow("#").black.bold
+            @board[12 - guess_count][8 + i] = Rainbow(@board[12 - guess_count][8 + i]).color("000000").bold
         #If the element of feedback is 'white', set the colour of the existing value in decoding board to white
         when 'white'
-            @board[12 - guess_count][12 - i] = Rainbow("#").white.bold
+            @board[12 - guess_count][8 + i] = Rainbow(@board[12 - guess_count][8 + i]).white.bold
         #If the element of feedback is 'blank', set the colour of the existing value in decoding board to blank
         when 'blank'
-            @board[12 - guess_count][12 - i] = ' '
+            @board[12 - guess_count][8 + i] = ' '
         end
     end
     #Update the decoding board based on the codemaker pattern conducted by the computer passing in the index for the row
