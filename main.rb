@@ -40,6 +40,8 @@ class Game
         @board = Array.new(13) {Array.new(12, " ")}
         display_board
         puts
+        #Create an array that stores in the number of points for the computer which is then used to calculate the total of computer scores
+        #Create an array that stores in the number of points for the human which is then used to calculate the total of all human scores
     end
     #Create an instance method called set_num_of_games
     def set_num_of_games
