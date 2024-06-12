@@ -157,6 +157,7 @@ class Game
                 end
             end
             #Invoke the method that updates the board for the codemaker as a computer passing in i
+            update_board_codemaker_computer(i)
             #Push the randomValue to the codemaker array
             @codemaker.push(randomValue)
             i += 1
@@ -705,7 +706,10 @@ class Game
         end
     end
     #Update the decoding board based on the codemaker pattern conducted by the computer passing in the index for the row
+    def update_board_codemaker_computer(i)
         #Change the value of first row and column added by 4 to # to indicate that the game is playing
+        @board[0][i + 4] = "#"
+    end
     def play_multiple_games
         #Declare game_count variable and set to 0
         game_count = 0
