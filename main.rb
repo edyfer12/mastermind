@@ -399,7 +399,7 @@ class Game
             display_board
             #create an instance variable, human_points and set to points
             @human_points = points
-            #Push the computer_points to the array total_computer_scores
+            #Push the human_points to the array total_human_scores
             @total_human_scores.push(@human_points)
         end
     end
