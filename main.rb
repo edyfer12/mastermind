@@ -582,10 +582,10 @@ class Game
                     #Otherwise, increment colour_index by 1
                     colour_index += 1
                     end
-                #If guesser is an empty array, push colour[colour_index] to guesser
-                if guesser.empty?
-                    guesser.push(colour[colour_index])
-                end
+                    #If guesser is an empty array, push colour[colour_index] to guesser
+                    if guesser.empty?
+                        guesser.push(colour[colour_index])
+                    end
                     #If specific_colour_match is true and codemaker[i] is equal to guesser[i], 
                     if specific_colour_match == true && @codemaker[i] == guesser[i]
                         #Push 'black' into feedback array
