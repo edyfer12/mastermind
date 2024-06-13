@@ -562,36 +562,36 @@ class Game
                 colour = colour.split
             else
                 guesser_valid_pattern = true
-                #break
-            end
-            if guesser.empty?
-                guesser.push(colour[i])
-            end
-            #Create variable i and set to 0
-            i = 0
-            #Loop from i to length of the guesser array
-            while i < guesser.length
-                #Push colour[i] into guesser since guesser is an empty array
-                guesser.push(colour[i])
-                #If the guesser[i] has the same position and colour in codemaker array,
-                if guesser[i] == @codemaker[i] && @codemaker.include?(guesser[i])
-                    #Push 'black' into feedback
-                    feedback.push('black')
-                #If the guesser[i] has the same colour different position as the codemaker and number of specific duplicate
-                #colours on guesser is less than or equal to the codemaker, 
-                elsif guesser[guesser_index] != @codemaker[guesser_index] && @codemaker.include?(guesser[guesser_index]) && 
-                    guesser.count(guesser[guesser_index]) <= @codemaker.count(guesser[guesser_index])
-                    #Push 'white' into feedback
-                    feedback.push('white')
-                #If the guesser[i] does not have colour on codemaker at all or has colour on different position where
-                #number of specific duplicate colours on guesser is greater than of codemaker,
-                elsif !@codemaker.include?(guesser[guesser_index]) || (@codemaker.include?(guesser[guesser_index]) && 
-                    guesser.count(guesser[guesser_index]) > @codemaker.count(guesser[guesser_index]))
-                    #Push 'blank' into feedback
-                    feedback.push('blank')
+                if guesser.empty?
+                    guesser.push(colour[i])
                 end
-                i += 1
-            end
+                #Create variable i and set to 0
+                i = 0
+                #Loop from i to length of the guesser array
+                while i < guesser.length
+                    #Push colour[i] into guesser since guesser is an empty array
+                    guesser.push(colour[i])
+                    #If the guesser[i] has the same position and colour in codemaker array,
+                    if guesser[i] == @codemaker[i] && @codemaker.include?(guesser[i])
+                        #Push 'black' into feedback
+                        feedback.push('black')
+                    #If the guesser[i] has the same colour different position as the codemaker and number of specific duplicate
+                    #colours on guesser is less than or equal to the codemaker, 
+                    elsif guesser[guesser_index] != @codemaker[guesser_index] && @codemaker.include?(guesser[guesser_index]) && 
+                        guesser.count(guesser[guesser_index]) <= @codemaker.count(guesser[guesser_index])
+                        #Push 'white' into feedback
+                        feedback.push('white')
+                    #If the guesser[i] does not have colour on codemaker at all or has colour on different position where
+                    #number of specific duplicate colours on guesser is greater than of codemaker,
+                    elsif !@codemaker.include?(guesser[guesser_index]) || (@codemaker.include?(guesser[guesser_index]) && 
+                        guesser.count(guesser[guesser_index]) > @codemaker.count(guesser[guesser_index]))
+                        #Push 'blank' into feedback
+                        feedback.push('blank')
+                    end
+                    i += 1
+                end
+                #break
+            end   
         end
         #Notify the user on the number of turns left
         #puts "\n\n\tYou have #{MAX_GUESSES - guess_count - 1} guesses left\n\n"
