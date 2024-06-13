@@ -561,6 +561,27 @@ class Game
                 colour = colour.split
             else
                 guesser_valid_pattern = true
+                 #---This part of the program will aim to find the specific colour match for a selected colour------ 
+                    #Create variable specific_colour_match and set to false
+                    #Create variable colour_index and set to 0
+                    #Loop from colour_index to length of colour array
+                        #If colour[colour_index] is equal to codemaker[colour_index],
+                            #Set specific_colour_match to true
+                            #Increment colour_index by 1
+                            #Exit the loop
+                        #Otherwise, increment colour_index by 1
+                    #If guesser is an empty array, push colour[colour_index] to guesser
+                    #Loop from i to 4
+                    #If specific_colour_match is true and codemaker[i] is equal to guesser[i], 
+                        #Push 'black' into feedback array
+                    #If specific_colour_match is false, codemaker[i] is not equal to guesser[i], codemaker includes
+                    #guesser[i] and guesser.count(guesser[i]) is less than or equal to codemaker.count(guesser[i]),
+                        #Push 'white' into feedback array
+                    #If codemaker does not include guesser[i] or codemaker does include guesser[i] and 
+                    #guesser.count(guesser[i]) is greater than codemaker.count(guesser[i]), 
+                        #Push 'blank' into feedback array
+                    #Increment i by 1
+                    #-----------------------------------------------------------------------------------------
                 #Create variable i and set to 0
                 i = 0
                 if guesser.empty?
