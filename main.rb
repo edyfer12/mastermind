@@ -470,7 +470,7 @@ class Game
 
         #Create variable called guesser_valid_pattern and set to false
         guesser_valid_pattern = false
-
+        puts "guesser.length = #{guesser.length}"
         #Keep looping until the guesser_valid pattern is set to true and length of colours is 4
         while !guesser_valid_pattern == true
             #Check the conditions for the colours inputted
@@ -568,31 +568,33 @@ class Game
                     guesser.push(colour[i])
                 end
                 #Loop from i to length of the guesser array
-                while i < guesser.length
-                    #Push colour[i] into guesser since guesser is an empty array
+                while i < 4
+                    #Push colour[i] into guesser if index is greater than 0
                     if i > 0
                         guesser.push(colour[i])
                     end
                     #If the guesser[i] has the same position and colour in codemaker array,
                     if guesser[i] == @codemaker[i] && @codemaker.include?(guesser[i])
                         #Push 'black' into feedback
-                        feedback.push('black')
+                        @feedback.push('black')
                     #If the guesser[i] has the same colour different position as the codemaker and number of specific duplicate
                     #colours on guesser is less than or equal to the codemaker, 
-                    elsif guesser[guesser_index] != @codemaker[guesser_index] && @codemaker.include?(guesser[guesser_index]) && 
-                        guesser.count(guesser[guesser_index]) <= @codemaker.count(guesser[guesser_index])
+                    elsif guesser[i] != @codemaker[i] && @codemaker.include?(guesser[i]) && 
+                        guesser.count(guesser[i]) <= @codemaker.count(guesser[i])
                         #Push 'white' into feedback
-                        feedback.push('white')
+                        @feedback.push('white')
                     #If the guesser[i] does not have colour on codemaker at all or has colour on different position where
                     #number of specific duplicate colours on guesser is greater than of codemaker,
-                    elsif !@codemaker.include?(guesser[guesser_index]) || (@codemaker.include?(guesser[guesser_index]) && 
-                        guesser.count(guesser[guesser_index]) > @codemaker.count(guesser[guesser_index]))
+                    elsif !@codemaker.include?(guesser[i]) || (@codemaker.include?(guesser[i]) && 
+                        guesser.count(guesser[i]) > @codemaker.count(guesser[i]) && guesser[i] != @codemaker[i])
                         #Push 'blank' into feedback
-                        feedback.push('blank')
+                        @feedback.push('blank')
                     end
+                    update_board_guesser_human(guesser, @feedback, i, guess_count)
                     i += 1
                 end
-                #break
+                display_board
+                break
             end   
         end
         #Notify the user on the number of turns left
@@ -623,9 +625,9 @@ class Game
             #update_board_guesser_human(guesser, @feedback, guesser_index, guess_count)
             #Increment guesser_index by 1
             #guesser_index += 1
-        end
+        #end
         #Invoke the method called display_board that keeps up to date the guesses made on the board
-        display_board
+        #display_board
     end
     #Create a decoding board that displays the asterisks in rows and columns up to date. The left and right hand side of the four
     #asterisks will have background colour of lightgrey. The middle section of the board indicates the colour pattern chosen 
