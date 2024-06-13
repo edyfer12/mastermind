@@ -605,6 +605,7 @@ class Game
                     end
                     #Increment i by 1
                     i += 1
+                    #Increment colour_index by 1
                 end
                     #-----------------------------------------------------------------------------------------
                 #Create variable i and set to 0
