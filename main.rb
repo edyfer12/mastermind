@@ -470,7 +470,6 @@ class Game
 
         #Create variable called guesser_valid_pattern and set to false
         guesser_valid_pattern = false
-        puts "guesser.length = #{guesser.length}"
         #Keep looping until the guesser_valid pattern is set to true and length of colours is 4
         while !guesser_valid_pattern == true
             #Check the conditions for the colours inputted
