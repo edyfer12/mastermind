@@ -470,6 +470,8 @@ class Game
 
         #Create variable called guesser_valid_pattern and set to false
         guesser_valid_pattern = false
+        #Create variable colour_index and set to 0
+        colour_index = 0
         #Keep looping until the guesser_valid pattern is set to true and length of colours is 4
         while !guesser_valid_pattern == true
             #Check the conditions for the colours inputted
@@ -564,8 +566,6 @@ class Game
                  #---This part of the program will aim to find the specific colour match for a selected colour------ 
                     #Create variable specific_colour_match and set to false
                     specific_colour_match = false
-                    #Create variable colour_index and set to 0
-                    colour_index = 0
                     #Create variable i and set to 0
                     i = 0
                     #Loop from colour_index to length of colour array
