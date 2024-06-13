@@ -767,7 +767,7 @@ class Game
         #If the feedback array element is 'black', set the current element to text colour to black on the board based on 11 - guesser_count as a row
         #and guesser_index as a column
         when 'black'
-            @board[12 - guess_count][guesser_index] = Rainbow(@board[12 - guess_count][guesser_index + 4]).color("000000").bold
+            @board[12 - guess_count][guesser_index] = Rainbow(@board[12 - guess_count][guesser_index]).color("000000").bold
         #If the feedback array element is 'white', set the current element to text colour to white on the board based on 11 - guesser_count as a row
         #and guesser_index as a column
         when 'white'
