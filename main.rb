@@ -564,9 +564,9 @@ class Game
                 guesser_valid_pattern = true
                 #break
             end
-            #Flatten the guesser array
             #Create variable i and set to 0
             #Loop from i to length of the guesser array
+                #Push colour[i] into guesser since guesser is an empty array
                 #If the guesser[i] has the same position and colour in codemaker array,
                     #Push 'black' into feedback
                 #If the guesser[i] has the same colour different position as the codemaker and number of specific duplicate
