@@ -585,15 +585,27 @@ class Game
                         guesser.push(colour[colour_index])
                     end
                     #Loop from i to 4
+                    while i < 4
                     #If specific_colour_match is true and codemaker[i] is equal to guesser[i], 
+                    if specific_colour_match == true && @codemaker[i] == guesser[i]
                         #Push 'black' into feedback array
+                        feedback.push('black')
                     #If specific_colour_match is false, codemaker[i] is not equal to guesser[i], codemaker includes
                     #guesser[i] and guesser.count(guesser[i]) is less than or equal to codemaker.count(guesser[i]),
+                    elsif !specific_colour_match == true && @codemaker[i] == guesser[i] && @codemaker[i].include?(guesser[i]) &&
+                        guesser.count(guesser[i]) <= @codemaker.count(guesser[i])
                         #Push 'white' into feedback array
+                        feedback.push('white')
                     #If codemaker does not include guesser[i] or codemaker does include guesser[i] and 
                     #guesser.count(guesser[i]) is greater than codemaker.count(guesser[i]), 
+                    elsif !codemaker.include?(guesser[i]) || (codemaker.include?(guesser[i]) && guesser.count(guesser[i]) > 
+                        @codemaker.count(guesser[i]))
                         #Push 'blank' into feedback array
+                        feedback.push('blank')
+                    end
                     #Increment i by 1
+                    i += 1
+                end
                     #-----------------------------------------------------------------------------------------
                 #Create variable i and set to 0
                 #i = 0
