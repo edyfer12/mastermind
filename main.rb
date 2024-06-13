@@ -326,6 +326,7 @@ class Game
     #colour does not exist in the codemaker or if colour does exist, but not position, where the 
     #number of duplicate colours in guesser is greater than in codemaker.
     def nominate_colours_guesser
+        puts "codemaker = #{@codemaker}"
         #Create a local variable called points that is for setting points for the codemaker if a guesser has a turn
         #and set points to 0
         points = 0
@@ -470,9 +471,10 @@ class Game
         #Create variable called guesser_valid_pattern and set to false
         guesser_valid_pattern = false
 
-        #Keep looping until the guesser_valid pattern is set to true
+        #Keep looping until the guesser_valid pattern is set to true and length of colours is 4
         #puts all_colours_exist?(code_pegs, colour) == 'false' && colour.length == 4 && duplicate == 'no' && has_duplicate?(colour) == 'false'
         while !guesser_valid_pattern == true
+            #Check the conditions for the colours inputted
             case 
             #If one or more of the strings do not match the colours in the code_peg array out of 4 strings, then display the error message 'name_of_string(s)
             #does not exist: Try again' and encourage the user to enter input again
@@ -563,6 +565,17 @@ class Game
                 guesser_valid_pattern = true
                 break
             end
+            #Flatten the guesser array
+            #Create variable i and set to 0
+            #Loop from i to length of the guesser array
+                #If the guesser[i] has the same position and colour in codemaker array,
+                    #Push 'black' into feedback
+                #If the guesser[i] has the same colour different position as the codemaker and number of specific duplicate
+                #colours on guesser is less than or equal to the codemaker,
+                    #Push 'white' into feedback
+                #If the guesser[i] does not have colour on codemaker at all or has colour on different position where
+                #number of specific duplicate colours on guesser is greater than of codemaker,
+                    #Push 'blank' into feedback
         end
         #Notify the user on the number of turns left
         puts "\n\n\tYou have #{MAX_GUESSES - guess_count - 1} guesses left\n\n"
