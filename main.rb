@@ -562,15 +562,17 @@ class Game
                 colour = colour.split
             else
                 guesser_valid_pattern = true
+                #Create variable i and set to 0
+                i = 0
                 if guesser.empty?
                     guesser.push(colour[i])
                 end
-                #Create variable i and set to 0
-                i = 0
                 #Loop from i to length of the guesser array
                 while i < guesser.length
                     #Push colour[i] into guesser since guesser is an empty array
-                    guesser.push(colour[i])
+                    if i > 0
+                        guesser.push(colour[i])
+                    end
                     #If the guesser[i] has the same position and colour in codemaker array,
                     if guesser[i] == @codemaker[i] && @codemaker.include?(guesser[i])
                         #Push 'black' into feedback
