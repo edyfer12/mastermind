@@ -587,7 +587,10 @@ class Game
                         guesser.push(colour[colour_index])
                     end
                     #If i is greater than 0, 
+                    if i > 0
                         #Push colour[colour_index] into guesser
+                        guesser.push(colour[colour_index])
+                    end
                     #If specific_colour_match is true and codemaker[i] is equal to guesser[i], 
                     if specific_colour_match == true && @codemaker[i] == guesser[i]
                         #Push 'black' into feedback array
