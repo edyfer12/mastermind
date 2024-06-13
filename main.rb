@@ -606,6 +606,7 @@ class Game
                     #Increment i by 1
                     i += 1
                     #Increment colour_index by 1
+                    colour_index += 1
                 end
                     #-----------------------------------------------------------------------------------------
                 #Create variable i and set to 0
