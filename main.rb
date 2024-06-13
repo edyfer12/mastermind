@@ -569,11 +569,18 @@ class Game
                     #Create variable i and set to 0
                     i = 0
                     #Loop from colour_index to length of colour array
+                    while colour_index < colour.length
                         #If colour[colour_index] is equal to codemaker[colour_index],
+                        if colour[colour_index] == @codemaker[colour_index]
                             #Set specific_colour_match to true
+                            specific_colour_match = true
                             #Increment colour_index by 1
                             #Exit the loop
+                            break
+                        end
                         #Otherwise, increment colour_index by 1
+                        colour_index += 1
+                    end
                     #If guesser is an empty array, push colour[colour_index] to guesser
                     #Loop from i to 4
                     #If specific_colour_match is true and codemaker[i] is equal to guesser[i], 
