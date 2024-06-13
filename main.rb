@@ -472,7 +472,6 @@ class Game
         guesser_valid_pattern = false
 
         #Keep looping until the guesser_valid pattern is set to true and length of colours is 4
-        #puts all_colours_exist?(code_pegs, colour) == 'false' && colour.length == 4 && duplicate == 'no' && has_duplicate?(colour) == 'false'
         while !guesser_valid_pattern == true
             #Check the conditions for the colours inputted
             case 
