@@ -564,28 +564,28 @@ class Game
             else
                 guesser_valid_pattern = true
                  #---This part of the program will aim to find the specific colour match for a selected colour------ 
-                    #Create variable specific_colour_match and set to false
-                    specific_colour_match = false
-                    #Create variable i and set to 0
-                    i = 0
-                    #Loop from colour_index to length of colour array
-                    while colour_index < colour.length
-                        #If colour[colour_index] is equal to codemaker[colour_index],
-                        if colour[colour_index] == @codemaker[colour_index]
-                            #Set specific_colour_match to true
-                            specific_colour_match = true
-                            #Exit the loop
-                            break
-                        end
-                        #Otherwise, increment colour_index by 1
-                        colour_index += 1
+                #Create variable specific_colour_match and set to false
+                specific_colour_match = false
+                #Create variable i and set to 0
+                i = 0
+                #Loop from colour_index to length of colour array
+                while colour_index < colour.length
+                    #If colour[colour_index] is equal to codemaker[colour_index],
+                    if colour[colour_index] == @codemaker[colour_index]
+                        #Set specific_colour_match to true
+                        specific_colour_match = true
+                        #Exit the loop
+                        break
                     end
-                    #If guesser is an empty array, push colour[colour_index] to guesser
-                    if guesser.empty?
-                        guesser.push(colour[colour_index])
-                    end
-                    #Loop from i to 4
-                    while i < 4
+                    #Otherwise, increment colour_index by 1
+                    colour_index += 1
+                end
+                #If guesser is an empty array, push colour[colour_index] to guesser
+                if guesser.empty?
+                    guesser.push(colour[colour_index])
+                end
+                #Loop from i to 4
+                while i < 4
                     #If specific_colour_match is true and codemaker[i] is equal to guesser[i], 
                     if specific_colour_match == true && @codemaker[i] == guesser[i]
                         #Push 'black' into feedback array
