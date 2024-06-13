@@ -564,6 +564,7 @@ class Game
                  #---This part of the program will aim to find the specific colour match for a selected colour------ 
                     #Create variable specific_colour_match and set to false
                     #Create variable colour_index and set to 0
+                    #Create variable i and set to 0
                     #Loop from colour_index to length of colour array
                         #If colour[colour_index] is equal to codemaker[colour_index],
                             #Set specific_colour_match to true
