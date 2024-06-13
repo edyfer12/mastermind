@@ -574,7 +574,6 @@ class Game
                         if colour[colour_index] == @codemaker[colour_index]
                             #Set specific_colour_match to true
                             specific_colour_match = true
-                            #Increment colour_index by 1
                             #Exit the loop
                             break
                         end
