@@ -582,32 +582,35 @@ class Game
                     #Otherwise, increment colour_index by 1
                     colour_index += 1
                     end
-                    #If guesser is an empty array, push colour[colour_index] to guesser
+                   
+                    #If guesser is an empty array, push colour[i] to guesser
                     if guesser.empty?
-                        guesser.push(colour[colour_index])
+                        guesser.push(colour[i])
                     end
                     #If i is greater than 0, 
                     if i > 0
-                        #Push colour[colour_index] into guesser
-                        guesser.push(colour[colour_index])
+                        #Push colour[i] into guesser
+                        guesser.push(colour[i])
                     end
                     #If specific_colour_match is true and codemaker[i] is equal to guesser[i], 
-                    if specific_colour_match == true && @codemaker[i] == guesser[i]
+                    if @codemaker[i] == guesser[i] 
                         #Push 'black' into feedback array
-                        feedback.push('black')
+                        @feedback.push('black')
+                    
                     #If specific_colour_match is false, codemaker[i] is not equal to guesser[i], codemaker includes
                     #guesser[i] and guesser.count(guesser[i]) is less than or equal to codemaker.count(guesser[i]),
-                    elsif !specific_colour_match == true && @codemaker[i] == guesser[i] && @codemaker[i].include?(guesser[i]) &&
-                        guesser.count(guesser[i]) <= @codemaker.count(guesser[i])
+                    elsif @codemaker[i] != guesser[i] && @codemaker.include?(guesser[i]) &&
+                    guesser.count(guesser[i]) <= @codemaker.count(guesser[i])
                         #Push 'white' into feedback array
-                        feedback.push('white')
+                        @feedback.push('white')
                     #If codemaker does not include guesser[i] or codemaker does include guesser[i] and 
                     #guesser.count(guesser[i]) is greater than codemaker.count(guesser[i]), 
-                    elsif !codemaker.include?(guesser[i]) || (codemaker.include?(guesser[i]) && guesser.count(guesser[i]) > 
-                        @codemaker.count(guesser[i]))
+                    elsif (!(@codemaker).include?(guesser[i]) || (@codemaker[i] != guesser[i] && (@codemaker).include?(guesser[i]) && 
+                    colour.count(guesser[i]) > (@codemaker-colour).count(guesser[i])))
                         #Push 'blank' into feedback array
-                        feedback.push('blank')
+                        @feedback.push('blank')
                     end
+                    update_board_guesser_human(guesser, @feedback, i, guess_count)
                     #Increment i by 1
                     i += 1
                     #Increment colour_index by 1
