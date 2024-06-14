@@ -561,62 +561,7 @@ class Game
                 colour = colour.split
             else
                 guesser_valid_pattern = true
-                 #---This part of the program will aim to find the specific colour match for a selected colour------ 
-                #Create variable specific_colour_match and set to false
-                specific_colour_match = false
-                #Create variable i and set to 0
-                i = 0
-                #Create variable colour_index and set to 0
-                colour_index = 0
-                #Loop from i to 4
-                while i < 4
-                    #Loop from colour_index to length of colour array
-                    while colour_index < colour.length
-                        #If colour[colour_index] is equal to codemaker[colour_index],
-                        if colour[colour_index] == @codemaker[colour_index]
-                            #Set specific_colour_match to true
-                            specific_colour_match = true
-                            #Exit the loop
-                            break
-                        end
-                    #Otherwise, increment colour_index by 1
-                    colour_index += 1
-                    end
-                   
-                    #If guesser is an empty array, push colour[i] to guesser
-                    if guesser.empty?
-                        guesser.push(colour[i])
-                    end
-                    #If i is greater than 0, 
-                    if i > 0
-                        #Push colour[i] into guesser
-                        guesser.push(colour[i])
-                    end
-                    #If specific_colour_match is true and codemaker[i] is equal to guesser[i], 
-                    if @codemaker[i] == guesser[i] 
-                        #Push 'black' into feedback array
-                        @feedback.push('black')
-                    
-                    #If specific_colour_match is false, codemaker[i] is not equal to guesser[i], codemaker includes
-                    #guesser[i] and guesser.count(guesser[i]) is less than or equal to codemaker.count(guesser[i]),
-                    elsif @codemaker[i] != guesser[i] && @codemaker.include?(guesser[i]) &&
-                    guesser.count(guesser[i]) <= @codemaker.count(guesser[i])
-                        #Push 'white' into feedback array
-                        @feedback.push('white')
-                    #If codemaker does not include guesser[i] or codemaker does include guesser[i] and 
-                    #guesser.count(guesser[i]) is greater than codemaker.count(guesser[i]), 
-                    elsif (!(@codemaker).include?(guesser[i]) || (@codemaker[i] != guesser[i] && (@codemaker).include?(guesser[i]) && 
-                    colour.count(guesser[i]) > (@codemaker-colour).count(guesser[i])))
-                        #Push 'blank' into feedback array
-                        @feedback.push('blank')
-                    end
-                    update_board_guesser_human(guesser, @feedback, i, guess_count)
-                    #Increment i by 1
-                    i += 1
-                    #Increment colour_index by 1
-                    colour_index += 1
-                end
-                    #-----------------------------------------------------------------------------------------
+                #-----------------------------------------------------------------------------------------
                 #Create variable i and set to 0
                 #i = 0
                 #if guesser.empty?
