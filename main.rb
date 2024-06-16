@@ -348,7 +348,7 @@ class Game
             #Output to the user "Please enter the four colours (red, orange, green, pink, brown, yellow):"
             puts "\n\tYou have #{MAX_GUESSES - guess_count} guesses left\n\n"  
             display_board
-            puts "As a guesser, please enter the four colours (coloured code pegs are red, orange, green, pink, brown, yellow):"
+            puts "As a guesser, please enter the four colours (coloured code pegs are red, orange, green, pink, brown, yellow):\n"
         end
 
         #Loop from guess_count to MAX_GUESSES as a way to check how many attempts the guesser made in choosing colours
@@ -393,7 +393,7 @@ class Game
         else
         #Otherwise, 
             #Add whitespace
-            puts
+            #puts
             #Display the board that is updated
             display_board
             #create an instance variable, human_points and set to points
@@ -404,7 +404,7 @@ class Game
     #choose colours based on the rules
     def computer_guess_colour(duplicate, code_pegs, guesser, guess_count)
         #Create feedback array and set to []
-        @feedback = []
+        @feedback = Array.new(4, 'blank')
 
         #Create variable i and set to 0
         i = 0
@@ -430,17 +430,40 @@ class Game
             #puts "@codemaker.include?(guesser[i]) = #{@codemaker.include?(guesser[i])}"
             #If the guesser[i] does match both in colour and position to the codemaker, then push 'black' into feedback array
             if guesser[i] == @codemaker[i] && @codemaker.include?(guesser[i])
-                @feedback.push('black')
-            #If the guesser[i] does match in colour, not position and there are less specific or same duplicate colours in guesser than codemaker, 
-            #then push 'white' into feedback array
-            elsif guesser[i] != @codemaker[i] && @codemaker.include?(guesser[i]) &&
-                guesser.count(guesser[i]) <= @codemaker.count(guesser[i])
-                @feedback.push('white')
-            #If the guesser[i] does not match in colour or specific number of duplicate colours is greater than in codemaker,
-            #then push 'blank' 
-            elsif !@codemaker.include?(guesser[i]) || (@codemaker.include?(guesser[i]) && 
-                guesser.count(guesser[i]) > @codemaker.count(guesser[i]) && @codemaker[i] != guesser[i])
-                @feedback.push('blank')
+                @feedback[i] = 'black'
+            #If guesser[i] is only included in codemaker array but does not have to equal codemaker[i]
+            elsif @codemaker.include?(guesser[i])
+                specific_guess_count = guesser.count(guesser[i])
+                specific_codemaker_count = @codemaker.count(guesser[i])
+
+                only_input = (specific_guess_count == 1)
+                several_outputs = (specific_codemaker_count >= specific_guess_count)
+            
+                guesser_indexes = []
+                codemaker_indexes = []
+
+                j = 0
+                while j < 4
+                    if guesser[j] == guesser[i] && guesser[j] != @codemaker[j]
+                        guesser_indexes.append(j)
+                    end
+                    if @codemaker[j] == guesser[i] && guesser[j] != @codemaker[j]
+                        codemaker_indexes.append(j)
+                    end
+                    count_this = false
+                    #count_this = (guesser_indexes.index(i) < codemaker_indexes.length)
+                    if codemaker_indexes.length == nil || guesser_indexes.index(i) == nil 
+                        count_this = false
+                    else
+                        count_this = (guesser_indexes.index(i) < codemaker_indexes.length)
+                    end
+                    if only_input || several_outputs || count_this
+                        #Push 'white' into feedback
+                        @feedback[i] = 'white'
+                        break
+                    end
+                    j += 1
+                end
             end
             #Invoke the method that updates the board based on the guesses made by the computer passing in i, feedback and guesser array, and guess_count
             update_board_guesser_computer(i, @feedback, guesser, guess_count)
@@ -563,7 +586,6 @@ class Game
                 guesser_valid_pattern = true
                 #Create variable and set i to 0
                 i = 0
-                puts
                 #Loop from i to the length of the array
                 while i < @codemaker.length
                     #Push colour[i] to the guesser array
@@ -579,34 +601,19 @@ class Game
                     while colour_index < colour.length
                         #If colour[colour_index] is equal to specific colour and codemaker[colour_index]
                         if colour[colour_index] == specific_colour && colour[colour_index] == @codemaker[colour_index]
-                            puts "colour[#{colour_index}] = #{colour[colour_index]}"
-                            puts "@codemaker[#{colour_index}] = #{@codemaker[colour_index]}"
                             #Add specific_colour_match by 1
                             specific_colour_match_count += 1
                         end
                         #Increment colour_index by 1
                         colour_index += 1
                     end
-                    puts "guesser[#{i}] = #{guesser[i]}"
-                    puts "specific_colour_match_count = #{specific_colour_match_count}"
-                    puts "specific_colour = #{specific_colour}"
-                    puts "colour.count(#{guesser[i]}) = #{colour.count(guesser[i])}"
-                    puts "@codemaker.count(#{guesser[i]}) = #{@codemaker.count(guesser[i])}"
-                    puts "guesser.count(#{guesser[i]}) = #{guesser.count(guesser[i])}"
+
                     #If guesser[i] is equal to codemaker[i], 
                     if guesser[i] == @codemaker[i]
                         #Push 'black' into feedback
                         @feedback[i] = 'black'
                     
-                    #If guesser[i] does not exist in codemaker or guesser[i] is included in codemaker array,
-                    #and number of guesser[i] in guesser array is greater than number of guesser[i] in 
-                    #codemaker minus specific_colour_match
-                    #elsif !@codemaker.include?(guesser[i]) || (@codemaker.include?(guesser[i]) && 
-                       # colour.count(guesser[i]) > (@codemaker.count(guesser[i])))
-                        #@feedback.push('blank')
-                    #If guesser[i] is not equal to codemaker[i], guesser[i] is included in codemaker array and 
-                    #number of guesser[i] in guesser array is less than or equal to number of guesser[i] in 
-                    #codemaker minus specific_colour_match,
+                    #If guesser[i] is only included in codemaker array but does not have to equal codemaker[i]
                     elsif @codemaker.include?(guesser[i])
                         specific_guess_count = colour.count(guesser[i])
                         specific_codemaker_count = @codemaker.count(guesser[i])
@@ -617,8 +624,6 @@ class Game
                         guesser_indexes = []
                         codemaker_indexes = []
 
-                        puts "several_outputs = #{several_outputs}"
-
                         j = 0
                         while j < 4
                             if colour[j] == colour[i] && colour[j] != @codemaker[j]
@@ -627,10 +632,6 @@ class Game
                             if @codemaker[j] == colour[i] && colour[j] != @codemaker[j]
                                 codemaker_indexes.append(j)
                             end
-                            puts "guesser_indexes = #{guesser_indexes}"
-                            puts "codemaker_indexes = #{codemaker_indexes}"
-                            puts "guesser_indexes.index(#{i}) = #{guesser_indexes.index(i)}"
-                            puts "codemaker_indexes.length = #{codemaker_indexes.length}"
                             count_this = false
                             #count_this = (guesser_indexes.index(i) < codemaker_indexes.length)
                             if codemaker_indexes.length == nil || guesser_indexes.index(i) == nil 
@@ -638,8 +639,6 @@ class Game
                             else
                                 count_this = (guesser_indexes.index(i) < codemaker_indexes.length)
                             end
-                            puts "count_this = #{count_this}"
-                            #
                             if only_input || several_outputs || count_this
                                 #Push 'white' into feedback
                                 @feedback[i] = 'white'
@@ -648,79 +647,24 @@ class Game
                             j += 1
                         end
                     end
-                    puts "feedback = #{@feedback}"
-                    puts
+                    
                     update_board_guesser_human(guesser, @feedback, i, guess_count)
                     #Increment i by 1
                     i += 1
                 end
-                #-----------------------------------------------------------------------------------------
-                #Create variable i and set to 0
-                #i = 0
-                #if guesser.empty?
-                    #guesser.push(colour[i])
-               # end
-                #Loop from i to length of the guesser array
-                #while i < 4
-                    #Push colour[i] into guesser if index is greater than 0
-                    #if i > 0
-                     #   guesser.push(colour[i])
-                    ##end
-                    #If the guesser[i] has the same position and colour in codemaker array,
-                    #if guesser[i] == @codemaker[i] && @codemaker.include?(guesser[i])
-                        #Push 'black' into feedback
-                        #@feedback.push('black')
-                    #If the guesser[i] has the same colour different position as the codemaker and number of specific duplicate
-                    #colours on guesser is less than or equal to the codemaker, 
-                    #elsif guesser[i] != @codemaker[i] && @codemaker.include?(guesser[i]) && 
-                        #guesser.count(guesser[i]) <= @codemaker.count(guesser[i])
-                        #Push 'white' into feedback
-                        #@feedback.push('white')
-                    #If the guesser[i] does not have colour on codemaker at all or has colour on different position where
-                    #number of specific duplicate colours on guesser is greater than of codemaker,
-                    #elsif !@codemaker.include?(guesser[i]) || (@codemaker.include?(guesser[i]) && 
-                       # guesser.count(guesser[i]) > @codemaker.count(guesser[i]) && guesser[i] != @codemaker[i])
-                        #Push 'blank' into feedback
-                        #@feedback.push('blank')
-                    #end
-                    #update_board_guesser_human(guesser, @feedback, i, guess_count)
-                    #i += 1
-                #end
+                #If all four colours in feedback is black, reveal the codemaker colour pattern
+                if @feedback.all?('black')
+                    j = 0
+                    while j < 4 
+                        @board[0][j + 4] = @board[12 - guess_count][j + 4]
+                        j += 1
+                    end
+                end
+                puts 
                 display_board
                 break
             end   
         end
-        #Notify the user on the number of turns left
-        #puts "\n\n\tYou have #{MAX_GUESSES - guess_count - 1} guesses left\n\n"
-        #Push colour to guesser array
-        #guesser.push(colour)
-        #Flatten the guesser array
-        #guesser = guesser.flatten
-        #Create variable called guesser_index and set to 0
-        #guesser_index = 0
-        #Loop from guesser_index to 4
-        #while guesser_index < 4
-            #If guesser[i] has the same position and colour as the codemaker, then push 'black' on feedback array
-            #if guesser[guesser_index] == @codemaker[guesser_index] && @codemaker.include?(guesser[guesser_index])
-               # @feedback.push('black')
-            #If guesser[i] has the same colour different position as the codemaker and number of specific duplicate
-            #colours on guesser is less than or equal to the codemaker, then push 'white' on feedback array 
-            #elsif guesser[guesser_index] != @codemaker[guesser_index] && @codemaker.include?(guesser[guesser_index]) && 
-                #guesser.count(guesser[guesser_index]) <= @codemaker.count(guesser[guesser_index])
-                #@feedback.push('white')
-            #If guesser[i] does not have colour on codemaker at all or has colour on different position where
-            #number of specific duplicate colours on guesser is greater than of codemaker, push 'blank' on feedback array
-            #elsif !@codemaker.include?(guesser[guesser_index]) || (@codemaker.include?(guesser[guesser_index]) && 
-               # guesser.count(guesser[guesser_index]) > @codemaker.count(guesser[guesser_index]))
-               # @feedback.push('blank')
-            #end
-            #Invoke the method called update_board_guesser passing guesser array, feedback array, guesser_index and guess_count
-            #update_board_guesser_human(guesser, @feedback, guesser_index, guess_count)
-            #Increment guesser_index by 1
-            #guesser_index += 1
-        #end
-        #Invoke the method called display_board that keeps up to date the guesses made on the board
-        #display_board
     end
     #Create a decoding board that displays the asterisks in rows and columns up to date. The left and right hand side of the four
     #asterisks will have background colour of lightgrey. The middle section of the board indicates the colour pattern chosen 
