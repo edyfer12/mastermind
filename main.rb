@@ -26,17 +26,7 @@ class Game
         @human = Human.new(PLAYERS)
         #Create a computer object passing in human
         @computer = Computer.new(@human)
-        #else
-        #@computer = Computer.new(@human)
-        #@human = Human.new(game_count, PLAYERS)
-        #end
-        #Assign class variable number_of_games to class method set_number_of_games 
-       # @@number_of_games = self.set_num_of_games
-        #Create code_pegs array and store 'red', 'orange', 'pink', 'green', 'brown', 'yellow'.
-        #Players can nominate the colour that exists in the code_pegs
-        #@code_pegs = ['red', 'orange', 'pink', 'green', 'brown', 'yellow']
-        #self.create_rules
-        #self.nominate_colours_codemaker
+        
         @board = Array.new(13) {Array.new(12, " ")}
         display_board
         puts
