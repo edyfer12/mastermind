@@ -461,7 +461,7 @@ class Game
             puts "As a guesser, please enter the four colours (coloured code pegs are red, orange, green, pink, brown, yellow):"
         end
         #Create feedback array and set to []
-        @feedback = []
+        @feedback = Array.new(4, 'blank')
         #Create a variable called colour and set to input
         colour = gets.chomp.strip.downcase
         #Convert colour string into an array by reassigning colour array to a colour string and calling the built in method
@@ -562,30 +562,98 @@ class Game
             else
                 guesser_valid_pattern = true
                 #Create variable and set i to 0
-
+                i = 0
+                puts
                 #Loop from i to the length of the array
+                while i < @codemaker.length
                     #Push colour[i] to the guesser array
+                    guesser.push(colour[i])
                     #Create variable, colour_index and set to 0
+                    colour_index = 0
                     #Create variable, specific_colour_match_count and set to 0
+                    specific_colour_match_count = 0
                     #Create variable, specific_colour and set to guesser[i]
+                    specific_colour = guesser[i]
 
                     #Loop from colour_index to length of colour array
+                    while colour_index < colour.length
                         #If colour[colour_index] is equal to specific colour and codemaker[colour_index]
+                        if colour[colour_index] == specific_colour && colour[colour_index] == @codemaker[colour_index]
+                            puts "colour[#{colour_index}] = #{colour[colour_index]}"
+                            puts "@codemaker[#{colour_index}] = #{@codemaker[colour_index]}"
                             #Add specific_colour_match by 1
+                            specific_colour_match_count += 1
+                        end
                         #Increment colour_index by 1
-                    
+                        colour_index += 1
+                    end
+                    puts "guesser[#{i}] = #{guesser[i]}"
+                    puts "specific_colour_match_count = #{specific_colour_match_count}"
+                    puts "specific_colour = #{specific_colour}"
+                    puts "colour.count(#{guesser[i]}) = #{colour.count(guesser[i])}"
+                    puts "@codemaker.count(#{guesser[i]}) = #{@codemaker.count(guesser[i])}"
+                    puts "guesser.count(#{guesser[i]}) = #{guesser.count(guesser[i])}"
                     #If guesser[i] is equal to codemaker[i], 
+                    if guesser[i] == @codemaker[i]
                         #Push 'black' into feedback
-                    #If guesser[i] is not equal to codemaker[i], guesser[i] is included in codemaker array and 
-                    #number of guesser[i] in guesser array is less than or equal to number of guesser[i] in 
-                    #codemaker minus specific_colour_match,
-                        #Push 'white' into feedback
+                        @feedback[i] = 'black'
+                    
                     #If guesser[i] does not exist in codemaker or guesser[i] is included in codemaker array,
                     #and number of guesser[i] in guesser array is greater than number of guesser[i] in 
                     #codemaker minus specific_colour_match
+                    #elsif !@codemaker.include?(guesser[i]) || (@codemaker.include?(guesser[i]) && 
+                       # colour.count(guesser[i]) > (@codemaker.count(guesser[i])))
+                        #@feedback.push('blank')
+                    #If guesser[i] is not equal to codemaker[i], guesser[i] is included in codemaker array and 
+                    #number of guesser[i] in guesser array is less than or equal to number of guesser[i] in 
+                    #codemaker minus specific_colour_match,
+                    elsif @codemaker.include?(guesser[i])
+                        specific_guess_count = colour.count(guesser[i])
+                        specific_codemaker_count = @codemaker.count(guesser[i])
 
+                        only_input = (specific_guess_count == 1)
+                        several_outputs = (specific_codemaker_count >= specific_guess_count)
+                        
+                        guesser_indexes = []
+                        codemaker_indexes = []
+
+                        puts "several_outputs = #{several_outputs}"
+
+                        j = 0
+                        while j < 4
+                            if colour[j] == colour[i] && colour[j] != @codemaker[j]
+                                guesser_indexes.append(j)
+                            end
+                            if @codemaker[j] == colour[i] && colour[j] != @codemaker[j]
+                                codemaker_indexes.append(j)
+                            end
+                            puts "guesser_indexes = #{guesser_indexes}"
+                            puts "codemaker_indexes = #{codemaker_indexes}"
+                            puts "guesser_indexes.index(#{i}) = #{guesser_indexes.index(i)}"
+                            puts "codemaker_indexes.length = #{codemaker_indexes.length}"
+                            count_this = false
+                            #count_this = (guesser_indexes.index(i) < codemaker_indexes.length)
+                            if codemaker_indexes.length == nil || guesser_indexes.index(i) == nil 
+                                count_this = false
+                            else
+                                count_this = (guesser_indexes.index(i) < codemaker_indexes.length)
+                            end
+                            puts "count_this = #{count_this}"
+                            #
+                            if only_input || several_outputs || count_this
+                                #Push 'white' into feedback
+                                @feedback[i] = 'white'
+                                break
+                            end
+                            j += 1
+                        end
+                    end
+                    puts "feedback = #{@feedback}"
+                    puts
+                    update_board_guesser_human(guesser, @feedback, i, guess_count)
                     #Increment i by 1
-    
+                    i += 1
+                end
                 #-----------------------------------------------------------------------------------------
                 #Create variable i and set to 0
                 #i = 0
