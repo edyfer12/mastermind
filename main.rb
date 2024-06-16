@@ -316,7 +316,6 @@ class Game
     #colour does not exist in the codemaker or if colour does exist, but not position, where the 
     #number of duplicate colours in guesser is greater than in codemaker.
     def nominate_colours_guesser
-        puts "codemaker = #{@codemaker}"
         #Create a local variable called points that is for setting points for the codemaker if a guesser has a turn
         #and set points to 0
         points = 0
