@@ -26,7 +26,7 @@ class Game
         @human = Human.new(PLAYERS)
         #Create a computer object passing in human
         @computer = Computer.new(@human)
-        
+        #Create board with 13 rows and 12 columns
         @board = Array.new(13) {Array.new(12, " ")}
         display_board
         puts
